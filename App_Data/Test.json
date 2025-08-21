@@ -1,0 +1,12 @@
+[
+  {
+    "Id": "t-basic",
+    "Title": "Basic .NET",
+    "DurationMinutes": 10,
+    "PassScore": 3,
+    "SkillFilter": "ASP.NET",
+    "RandomMCQ": 2,
+    "RandomTF": 1,
+    "RandomEssay": 0
+  }
+]

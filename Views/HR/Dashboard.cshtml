@@ -1,0 +1,99 @@
+﻿@model Employee_Survey.Models.HrDashboardViewModel
+@{
+    ViewData["Title"] = "HR Dashboard";
+}
+<h2 class="mb-3">HR Dashboard</h2>
+
+<!-- Cards -->
+<div class="row g-3">
+    <div class="col-md-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="h6 text-muted">Employees</div>
+                <div class="h3">@Model.TotalEmployees</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="h6 text-muted">Tests</div>
+                <div class="h3">@Model.TotalTests</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="h6 text-muted">Active Assignments</div>
+                <div class="h3">@Model.ActiveAssignments</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="h6 text-muted">Pass Rate</div>
+                <div class="h3">@Model.PassRatePercent %</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Active Assignments -->
+<div class="mt-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <h5>Assignments đang hiệu lực</h5>
+    </div>
+    <table class="table table-sm table-striped align-middle">
+        <thead><tr><th>Test</th><th>Target</th><th>Start</th><th>End</th></tr></thead>
+        <tbody>
+            @foreach (var a in Model.ActiveAssignmentsList)
+            {
+                <tr>
+                    <td>@a.TestTitle (@a.TestId)</td>
+                    <td>@a.Target</td>
+                    <td>@a.StartAt.ToLocalTime()</td>
+                    <td>@a.EndAt.ToLocalTime()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Recent Submissions -->
+<div class="mt-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <h5>Nộp bài gần đây</h5>
+        <a class="btn btn-outline-secondary btn-sm" href="/HR/ExportRecent">Export CSV</a>
+    </div>
+    <table class="table table-sm table-hover">
+        <thead><tr><th>When</th><th>User</th><th>Test</th><th>Score</th><th>Pass</th></tr></thead>
+        <tbody>
+            @foreach (var r in Model.RecentSubmissions)
+            {
+                <tr>
+                    <td>@r.EndAt.ToLocalTime()</td>
+                    <td>@r.UserName</td>
+                    <td>@r.TestTitle</td>
+                    <td>@r.Score</td>
+                    <td>@(r.IsPass ? "✓" : "✗")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Top Skills -->
+<div class="mt-4">
+    <h5>Top Skills (theo số câu đã làm)</h5>
+    <table class="table table-sm w-auto">
+        <thead><tr><th>Skill</th><th>Count</th></tr></thead>
+        <tbody>
+            @foreach (var s in Model.TopSkills)
+            {
+                <tr><td>@s.Skill</td><td>@s.Count</td></tr>
+            }
+        </tbody>
+    </table>
+</div>

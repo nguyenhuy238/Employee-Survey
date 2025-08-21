@@ -1,0 +1,40 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Login";
+}
+<h2>Đăng nhập</h2>
+
+<form method="post" action="/auth/login">
+    <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input name="email" class="form-control" value="admin@local" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Mật khẩu</label>
+        <input name="password" type="password" class="form-control" value="admin123" />
+    </div>
+    <button class="btn btn-primary">Login</button>
+    <div class="text-danger mt-2">@ViewBag.Error</div>
+</form>
+
+
+
+
+@* @{
+    Layout = "_Layout";
+    ViewBag.Title = "Login";
+}
+<h2>Login</h2>
+<form method="post" action="/auth/login">
+    <div class="mb-3">
+        <label>Email</label>
+        <input name="email" class="form-control" value="admin@local" />
+    </div>
+    <div class="mb-3">
+        <label>Password</label>
+        <input name="password" type="password" class="form-control" value="admin123" />
+    </div>
+    <button class="btn btn-primary">Login</button>
+    <div class="text-danger mt-2">@ViewBag.Error</div>
+</form> *@

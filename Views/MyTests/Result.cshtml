@@ -1,0 +1,17 @@
+﻿@model Employee_Survey.Domain.Session
+<h2>Result</h2>
+<p>Total Score: <b>@Model.TotalScore</b></p>
+<table class="table">
+    <thead><tr><th>Question</th><th>Your Answer</th><th>Score</th></tr></thead>
+    <tbody>
+        @foreach (var a in Model.Answers)
+        {
+            var qq = Model.Snapshot.First(x => x.Id == a.QuestionId);
+            <tr>
+                <td>@qq.Content</td>
+                <td>@a.Selected</td>
+                <td>@a.Score</td>
+            </tr>
+        }
+    </tbody>
+</table>

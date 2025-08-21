@@ -1,0 +1,79 @@
+[
+  {
+    "Id": "68688650acad4113b0703ca45db0d07a",
+    "Type": 0,
+    "Content": "C# l\u00E0 ng\u00F4n ng\u1EEF g\u00EC?",
+    "Options": [
+      "Ng\u00F4n ng\u1EEF l\u1EADp tr\u00ECnh",
+      "H\u1EC7 \u0111i\u1EC1u h\u00E0nh",
+      "CSDL",
+      "Tr\u00ECnh duy\u1EC7t"
+    ],
+    "Correct": "A",
+    "Skill": "C#",
+    "Difficulty": "Junior",
+    "Tags": []
+  },
+  {
+    "Id": "8c144c1f4a4346d197278b59f8cbf320",
+    "Type": 1,
+    "Content": ".NET l\u00E0 framework? (\u0110/S)",
+    "Options": null,
+    "Correct": "True",
+    "Skill": ".NET",
+    "Difficulty": "Junior",
+    "Tags": []
+  },
+  {
+    "Id": "46b8d11a1a2d4873805c7291b0d8b198",
+    "Type": 0,
+    "Content": "ASP.NET MVC l\u00E0 g\u00EC?",
+    "Options": [
+      "DB",
+      "Web framework",
+      "IDE",
+      "OS"
+    ],
+    "Correct": "B",
+    "Skill": "ASP.NET",
+    "Difficulty": "Junior",
+    "Tags": []
+  },
+  {
+    "Id": "67026135ad3f42a592ee53e12ab08aae",
+    "Type": 1,
+    "Content": "HTTP l\u00E0 giao th\u1EE9c web? (\u0110/S)",
+    "Options": null,
+    "Correct": "True",
+    "Skill": "Web",
+    "Difficulty": "Junior",
+    "Tags": []
+  },
+  {
+    "Id": "0643b53f6922412f928f0bd23c43c813",
+    "Type": 0,
+    "Content": "Razor l\u00E0...",
+    "Options": [
+      "Template engine",
+      "DB",
+      "OS",
+      "Shell"
+    ],
+    "Correct": "A",
+    "Skill": "ASP.NET",
+    "Difficulty": "Junior",
+    "Tags": []
+  },
+  {
+    "Id": "d97269ff5f074836a3bd57ee81422356",
+    "Type": 0,
+    "Content": "Hello World",
+    "Options": [
+      null
+    ],
+    "Correct": null,
+    "Skill": "ASP.NET",
+    "Difficulty": "Junior",
+    "Tags": []
+  }
+]

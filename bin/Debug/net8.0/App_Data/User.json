@@ -1,0 +1,29 @@
+[
+  {
+    "Id": "u-admin",
+    "Name": "Admin",
+    "Email": "admin@local",
+    "Role": 0,
+    "Level": "Junior",
+    "TeamId": "",
+    "PasswordHash": "$2a$11$OwRqgdncA0dgbv901c00xubHg9HwOtIRHOTVd6N3FUpQ6FjASe1CC"
+  },
+  {
+    "Id": "u-hr",
+    "Name": "HR",
+    "Email": "hr@local",
+    "Role": 1,
+    "Level": "Junior",
+    "TeamId": "",
+    "PasswordHash": "$2a$11$lH.Q.1JrdYTkJ27/g/2JMuU5kBCuSekzaZm/mQi4yIvKC9aLfyKN6"
+  },
+  {
+    "Id": "u-emp",
+    "Name": "Alice",
+    "Email": "alice@local",
+    "Role": 2,
+    "Level": "Junior",
+    "TeamId": "t-a",
+    "PasswordHash": "$2a$11$7wgM.1w6Jxz1W3pmYfzVX.jxPxkL5ABlfc/6vUgtw3pws66lopwVG"
+  }
+]

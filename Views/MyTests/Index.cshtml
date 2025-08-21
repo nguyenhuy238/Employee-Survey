@@ -1,0 +1,51 @@
+﻿@model List<Employee_Survey.Domain.Test>
+@using Employee_Survey.Domain
+<h2>My Tests</h2>
+
+<h4>Available</h4>
+<table class="table">
+    <thead><tr><th>Title</th><th>Action</th></tr></thead>
+    <tbody>
+        @foreach (var t in Model)
+        {
+            <tr>
+                <td>@t.Title</td>
+                <td>
+                    <form id="f-@t.Id" onsubmit="startTest('@t.Id');return false;">
+                        <button class="btn btn-sm btn-primary">Start</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h4>In Progress</h4>
+<table class="table">
+    <thead><tr><th>Session</th><th></th></tr></thead>
+    <tbody>
+        @foreach (var s in (List<Session>)ViewBag.InProgress)
+        {
+            <tr><td>@s.Id</td><td><a class="btn btn-sm btn-warning" href="/mytests/session/@s.Id">Resume</a></td></tr>
+        }
+    </tbody>
+</table>
+
+<h4>Submitted</h4>
+<table class="table">
+    <thead><tr><th>Session</th><th>Score</th><th></th></tr></thead>
+    <tbody>
+        @foreach (var s in (List<Session>)ViewBag.Submitted)
+        {
+            <tr><td>@s.Id</td><td>@s.TotalScore</td><td><a class="btn btn-sm btn-success" href="/mytests/result/@s.Id">View</a></td></tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    async function startTest(tid){
+      const r = await fetch(`/api/tests/${tid}/start`, {method:'POST'});
+      const data = await r.json();
+      window.location = `/mytests/session/${data.sessionId}`;
+    }
+</script>

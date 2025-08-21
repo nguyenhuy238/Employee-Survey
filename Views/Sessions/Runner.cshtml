@@ -1,0 +1,70 @@
+﻿@model Employee_Survey.Domain.Session
+@{
+    var duration = (int)ViewBag.Duration;
+}
+<h2>Test Runner</h2>
+<div>Session: <b>@Model.Id</b> | Time left: <span id="t">@duration:00</span> </div>
+<hr />
+<form id="f">
+    @foreach (var q in Model.Snapshot)
+    {
+        <div class="mb-3">
+            <b>@q.Content</b>
+            @if (q.Type == Employee_Survey.Domain.QType.MCQ)
+            {
+                <div>
+                    @for (int i = 0; i < (q.Options?.Count ?? 0); i++)
+                    {
+                        var label = ((char)('A' + i)).ToString();
+                        <div><label><input type="radio" name="@q.Id" value="@label" /> @label) @q.Options[i]</label></div>
+                    }
+                </div>
+            }
+            else if (q.Type == Employee_Survey.Domain.QType.Multiple)
+            {
+                <div>
+                    <label><input type="radio" name="@q.Id" value="True" /> True</label>
+                    <label class="ms-3"><input type="radio" name="@q.Id" value="False" /> False</label>
+                </div>
+            }
+            else
+            {
+                <textarea class="form-control" name="@q.Id"></textarea>
+            }
+        </div>
+    }
+    <button type="button" class="btn btn-primary" onclick="submitNow()">Submit</button>
+</form>
+
+<script>
+    let secs = @duration * 60;
+    const el = document.getElementById('t');
+    const sid = "@Model.Id";
+
+    function tick(){
+      secs--;
+      const m = Math.floor(secs/60).toString().padStart(2,'0');
+      const s = (secs%60).toString().padStart(2,'0');
+      el.textContent = `${m}:${s}`;
+      if(secs<=0) submitNow();
+    }
+    setInterval(tick, 1000);
+
+    function collect(){
+      const data = {};
+      document.querySelectorAll('#f [name]').forEach(e=>{
+        if(e.type==='radio'){ if(e.checked) data[e.name]=e.value; }
+        else data[e.name]=e.value;
+      });
+      return data;
+    }
+    async function submitNow(){
+      const payload = { answers: collect() };
+      const r = await fetch(`/api/tests/sessions/${sid}/submit`,{
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify(payload)
+      });
+      const res = await r.json();
+      window.location = `/mytests/result/${sid}`;
+    }
+</script>

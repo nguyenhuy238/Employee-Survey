@@ -1,0 +1,11 @@
+﻿@model List<Employee_Survey.Domain.Question>
+<h2>Question Bank</h2>
+<a class="btn btn-success" href="/Questions/Create">Create</a>
+<table class="table mt-3">
+  <thead><tr><th>Content</th><th>Type</th><th>Skill</th><th>Difficulty</th></tr></thead>
+  <tbody>
+  @foreach(var q in Model){
+    <tr><td>@q.Content</td><td>@q.Type</td><td>@q.Skill</td><td>@q.Difficulty</td></tr>
+  }
+  </tbody>
+</table>

@@ -1,0 +1,48 @@
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\appsettings.json
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\Employee Survey.staticwebassets.runtime.json
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\Employee Survey.staticwebassets.endpoints.json
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\Employee Survey.exe
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\Employee Survey.deps.json
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\Employee Survey.runtimeconfig.json
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\Employee Survey.dll
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\Employee Survey.pdb
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\Employee Survey.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\Employee Survey.AssemblyInfoInputs.cache
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\Employee Survey.AssemblyInfo.cs
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\Employee Survey.csproj.CoreCompileInputs.cache
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\Employee Survey.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\Employee Survey.RazorAssemblyInfo.cache
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\Employee Survey.RazorAssemblyInfo.cs
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\Employee Survey.sourcelink.json
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\rjimswa.dswa.cache.json
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\scopedcss\bundle\Employee Survey.styles.css
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\scopedcss\projectbundle\Employee Survey.bundle.scp.css
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\staticwebassets.build.json.cache
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\Employee Survey.dll
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\refint\Employee Survey.dll
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\Employee Survey.pdb
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\Employee Survey.genruntimeconfig.cache
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\ref\Employee Survey.dll
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\Employee Survey.csproj.AssemblyReference.cache
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\Employee.0CF24886.Up2Date
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\Employee Survey.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\App_Data\Assignment.json
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\App_Data\Question.json
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\App_Data\Team.json
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\App_Data\Test.json
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\App_Data\User.json
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\App_Data\Session.json
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
