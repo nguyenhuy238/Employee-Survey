@@ -45,4 +45,13 @@ C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\Ap
 C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\App_Data\Test.json
 C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\App_Data\User.json
 C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\App_Data\Session.json
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\ClosedXML.dll
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\ClosedXML.Parser.dll
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\DocumentFormat.OpenXml.dll
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\DocumentFormat.OpenXml.Framework.dll
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\ExcelNumberFormat.dll
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\RBush.dll
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\SixLabors.Fonts.dll
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\System.IO.Packaging.dll
+C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\bin\Debug\net8.0\App_Data\AuditLog.json
 C:\Users\LEGION\source\repos\Employee Survey\Employee Survey\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

@@ -2,17 +2,37 @@
 <h2>Tests</h2>
 <a class="btn btn-success" href="/Tests/Create">Create</a>
 <table class="table mt-3">
-    <thead><tr><th>Title</th><th>Duration</th><th>Pass</th><th>Skill</th><th>Action</th></tr></thead>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Duration</th>
+            <th>Pass</th>
+            <th>Skill</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
     <tbody>
         @foreach (var t in Model)
         {
             <tr>
                 <td>@t.Title</td>
-                <td>@t.DurationMinutes</td>
+                <td>@t.DurationMinutes min</td>
                 <td>@t.PassScore</td>
                 <td>@t.SkillFilter</td>
                 <td>
-                    <form method="post" action="/Tests/AssignToUser">
+                    @if (t.IsPublished)
+                    {
+                        <span class="badge bg-success">Published</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-warning">Draft</span>
+                    }
+                </td>
+                <td>
+                    <a class="btn btn-sm btn-outline-primary me-2" href="/Tests/Assign/@t.Id">Assign Users</a>
+                    <form method="post" action="/Tests/AssignToUser" class="d-inline">
                         <input type="hidden" name="testId" value="@t.Id" />
                         <input class="form-control form-control-sm d-inline" style="width:160px" name="userId" placeholder="userId (vd: u-emp)" />
                         <button class="btn btn-sm btn-primary">Assign</button>

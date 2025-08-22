@@ -1,0 +1,69 @@
+﻿@model Employee_Survey.Domain.Question
+<div class="mb-2"><label>Content</label><textarea name="Content" class="form-control" required>@Model.Content</textarea></div>
+
+<div class="mb-2">
+    <label>Type</label>
+    <select name="Type" id="qType" class="form-select">
+        @foreach (var t in Enum.GetNames(typeof(Employee_Survey.Domain.QType)))
+        {
+            <option value="@t" selected="@(Model.Type.ToString() == t)">@t</option>
+        }
+    </select>
+</div>
+
+<div id="mcqBlock" class="mb-2">
+    <label>Options (each line)</label>
+    <textarea name="Options" class="form-control">@string.Join('\n', Model.Options ?? new())</textarea>
+    <label class="mt-1">Correct Keys (separate by |, e.g., A or A|C or True)</label>
+    <input name="CorrectKeys" value="@string.Join('|', Model.CorrectKeys ?? new())" class="form-control" />
+</div>
+
+<div id="essayBlock" class="mb-2">
+    <label>Min words</label>
+    <input name="EssayMinWords" value="@Model.EssayMinWords" class="form-control" />
+</div>
+
+<div id="matchingBlock" class="mb-2">
+    <label>Matching Pairs (Left|Right per line)</label>
+    <textarea name="MatchingPairsRaw" class="form-control">@string.Join('\n', (Model.MatchingPairs ?? new()).Select(p => $"{p.L}|{p.R}"))</textarea>
+</div>
+
+<div id="dragDropBlock" class="mb-2">
+    <label>Tokens (|)</label>
+    <input name="DragTokens" value="@string.Join('|', Model.DragDrop?.Tokens ?? new())" class="form-control" />
+    <label class="mt-1">Slots (Name=Answer per line)</label>
+    <textarea name="DragSlotsRaw" class="form-control">@string.Join('\n', (Model.DragDrop?.Slots ?? new()).Select(s => $"{s.Name}={s.Answer}"))</textarea>
+</div>
+
+<div class="row">
+    <div class="col"><label>Skill</label><input name="Skill" value="@Model.Skill" class="form-control" required /></div>
+    <div class="col"><label>Difficulty</label><input name="Difficulty" value="@Model.Difficulty" class="form-control" required /></div>
+</div>
+
+<div class="mb-2"><label>Tags (comma)</label><input name="TagsCsv" value="@string.Join(',', Model.Tags)" class="form-control" /></div>
+
+<div class="mb-2">
+    <label>Upload media (multi)</label>
+    <input type="file" name="mediaFiles" multiple class="form-control" />
+    @if ((Model.Media?.Any() ?? false))
+    {
+        <div class="mt-2">
+            @foreach (var m in Model.Media)
+            {
+                <a href="@m.Url" target="_blank">@m.FileName</a>
+                <span> | </span>
+     }
+        </div>
+    }
+</div>
+
+<script>
+    function toggleBlocks(){
+      const t = document.getElementById('qType').value;
+      document.getElementById('mcqBlock').style.display = (t==='MCQ'||t==='TrueFalse')?'block':'none';
+      document.getElementById('essayBlock').style.display = (t==='Essay')?'block':'none';
+      document.getElementById('matchingBlock').style.display = (t==='Matching')?'block':'none';
+      document.getElementById('dragDropBlock').style.display = (t==='DragDrop')?'block':'none';
+    }
+    document.getElementById('qType').addEventListener('change', toggleBlocks); toggleBlocks();
+</script>

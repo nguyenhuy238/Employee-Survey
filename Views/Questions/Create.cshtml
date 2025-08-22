@@ -1,4 +1,4 @@
-﻿@model Employee_Survey.Domain.Question
+﻿@* @model Employee_Survey.Domain.Question
 <h2>Create Question</h2>
 <form method="post">
     <div class="mb-2"><label>Content</label><input name="Content" class="form-control" /></div>
@@ -18,4 +18,24 @@
 </form>
 <script>
     // quick split options to array on submit (simple way: let MVC bind via repeated fields trong thực tế)
+</script> *@
+
+
+
+@model Employee_Survey.Domain.Question
+<h2>Create Question</h2>
+<form method="post" enctype="multipart/form-data" onsubmit="normalize()">
+    @Html.Partial("_Form", Model)
+    <button class="btn btn-primary">Save</button>
+</form>
+
+<script>
+    function normalize(){
+      // chuyển textareas sang dạng list để model binder bind được:
+      const opts = document.querySelector('textarea[name=Options]');
+      if (opts) {
+        const arr = opts.value.split(/\r?\n/).filter(x=>x.trim().length>0);
+        opts.name = "Options"; opts.value = arr.join('\n'); // giữ, server sẽ split bằng \n
+      }
+    }
 </script>

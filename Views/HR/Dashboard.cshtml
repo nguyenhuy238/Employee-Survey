@@ -4,6 +4,80 @@
 }
 <h2 class="mb-3">HR Dashboard</h2>
 
+@if (TempData["Msg"] is string message)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle"></i>
+        @message
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<!-- Quick actions -->
+<div class="card mb-3 shadow-sm">
+    <div class="card-body d-flex flex-wrap gap-2 align-items-center">
+        <!-- Auth -->
+        <a class="btn btn-light border btn-sm" href="/auth/login" title="Đi tới trang đăng nhập">
+            Login
+        </a>
+        <form method="post" action="/auth/logout" class="d-inline">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-outline-danger btn-sm" title="Đăng xuất ngay">Logout</button>
+        </form>
+
+        <div class="vr mx-1 d-none d-md-block"></div>
+
+        <!-- Questions -->
+        <a class="btn btn-primary btn-sm" href="/Questions" title="Danh sách câu hỏi">Questions</a>
+        @* <a class="btn btn-outline-primary btn-sm" href="/Questions/Create" title="Tạo câu hỏi MCQ mới">
+            Create Question
+        </a> *@
+
+        <div class="vr mx-1 d-none d-md-block"></div>
+
+        <!-- Tests -->
+        <a class="btn btn-success btn-sm" href="/Tests" title="Danh sách bài test">Tests</a>
+        @* <a class="btn btn-outline-success btn-sm" href="/Tests/Create" title="Tạo bài test mới">
+            Create Test
+        </a> *@
+
+        <div class="vr mx-1 d-none d-md-block"></div>
+
+        <!-- Assign quick form -->
+        <form method="post" action="/Tests/AssignToUser" class="row row-cols-lg-auto g-2 align-items-center">
+            @Html.AntiForgeryToken()
+            <div class="col-12">
+                <select name="testId" class="form-select form-select-sm" required>
+                    <option value="">Chọn Test...</option>
+                    @foreach (var test in ViewBag.AvailableTests ?? new List<object>())
+                    {
+                        <option value="@test.Id">@test.Title</option>
+                    }
+                </select>
+            </div>
+            <div class="col-12">
+                <select name="userId" class="form-select form-select-sm" required>
+                    <option value="">Chọn User...</option>
+                    @foreach (var user in ViewBag.AvailableUsers ?? new List<object>())
+                    {
+                        <option value="@user.Id">@user.Name (@user.Email)</option>
+                    }
+                </select>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-warning btn-sm">
+                    <i class="bi bi-link"></i> Assign
+                </button>
+            </div>
+        </form>
+
+        <div class="ms-auto">
+            <a class="btn btn-outline-secondary btn-sm" href="/HR/ExportRecent">Export CSV</a>
+            <a class="btn btn-light border btn-sm" href="/HR/Dashboard">Refresh</a>
+        </div>
+    </div>
+</div>
+
 <!-- Cards -->
 <div class="row g-3">
     <div class="col-md-3">

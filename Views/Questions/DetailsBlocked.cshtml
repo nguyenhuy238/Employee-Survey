@@ -1,0 +1,6 @@
+﻿<h4>Không thể sửa/xóa câu hỏi</h4>
+<div class="alert alert-warning">@ViewBag.Reason</div>
+<form method="post" action="/Questions/Clone">
+    <input type="hidden" name="id" value="@ViewBag.Id" />
+    <button class="btn btn-outline-secondary">Clone thành bản mới</button>
+</form>

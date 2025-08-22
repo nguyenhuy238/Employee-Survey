@@ -1,4 +1,5 @@
-﻿using Employee_Survey.Domain;
+﻿// File: Application/TestService.cs
+using Employee_Survey.Domain;
 using Employee_Survey.Infrastructure;
 
 namespace Employee_Survey.Application
@@ -17,14 +18,29 @@ namespace Employee_Survey.Application
             var test = await _tRepo.FirstOrDefaultAsync(t => t.Id == testId) ?? throw new Exception("Test not found");
             var all = await _qRepo.GetAllAsync();
 
-            IEnumerable<Question> pick(QType type, int count) =>
-                all.Where(q => q.Type == type && (test.SkillFilter == "" || q.Skill == test.SkillFilter))
-                   .OrderBy(_ => Guid.NewGuid()).Take(count);
+            List<Question> snapshot;
 
-            var snapshot = pick(QType.MCQ, test.RandomMCQ)
-                         .Concat(pick(QType.Multiple, test.RandomTF))
-                         .Concat(pick(QType.Essay, test.RandomEssay))
-                         .ToList();
+            if (test.QuestionIds != null && test.QuestionIds.Count > 0)
+            {
+                // Lấy theo danh sách đã “đóng băng”
+                var map = all.ToDictionary(x => x.Id, x => x);
+                snapshot = test.QuestionIds.Where(id => map.ContainsKey(id)).Select(id => map[id]).ToList();
+
+                if (test.ShuffleQuestions)
+                    snapshot = snapshot.OrderBy(_ => Guid.NewGuid()).ToList();
+            }
+            else
+            {
+                // Random theo cấu hình
+                IEnumerable<Question> pick(QType type, int count) =>
+                    all.Where(q => q.Type == type && (string.IsNullOrWhiteSpace(test.SkillFilter) || q.Skill == test.SkillFilter))
+                       .OrderBy(_ => Guid.NewGuid()).Take(count);
+
+                snapshot = pick(QType.MCQ, test.RandomMCQ)
+                           .Concat(pick(QType.TrueFalse, test.RandomTF))
+                           .Concat(pick(QType.Essay, test.RandomEssay))
+                           .ToList();
+            }
 
             var ses = new Session
             {
@@ -47,8 +63,16 @@ namespace Employee_Survey.Application
             {
                 answers.TryGetValue(q.Id, out var sel);
                 double score = 0;
-                if (q.Type == QType.MCQ || q.Type == QType.Multiple)
-                    score = (sel == q.Correct) ? 1 : 0; // mỗi câu 1 điểm
+                if (q.Type == QType.MCQ || q.Type == QType.TrueFalse)
+                {
+                    var correct = q.CorrectKeys ?? new List<string>();
+                    if (!string.IsNullOrEmpty(sel) && correct.Any())
+                        score = correct.Contains(sel) ? 1 : 0;
+                }
+                else if (q.Type == QType.Essay)
+                {
+                    score = 0; // chưa hỗ trợ chấm tự động
+                }
                 ans.Add(new Answer { QuestionId = q.Id, Selected = sel, Score = score });
                 total += score;
             }

@@ -26,7 +26,11 @@ namespace Employee_Survey.Application
             // Cards
             var totalEmployees = users.Count(x => x.Role == Role.Employee);
             var totalTests = tests.Count;
-            var activeAssigns = assigns.Count(a => a.StartAt <= nowUtc && nowUtc <= a.EndAt);
+            
+            // Chỉ đếm active assignments cho các test đã publish
+            var publishedTestIds = tests.Where(t => t.IsPublished).Select(t => t.Id).ToHashSet();
+            var activeAssigns = assigns.Count(a => a.StartAt <= nowUtc && nowUtc <= a.EndAt && 
+                                                  publishedTestIds.Contains(a.TestId));
 
             // Pass rate (dựa theo Test.PassScore)
             var submitted = sessions.Where(s => s.Status != SessionStatus.Draft && s.EndAt != null).ToList();
@@ -39,9 +43,9 @@ namespace Employee_Survey.Application
             }
             var passRate = submitted.Count == 0 ? 0 : (100.0 * passed / submitted.Count);
 
-            // Active assignments list
+            // Active assignments list - chỉ hiển thị cho test đã publish
             var activeList = assigns
-                .Where(a => a.StartAt <= nowUtc && nowUtc <= a.EndAt)
+                .Where(a => a.StartAt <= nowUtc && nowUtc <= a.EndAt && publishedTestIds.Contains(a.TestId))
                 .Select(a => new HrDashboardViewModel.ActiveAssignmentRow
                 {
                     TestId = a.TestId,

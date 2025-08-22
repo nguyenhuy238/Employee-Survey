@@ -1,13 +1,126 @@
-﻿@model Employee_Survey.Domain.Test
+﻿@model Employee_Survey.Models.CreateTestViewModel
+@using Employee_Survey.Domain
+
 <h2>Create Test</h2>
+
+<div class="alert alert-info">
+    <i class="bi bi-info-circle"></i>
+    <strong>Lưu ý:</strong> Bạn có thể <u>chọn thủ công</u> câu hỏi bằng checkbox bên dưới
+    <em>(khi đó hệ thống sẽ không random)</em>. Nếu không chọn, đề sẽ sinh theo cấu hình random.
+</div>
+
 <form method="post">
-    <div class="mb-2"><label>Title</label><input name="Title" class="form-control" /></div>
-    <div class="mb-2"><label>DurationMinutes</label><input name="DurationMinutes" type="number" value="10" class="form-control" /></div>
-    <div class="mb-2"><label>PassScore</label><input name="PassScore" type="number" value="3" class="form-control" /></div>
-    <div class="mb-2"><label>SkillFilter</label><input name="SkillFilter" value="ASP.NET" class="form-control" /></div>
-    <div class="mb-2"><label>RandomMCQ</label><input name="RandomMCQ" type="number" value="2" class="form-control" /></div>
-    <div class="mb-2"><label>RandomTF</label><input name="RandomTF" type="number" value="1" class="form-control" /></div>
-    <div class="mb-2"><label>RandomEssay</label><input name="RandomEssay" type="number" value="0" class="form-control" /></div>
-    <button class="btn btn-primary">Save</button>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="mb-2">
+                <label class="form-label">Title</label>
+                <input name="Title" value="@Model.Title" class="form-control" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label">DurationMinutes</label>
+                <input name="DurationMinutes" type="number" value="@Model.DurationMinutes" class="form-control" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label">PassScore</label>
+                <input name="PassScore" type="number" value="@Model.PassScore" class="form-control" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label">SkillFilter (áp dụng cho random)</label>
+                <input name="SkillFilter" value="@Model.SkillFilter" class="form-control" />
+                <div class="form-text">Chỉ dùng khi bạn KHÔNG chọn thủ công câu hỏi.</div>
+            </div>
+            <div class="row g-2">
+                <div class="col-4">
+                    <label class="form-label">RandomMCQ</label>
+                    <input name="RandomMCQ" type="number" value="@Model.RandomMCQ" class="form-control" />
+                </div>
+                <div class="col-4">
+                    <label class="form-label">RandomTF</label>
+                    <input name="RandomTF" type="number" value="@Model.RandomTF" class="form-control" />
+                </div>
+                <div class="col-4">
+                    <label class="form-label">RandomEssay</label>
+                    <input name="RandomEssay" type="number" value="@Model.RandomEssay" class="form-control" />
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <button class="btn btn-primary">Save</button>
+            </div>
+
+            <div class="text-danger mt-2">
+                @Html.ValidationSummary()
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 class="mb-0">Chọn câu hỏi (tùy chọn)</h5>
+                <input id="qSearch" type="text" class="form-control" placeholder="Lọc nhanh theo nội dung..." style="max-width: 260px;" />
+            </div>
+
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-mcq" type="button" role="tab">
+                        MCQ (@Model.MCQQuestions.Count)
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-tf" type="button" role="tab">
+                        True/False (@Model.TFQuestions.Count)
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-essay" type="button" role="tab">
+                        Essay (@Model.EssayQuestions.Count)
+                    </button>
+                </li>
+            </ul>
+
+            <div class="tab-content border border-top-0 p-2" style="max-height: 520px; overflow:auto;">
+                <div class="tab-pane fade show active" id="tab-mcq" role="tabpanel">
+                    @Html.Partial("_QuestionTablePartial",
+                        (IEnumerable<Question>)Model.MCQQuestions,
+                        new ViewDataDictionary(ViewData) { { "Selected", Model.SelectedQuestionIds } })
+                </div>
+                <div class="tab-pane fade" id="tab-tf" role="tabpanel">
+                    @Html.Partial("_QuestionTablePartial",
+                        (IEnumerable<Question>)Model.TFQuestions,
+                        new ViewDataDictionary(ViewData) { { "Selected", Model.SelectedQuestionIds } })
+                </div>
+                <div class="tab-pane fade" id="tab-essay" role="tabpanel">
+                    @Html.Partial("_QuestionTablePartial",
+                        (IEnumerable<Question>)Model.EssayQuestions,
+                        new ViewDataDictionary(ViewData) { { "Selected", Model.SelectedQuestionIds } })
+                </div>
+            </div>
+
+            <div class="mt-2 small text-muted">
+                Đã chọn: <span id="selectedCount">0</span> câu hỏi.
+            </div>
+        </div>
+    </div>
 </form>
-<div class="text-danger">@Html.ValidationSummary()</div>
+
+@section Scripts{
+<script>
+// Lọc nhanh theo nội dung
+document.getElementById('qSearch')?.addEventListener('input', function(){
+    const q = this.value.toLowerCase();
+    document.querySelectorAll('.q-row').forEach(tr=>{
+        const text = tr.getAttribute('data-text') || '';
+        tr.style.display = text.includes(q) ? '' : 'none';
+    });
+});
+
+// Đếm số checkbox được chọn
+function updateSelectedCount(){
+    const cbs = document.querySelectorAll('input[name="SelectedQuestionIds"]:checked');
+    document.getElementById('selectedCount').innerText = cbs.length;
+}
+document.addEventListener('change', function(e){
+    if(e.target && e.target.name === 'SelectedQuestionIds') updateSelectedCount();
+});
+updateSelectedCount();
+</script>
+}

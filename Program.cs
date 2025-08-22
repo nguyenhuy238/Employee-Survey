@@ -4,6 +4,7 @@ using Employee_Survey.Application;
 using Employee_Survey.Domain;
 using Employee_Survey.Infrastructure;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // MVC + Swagger
@@ -29,6 +30,10 @@ builder.Services.AddSingleton<IRepository<Test>, JsonFileRepository<Test>>();
 builder.Services.AddSingleton<IRepository<Assignment>, JsonFileRepository<Assignment>>();
 builder.Services.AddSingleton<IRepository<Session>, JsonFileRepository<Session>>();
 builder.Services.AddSingleton<IRepository<Feedback>, JsonFileRepository<Feedback>>();
+builder.Services.AddSingleton(typeof(IRepository<>), typeof(JsonFileRepository<>));
+builder.Services.AddSingleton<IAuditService, AuditService>();
+builder.Services.AddSingleton<IQuestionService, QuestionService>();
+builder.Services.AddSingleton<IQuestionExcelService, QuestionExcelService>();
 
 // Services
 builder.Services.AddSingleton<AuthService>();

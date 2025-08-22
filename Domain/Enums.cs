@@ -2,7 +2,7 @@
 {
     
     public enum Role {Admin, HR, Employee}
-    public enum QType {MCQ, Multiple, Essay }
+    public enum QType { MCQ, TrueFalse, Essay, Matching, DragDrop }
 
     public enum SessionStatus {Draft, Submitted, Graded }
 
