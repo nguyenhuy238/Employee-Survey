@@ -1,4 +1,5 @@
-﻿namespace Employee_Survey.Domain
+﻿// Employee_Survey.Domain/Feedback.cs
+namespace Employee_Survey.Domain
 {
     public class Feedback
     {
@@ -7,6 +8,6 @@
         public string Content { get; set; } = "";
         public int Rating { get; set; } = 5;
 
-
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
 }

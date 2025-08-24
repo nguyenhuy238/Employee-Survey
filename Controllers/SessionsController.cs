@@ -19,10 +19,12 @@ namespace Employee_Survey.Controllers
             var s = await _sRepo.FirstOrDefaultAsync(x => x.Id == id);
             var t = s is null ? null : await _tRepo.FirstOrDefaultAsync(x => x.Id == s.TestId);
             if (s == null || t == null) return NotFound();
-            // Chỉ chủ sở hữu session mới được truy cập
+
             var uid = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
             if (uid == null || !string.Equals(uid, s.UserId, StringComparison.Ordinal)) return Forbid();
+
             ViewBag.Duration = t.DurationMinutes;
+            ViewBag.TestTitle = t.Title;
             return View(s);
         }
 
@@ -31,9 +33,12 @@ namespace Employee_Survey.Controllers
         {
             var s = await _sRepo.FirstOrDefaultAsync(x => x.Id == id);
             if (s == null) return NotFound();
-            // Chỉ chủ sở hữu session mới được xem kết quả
+
             var uid = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
             if (uid == null || !string.Equals(uid, s.UserId, StringComparison.Ordinal)) return Forbid();
+
+            var t = await _tRepo.FirstOrDefaultAsync(x => x.Id == s.TestId);
+            ViewBag.TestTitle = t?.Title ?? "Result";
             return View(s);
         }
     }

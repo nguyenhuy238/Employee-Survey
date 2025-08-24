@@ -1,70 +1,399 @@
 ﻿@model Employee_Survey.Domain.Session
+@using Employee_Survey.Domain
 @{
-    var duration = (int)ViewBag.Duration;
+    var duration = (int)ViewBag.Duration;                 // phút
+    var testTitle = (string)(ViewBag.TestTitle ?? "Test Runner");
+    ViewData["Title"] = testTitle;
 }
-<h2>Test Runner</h2>
-<div>Session: <b>@Model.Id</b> | Time left: <span id="t">@duration:00</span> </div>
-<hr />
-<form id="f">
-    @foreach (var q in Model.Snapshot)
-    {
-        <div class="mb-3">
-            <b>@q.Content</b>
-            @if (q.Type == Employee_Survey.Domain.QType.MCQ)
-            {
-                <div>
-                    @for (int i = 0; i < (q.Options?.Count ?? 0); i++)
-                    {
-                        var label = ((char)('A' + i)).ToString();
-                        <div><label><input type="radio" name="@q.Id" value="@label" /> @label) @q.Options[i]</label></div>
-                    }
-                </div>
-            }
-            else if (q.Type == Employee_Survey.Domain.QType.TrueFalse)
-            {
-                <div>
-                    <label><input type="radio" name="@q.Id" value="True" /> True</label>
-                    <label class="ms-3"><input type="radio" name="@q.Id" value="False" /> False</label>
-                </div>
-            }
-            else
-            {
-                <textarea class="form-control" name="@q.Id"></textarea>
-            }
-        </div>
+
+<style>
+    .runner-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: #fff;
+        border-bottom: 1px solid #e5e7eb;
     }
-    <button type="button" class="btn btn-primary" onclick="submitNow()">Submit</button>
-</form>
+
+        .runner-header .bar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: .75rem 0;
+        }
+
+    .badge {
+        border-radius: 999px;
+        padding: .25rem .6rem;
+        font-size: .85rem
+    }
+
+    .badge-info {
+        background: #eff6ff;
+        color: #1d4ed8;
+        border: 1px solid #bfdbfe
+    }
+
+    .badge-warn {
+        background: #fff7ed;
+        color: #c2410c;
+        border: 1px solid #fed7aa
+    }
+
+    .question {
+        padding: 1rem;
+        border: 1px solid #e5e7eb;
+        border-radius: .5rem;
+        margin-bottom: 1rem
+    }
+
+    .q-title {
+        font-weight: 600;
+        margin-bottom: .5rem
+    }
+
+    .q-options > div {
+        margin: .25rem 0
+    }
+
+    .actions {
+        display: flex;
+        gap: .5rem;
+        flex-wrap: wrap
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: .35rem;
+        border: 1px solid transparent;
+        border-radius: .5rem;
+        padding: .5rem .9rem;
+        font-weight: 600;
+        cursor: pointer
+    }
+
+    .btn-primary {
+        background: #2563eb;
+        color: #fff
+    }
+
+    .btn-secondary {
+        background: #f3f4f6
+    }
+
+    .btn-danger {
+        background: #dc2626;
+        color: #fff
+    }
+
+    .btn:disabled {
+        opacity: .7;
+        cursor: not-allowed
+    }
+
+    .progress-wrap {
+        display: flex;
+        align-items: center;
+        gap: .5rem
+    }
+
+    .progress {
+        height: 8px;
+        background: #e5e7eb;
+        border-radius: 999px;
+        overflow: hidden;
+        min-width: 160px
+    }
+
+        .progress > span {
+            display: block;
+            height: 100%;
+            background: #22c55e;
+            width: 0%
+        }
+
+    .hint {
+        font-size: .9rem;
+        color: #6b7280
+    }
+
+    .unanswered {
+        outline: 2px dashed #f59e0b;
+        outline-offset: 4px
+    }
+</style>
+
+<div class="runner-header">
+    <div class="bar container">
+        <div style="flex:1 1 auto">
+            <div style="font-size:1.1rem;font-weight:700">@testTitle</div>
+            <div class="hint">Session: <b>@Model.Id</b></div>
+        </div>
+        <div class="progress-wrap">
+            <div class="progress" aria-label="Progress"><span id="pg"></span></div>
+            <div><span id="pgtext">0</span>/<span id="pgtotal">@Model.Snapshot.Count</span> answered</div>
+        </div>
+        <div>
+            <span class="badge badge-info">Time left: <span id="t">@duration:00</span></span>
+        </div>
+        <div class="actions">
+            <button type="button" class="btn btn-secondary" id="saveLocalBtn" title="Save draft to this device">Save draft</button>
+            <button type="button" class="btn btn-danger" id="clearLocalBtn" title="Clear local draft">Clear draft</button>
+            <button type="button" class="btn btn-primary" id="submitBtn">Submit & Finish</button>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <form id="f" autocomplete="off">
+        @for (int qi = 0; qi < Model.Snapshot.Count; qi++)
+        {
+            var q = Model.Snapshot[qi];
+            <div class="question" id="q-@q.Id" data-qid="@q.Id" data-qtype="@q.Type">
+                <div class="q-title">@(qi + 1). @q.Content</div>
+
+                @if (q.Type == QType.MCQ)
+                {
+                    <div class="q-options">
+                        @for (int i = 0; i < (q.Options?.Count ?? 0); i++)
+                        {
+                            var label = ((char)('A' + i)).ToString();
+                            var rid = $"r_{q.Id}_{label}";
+                            <div>
+                                <input id="@rid" type="radio" name="@q.Id" value="@label" />
+                                <label for="@rid">@label) @q.Options[i]</label>
+                            </div>
+                        }
+                    </div>
+                }
+                else if (q.Type == QType.TrueFalse)
+                {
+                    var r1 = $"r_{q.Id}_True";
+                    var r0 = $"r_{q.Id}_False";
+                    <div class="q-options">
+                        <div>
+                            <input id="@r1" type="radio" name="@q.Id" value="True" />
+                            <label for="@r1">True</label>
+                        </div>
+                        <div>
+                            <input id="@r0" type="radio" name="@q.Id" value="False" />
+                            <label for="@r0">False</label>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <textarea class="form-control" name="@q.Id" rows="4" placeholder="Type your answer here..."></textarea>
+                }
+                <div class="hint">Question ID: @q.Id • Type: @q.Type</div>
+            </div>
+        }
+    </form>
+
+    <div class="actions" style="margin:1rem 0 2rem">
+        <button type="button" class="btn btn-secondary" id="saveLocalBtn2">Save draft</button>
+        <button type="button" class="btn btn-primary" id="submitBtn2">Submit & Finish</button>
+    </div>
+
+    <p class="hint">Your answers are <b>not</b> sent to server until you press <i>Submit &amp; Finish</i>. Draft saves only on this device.</p>
+</div>
 
 <script>
+    // ====== Timer ======
     let secs = @duration * 60;
-    const el = document.getElementById('t');
+    const elTime = document.getElementById('t');
     const sid = "@Model.Id";
+    const totalQs = @Model.Snapshot.Count;
 
     function tick(){
       secs--;
       const m = Math.floor(secs/60).toString().padStart(2,'0');
       const s = (secs%60).toString().padStart(2,'0');
-      el.textContent = `${m}:${s}`;
-      if(secs<=0) submitNow();
+      elTime.textContent = `${m}:${s}`;
+      // cảnh báo < 2 phút
+      if(secs === 120){
+        toast("Only 2 minutes left. Please submit soon.", "warn");
+      }
+      if(secs<=0){
+        toast("Time is up. Auto-submitting...", "warn");
+        submitNow(true);
+      }
     }
-    setInterval(tick, 1000);
+    const timer = setInterval(tick, 1000);
+
+    // ====== Draft in localStorage ======
+    const KEY = `runner_${sid}`;
+    const formEl = document.getElementById('f');
 
     function collect(){
       const data = {};
-      document.querySelectorAll('#f [name]').forEach(e=>{
-        if(e.type==='radio'){ if(e.checked) data[e.name]=e.value; }
-        else data[e.name]=e.value;
+      // radios: keep only checked
+      const grouped = {};
+      formEl.querySelectorAll('[name]').forEach(e=>{
+        if(e.type==='radio'){
+          if(e.checked) data[e.name] = e.value;
+        }else{
+          data[e.name] = e.value ?? '';
+        }
       });
       return data;
     }
-    async function submitNow(){
-      const payload = { answers: collect() };
-      const r = await fetch(`/api/tests/sessions/${sid}/submit`,{
-        method:'POST', headers:{'Content-Type':'application/json'},
-        body: JSON.stringify(payload)
+
+    function applyDraft(draft){
+      if(!draft) return;
+      Object.entries(draft).forEach(([k,v])=>{
+        const els = formEl.querySelectorAll(`[name="${CSS.escape(k)}"]`);
+        if(!els.length) return;
+        const anyRadio = Array.from(els).some(e=>e.type==='radio');
+        if(anyRadio){
+          const target = formEl.querySelector(`[name="${CSS.escape(k)}"][value="${CSS.escape(v)}"]`);
+          if(target){ target.checked = true; }
+        }else{
+          els[0].value = v ?? '';
+        }
       });
-      const res = await r.json();
-      window.location = `/mytests/result/${sid}`;
+    }
+
+    function saveDraft(){
+      const data = collect();
+      localStorage.setItem(KEY, JSON.stringify(data));
+      toast("Draft saved on this device.");
+    }
+
+    function clearDraft(){
+      localStorage.removeItem(KEY);
+      toast("Local draft cleared.");
+    }
+
+    // Load draft on start
+    try{
+      const raw = localStorage.getItem(KEY);
+      if(raw){ applyDraft(JSON.parse(raw)); }
+    }catch(e){ console.warn(e); }
+
+    // Auto save every 20s
+    setInterval(()=>{ try{ saveDraft(); }catch(e){} }, 20000);
+
+    // ====== Progress ======
+    const pgBar = document.getElementById('pg');
+    const pgText = document.getElementById('pgtext');
+
+    function updateProgress(){
+      const data = collect();
+      let answered = 0;
+      // count a question answered if it has any value
+      const qBlocks = document.querySelectorAll('.question');
+      qBlocks.forEach(qb=>{
+        const qid = qb.getAttribute('data-qid');
+        const val = data[qid];
+        if(val && String(val).trim().length>0) answered++;
+      });
+      pgText.textContent = answered.toString();
+      const pct = Math.max(0, Math.min(100, Math.round(answered * 100 / totalQs)));
+      pgBar.style.width = pct + '%';
+    }
+
+    formEl.addEventListener('change', updateProgress);
+    formEl.addEventListener('input', updateProgress);
+    updateProgress();
+
+    // ====== Leave warning until submitted ======
+    let submitted = false;
+    window.addEventListener('beforeunload', (e)=>{
+      if(!submitted){
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    });
+
+    // ====== Submit ======
+    const submitBtn = document.getElementById('submitBtn');
+    const submitBtn2 = document.getElementById('submitBtn2');
+    const saveLocalBtn = document.getElementById('saveLocalBtn');
+    const saveLocalBtn2 = document.getElementById('saveLocalBtn2');
+    const clearLocalBtn = document.getElementById('clearLocalBtn');
+
+    saveLocalBtn.addEventListener('click', saveDraft);
+    saveLocalBtn2.addEventListener('click', saveDraft);
+    clearLocalBtn.addEventListener('click', ()=>{
+      if(confirm("Clear local draft on this device?")) clearDraft();
+    });
+
+    submitBtn.addEventListener('click', ()=> trySubmit(false));
+    submitBtn2.addEventListener('click', ()=> trySubmit(false));
+
+    let submitting = false;
+
+    function highlightUnanswered(){
+      const data = collect();
+      let firstUn = null;
+      document.querySelectorAll('.question').forEach(qb=>{
+        const qid = qb.getAttribute('data-qid');
+        const val = data[qid];
+        const ok = val && String(val).trim().length>0;
+        qb.classList.toggle('unanswered', !ok);
+        if(!ok && !firstUn) firstUn = qb;
+      });
+      if(firstUn) firstUn.scrollIntoView({behavior:'smooth', block:'center'});
+      return !firstUn; // true if all answered
+    }
+
+    function trySubmit(auto=false){
+      // đừng bắt buộc trả lời hết nếu auto (hết giờ)
+      if(!auto){
+        const allAnswered = highlightUnanswered();
+        if(!allAnswered){
+          toast("Some questions are unanswered. They will be graded as 0 if you continue.", "warn");
+          if(!confirm("Submit now with unanswered questions?")) return;
+        }
+        if(secs > 0){
+          if(!confirm("Submit and finish the test? You cannot change answers after submitting.")) return;
+        }
+      }
+      submitNow(auto);
+    }
+
+    async function submitNow(auto=false){
+      if(submitting) return;
+      submitting = true;
+      submitBtn.disabled = true; submitBtn2.disabled = true;
+
+      clearInterval(timer);
+      const payload = { answers: collect() };
+      try{
+        const r = await fetch(`/api/tests/sessions/${sid}/submit`,{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify(payload)
+        });
+        if(!r.ok){
+          toast("Submit failed. Please try again.", "warn");
+          submitBtn.disabled = false; submitBtn2.disabled = false; submitting = false;
+          return;
+        }
+        const res = await r.json();
+        submitted = true;
+        // clean local draft after successful submit
+        try{ localStorage.removeItem(KEY); }catch(e){}
+        window.location = `/mytests/result/${sid}`;
+      }catch(err){
+        console.error(err);
+        toast("Network error. Please try again.", "warn");
+        submitBtn.disabled = false; submitBtn2.disabled = false; submitting = false;
+      }
+    }
+
+    // ====== tiny toast ======
+    function toast(msg, type="info"){
+      const el = document.createElement('div');
+      el.textContent = msg;
+      el.style.position='fixed'; el.style.right='16px'; el.style.bottom='16px';
+      el.style.background = type==='warn' ? '#fef3c7' : '#e0f2fe';
+      el.style.color = '#111827'; el.style.border = '1px solid ' + (type==='warn' ? '#fcd34d' : '#93c5fd');
+      el.style.padding='10px 14px'; el.style.borderRadius='8px'; el.style.boxShadow='0 6px 20px rgba(0,0,0,.15)';
+      el.style.zIndex='9999'; el.style.maxWidth='60ch';
+      document.body.appendChild(el);
+      setTimeout(()=>{ el.remove(); }, 3500);
     }
 </script>

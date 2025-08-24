@@ -1,0 +1,21 @@
+﻿@model Employee_Survey.Domain.Test
+@{
+    int assignCount = ViewBag.AssignCount ?? 0;
+    int sessionCount = ViewBag.SessionCount ?? 0;
+}
+<h2>Delete Test</h2>
+
+<div class="alert alert-warning">
+    <p>Bạn sắp xóa Test: <b>@Model.Title</b></p>
+    <ul class="mb-0">
+        <li>Assignments liên quan: <b>@assignCount</b></li>
+        <li>Sessions liên quan: <b>@sessionCount</b></li>
+    </ul>
+    <p class="mt-2 mb-0">Hệ thống sẽ xóa <u>toàn bộ</u> các bản ghi liên quan ở trên.</p>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <button class="btn btn-danger">Xác nhận xóa</button>
+    <a class="btn btn-secondary" href="/Tests">Hủy</a>
+</form>

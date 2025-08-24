@@ -1,34 +1,10 @@
-﻿@* @model Employee_Survey.Domain.Question
-<h2>Create Question</h2>
-<form method="post">
-    <div class="mb-2"><label>Content</label><input name="Content" class="form-control" /></div>
-    <div class="mb-2">
-        <label>Type</label>
-        <select name="Type" class="form-select">
-            <option>MCQ</option>
-            <option>TrueFalse</option>
-            <option>Essay</option>
-        </select>
-    </div>
-    <div class="mb-2"><label>Skill</label><input name="Skill" value="ASP.NET" class="form-control" /></div>
-    <div class="mb-2"><label>Difficulty</label><input name="Difficulty" value="Junior" class="form-control" /></div>
-    <div class="mb-2"><label>Options (A|B|C|D)</label><input name="Options" class="form-control" placeholder="A|B|C|D" /></div>
-    <div class="mb-2"><label>Correct</label><input name="Correct" class="form-control" placeholder="A / True / False" /></div>
-    <button class="btn btn-primary">Save</button>
-</form>
-<script>
-    // quick split options to array on submit (simple way: let MVC bind via repeated fields trong thực tế)
-</script> *@
-
-
-
-@model Employee_Survey.Domain.Question
+﻿@model Employee_Survey.Domain.Question
 <h2>Create Question</h2>
 <form method="post" enctype="multipart/form-data" onsubmit="normalize()">
     @Html.Partial("_Form", Model)
     <button class="btn btn-primary">Save</button>
 </form>
-
+<a asp-action="Index" class="btn btn-secondary">Back</a>
 <script>
     function normalize(){
       // chuyển textareas sang dạng list để model binder bind được:

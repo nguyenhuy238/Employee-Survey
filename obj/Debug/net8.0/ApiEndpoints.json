@@ -99,6 +99,90 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Employee_Survey.Controllers.FeedbackController",
+    "Method": "Edit",
+    "RelativePath": "Feedback/Edit/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Employee_Survey.Controllers.FeedbackController",
+    "Method": "Edit",
+    "RelativePath": "Feedback/Edit/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "SessionId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Content",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Rating",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "TestTitle",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Employee_Survey.Controllers.HRController",
+    "Method": "ExportFeedbacksCsv",
+    "RelativePath": "HR/ExportFeedbacksCsv",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "testId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Employee_Survey.Controllers.HRController",
+    "Method": "Feedbacks",
+    "RelativePath": "HR/Feedbacks",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "testId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Employee_Survey.Controllers.SessionsController",
     "Method": "Result",
     "RelativePath": "mytests/result/{id}",
@@ -126,6 +210,98 @@
         "Name": "id",
         "Type": "System.String",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Employee_Survey.Controllers.ProfileController",
+    "Method": "Edit",
+    "RelativePath": "profile",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Employee_Survey.Controllers.ProfileController",
+    "Method": "Edit",
+    "RelativePath": "profile",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Level",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "TeamId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "RoleName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Employee_Survey.Controllers.ProfileController",
+    "Method": "ChangePassword",
+    "RelativePath": "profile/change-password",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Employee_Survey.Controllers.ProfileController",
+    "Method": "ChangePassword",
+    "RelativePath": "profile/change-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OldPassword",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "NewPassword",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ConfirmNewPassword",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

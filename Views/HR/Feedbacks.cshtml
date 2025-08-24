@@ -1,0 +1,73 @@
+﻿@model List<Employee_Survey.Models.HrFeedbackItemVm>
+@{
+    ViewData["Title"] = "User Feedbacks";
+    var tests = (IEnumerable<dynamic>)(ViewBag.Tests ?? new List<object>());
+    string selectedTestId = ViewBag.SelectedTestId as string ?? "";
+}
+
+<h2 class="mb-3">User Feedbacks</h2>
+
+<div class="card mb-3 shadow-sm">
+    <div class="card-body">
+        <form method="get" action="/HR/Feedbacks" class="row g-2 align-items-center">
+            <div class="col-md-6">
+                <label class="form-label">Lọc theo bài Test</label>
+                <select name="testId" class="form-select">
+                    <option value="">(Tất cả bài Test)</option>
+                    @foreach (var t in tests)
+                    {
+                        var id = (string)t.Id;
+                        var title = (string)t.Title;
+                        <option value="@id" selected="@(id == selectedTestId)">@title</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-6 d-flex align-items-end gap-2">
+                <button type="submit" class="btn btn-primary">Lọc</button>
+                <a class="btn btn-light border" href="/HR/Feedbacks">Xóa lọc</a>
+
+                @* Export CSV theo test hiện tại *@
+                <a class="btn btn-outline-secondary ms-auto"
+                   href="/HR/ExportFeedbacksCsv@(string.IsNullOrWhiteSpace(selectedTestId) ? "" : $"?testId={selectedTestId}")">
+                    Export CSV
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="mb-2 text-muted">
+    Tổng: <b>@Model.Count</b> feedback
+    @if (!string.IsNullOrWhiteSpace(selectedTestId))
+    {
+        <text> (đang lọc theo Test)</text>
+    }
+</div>
+
+<table class="table table-sm table-striped align-middle">
+    <thead>
+        <tr>
+            <th style="width:160px;">When</th>
+            <th>Test</th>
+            <th>User</th>
+            <th>Email</th>
+            <th style="width:80px;">Rating</th>
+            <th>Content</th>
+            <th style="width:220px;">SessionId</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td>@x.CreatedAt.ToLocalTime().ToString("yyyy-MM-dd HH:mm")</td>
+                <td>@x.TestTitle</td>
+                <td>@x.UserName</td>
+                <td>@x.UserEmail</td>
+                <td>@x.Rating</td>
+                <td style="white-space:pre-wrap">@x.Content</td>
+                <td class="text-muted">@x.SessionId</td>
+            </tr>
+        }
+    </tbody>
+</table>

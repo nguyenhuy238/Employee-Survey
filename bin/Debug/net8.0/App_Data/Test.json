@@ -1,8 +1,8 @@
 [
   {
     "Id": "t-basic",
-    "Title": "Basic .NET",
-    "DurationMinutes": 10,
+    "Title": "Basic .NET 1",
+    "DurationMinutes": 30,
     "PassScore": 3,
     "ShuffleQuestions": true,
     "SkillFilter": "ASP.NET",
@@ -15,7 +15,7 @@
     "CreatedBy": null,
     "CreatedAt": "2025-01-01T08:41:38.8234756Z",
     "UpdatedBy": null,
-    "UpdatedAt": null,
+    "UpdatedAt": "2025-08-22T06:41:32.4050383Z",
     "PublishedAt": "2025-01-01T08:41:38.8234756Z"
   },
   {
@@ -49,18 +49,23 @@
     "RandomEssay": 0,
     "IsPublished": true,
     "QuestionIds": [],
-    "FrozenRandom": null,
+    "FrozenRandom": {
+      "SkillFilter": "ASP.NET",
+      "RandomMCQ": 2,
+      "RandomTF": 1,
+      "RandomEssay": 0
+    },
     "CreatedBy": null,
     "CreatedAt": "2025-08-22T02:20:57.0990457Z",
     "UpdatedBy": null,
     "UpdatedAt": null,
-    "PublishedAt": "2025-08-22T02:20:57.0990458Z"
+    "PublishedAt": "2025-08-22T06:46:24.9007963Z"
   },
   {
-    "Id": "471f243c640e4ee1aa0174581d0fe37c",
-    "Title": "Test 1 Hour",
-    "DurationMinutes": 10,
-    "PassScore": 3,
+    "Id": "e320255560fb42a5936747d6be783624",
+    "Title": "TestOk",
+    "DurationMinutes": 2,
+    "PassScore": 2,
     "ShuffleQuestions": true,
     "SkillFilter": "ASP.NET",
     "RandomMCQ": 0,
@@ -68,12 +73,17 @@
     "RandomEssay": 0,
     "IsPublished": true,
     "QuestionIds": [
-      "0643b53f6922412f928f0bd23c43c813",
-      "46b8d11a1a2d4873805c7291b0d8b198",
-      "68688650acad4113b0703ca45db0d07a",
-      "67026135ad3f42a592ee53e12ab08aae",
-      "8c144c1f4a4346d197278b59f8cbf320",
-      "27cb592ecc3b4bafaa8be850a589a738"
+      "a14f146c70e64a7c96dde4676a5a2cba",
+      "0a72d3b1d68743b18734afca55320135",
+      "1b486c13c1154adc8382ea5ea320b922",
+      "822d82e6c51747ac92646c39cebc4996",
+      "bc8112663406439fb607316ca0863ea8",
+      "9f51d9a31c974ec1bc33668ff15fbcca",
+      "c310d9688146426c8ca5f2d5ae2dbf01",
+      "33091ece1f2349f5ba64e5ef8b70fc93",
+      "aa0e27bdb17148feb46c879855ba8686",
+      "263dc52224b1469f9ef3dba6fe34aae5",
+      "5856761aa77446ffa92a27d93fc862d7"
     ],
     "FrozenRandom": {
       "SkillFilter": "ASP.NET",
@@ -82,9 +92,45 @@
       "RandomEssay": 0
     },
     "CreatedBy": null,
-    "CreatedAt": "2025-08-22T03:36:11.3093827Z",
+    "CreatedAt": "2025-08-22T07:58:22.8428854Z",
     "UpdatedBy": null,
     "UpdatedAt": null,
-    "PublishedAt": "2025-08-22T03:36:11.309383Z"
+    "PublishedAt": "2025-08-22T07:58:22.8428857Z"
+  },
+  {
+    "Id": "84334582f3534537a0867aadefcf455d",
+    "Title": "TestCuong",
+    "DurationMinutes": 1,
+    "PassScore": 1,
+    "ShuffleQuestions": true,
+    "SkillFilter": "ASP.NET",
+    "RandomMCQ": 0,
+    "RandomTF": 0,
+    "RandomEssay": 0,
+    "IsPublished": true,
+    "QuestionIds": [
+      "a14f146c70e64a7c96dde4676a5a2cba",
+      "0a72d3b1d68743b18734afca55320135",
+      "9f51d9a31c974ec1bc33668ff15fbcca",
+      "c310d9688146426c8ca5f2d5ae2dbf01",
+      "33091ece1f2349f5ba64e5ef8b70fc93",
+      "ca1ca26e74ae487499341db94749dcc1",
+      "c3e0816cdb5e4076a07e8fc44170d73a",
+      "55a55cd48ba64c13928a56bc9f17e376",
+      "bc760c59974b4b61aa0bf541cba114da",
+      "263dc52224b1469f9ef3dba6fe34aae5",
+      "5856761aa77446ffa92a27d93fc862d7"
+    ],
+    "FrozenRandom": {
+      "SkillFilter": "ASP.NET",
+      "RandomMCQ": 0,
+      "RandomTF": 0,
+      "RandomEssay": 0
+    },
+    "CreatedBy": null,
+    "CreatedAt": "2025-08-22T08:36:25.4053746Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null,
+    "PublishedAt": "2025-08-22T08:36:25.4053748Z"
   }
 ]

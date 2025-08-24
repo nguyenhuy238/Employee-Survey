@@ -34,6 +34,9 @@ builder.Services.AddSingleton(typeof(IRepository<>), typeof(JsonFileRepository<>
 builder.Services.AddSingleton<IAuditService, AuditService>();
 builder.Services.AddSingleton<IQuestionService, QuestionService>();
 builder.Services.AddSingleton<IQuestionExcelService, QuestionExcelService>();
+builder.Services.AddSingleton<IRepository<Session>, JsonFileRepository<Session>>();
+builder.Services.AddSingleton<IRepository<Feedback>, JsonFileRepository<Feedback>>();
+
 
 // Services
 builder.Services.AddSingleton<AuthService>();

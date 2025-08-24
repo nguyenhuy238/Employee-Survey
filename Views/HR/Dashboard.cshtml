@@ -24,22 +24,25 @@
             @Html.AntiForgeryToken()
             <button type="submit" class="btn btn-outline-danger btn-sm" title="Đăng xuất ngay">Logout</button>
         </form>
+        <!-- Hồ sơ -->
+        <a class="btn btn-outline-primary btn-sm" href="/Profile" title="Xem và chỉnh sửa hồ sơ cá nhân">
+            Hồ sơ của tôi
+        </a>
+
+        <!-- Feedbacks -->
+        <a class="btn btn-outline-dark btn-sm" href="/HR/Feedbacks" title="Xem góp ý từ nhân viên">
+            Feedbacks
+        </a>
 
         <div class="vr mx-1 d-none d-md-block"></div>
 
         <!-- Questions -->
         <a class="btn btn-primary btn-sm" href="/Questions" title="Danh sách câu hỏi">Questions</a>
-        @* <a class="btn btn-outline-primary btn-sm" href="/Questions/Create" title="Tạo câu hỏi MCQ mới">
-            Create Question
-        </a> *@
 
         <div class="vr mx-1 d-none d-md-block"></div>
 
         <!-- Tests -->
         <a class="btn btn-success btn-sm" href="/Tests" title="Danh sách bài test">Tests</a>
-        @* <a class="btn btn-outline-success btn-sm" href="/Tests/Create" title="Tạo bài test mới">
-            Create Test
-        </a> *@
 
         <div class="vr mx-1 d-none d-md-block"></div>
 

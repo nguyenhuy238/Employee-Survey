@@ -1,0 +1,64 @@
+﻿@model Employee_Survey.Models.ProfileViewModel
+@{
+    ViewData["Title"] = "Chỉnh sửa hồ sơ";
+}
+
+<h2>Chỉnh sửa hồ sơ</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">Vui lòng kiểm tra các lỗi bên dưới.</div>
+}
+
+<form asp-action="Edit" asp-controller="Profile" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span class="text-danger" asp-validation-for="Name"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span class="text-danger" asp-validation-for="Email"></span>
+        <small class="form-text text-muted">Email này dùng để đăng nhập.</small>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Level" class="form-label"></label>
+        <select asp-for="Level" class="form-select">
+            <option>Intern</option>
+            <option>Junior</option>
+            <option>Middle</option>
+            <option>Senior</option>
+            <option>Lead</option>
+        </select>
+        <span class="text-danger" asp-validation-for="Level"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="TeamId" class="form-label"></label>
+        <input asp-for="TeamId" class="form-control" />
+        <span class="text-danger" asp-validation-for="TeamId"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Vai trò</label>
+        <input class="form-control" value="@Model.RoleName" readonly />
+        <div class="form-text">Bạn không thể tự thay đổi vai trò.</div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+    <a class="btn btn-outline-secondary" asp-action="ChangePassword" asp-controller="Profile">Đổi mật khẩu</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

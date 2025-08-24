@@ -83,6 +83,269 @@
         }
       }
     },
+    "/Feedback/Edit/{id}": {
+      "get": {
+        "tags": [
+          "Feedback"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Feedback"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SessionId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "maxLength": 2000,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          {
+            "name": "Rating",
+            "in": "query",
+            "schema": {
+              "maximum": 5,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "TestTitle",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/HR/Feedbacks": {
+      "get": {
+        "tags": [
+          "HR"
+        ],
+        "parameters": [
+          {
+            "name": "testId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/HR/ExportFeedbacksCsv": {
+      "get": {
+        "tags": [
+          "HR"
+        ],
+        "parameters": [
+          {
+            "name": "testId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/profile": {
+      "get": {
+        "tags": [
+          "Profile"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Profile"
+        ],
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "maxLength": 200,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          {
+            "name": "Name",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "maxLength": 200,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          {
+            "name": "Email",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "maxLength": 200,
+              "minLength": 0,
+              "type": "string",
+              "format": "email"
+            }
+          },
+          {
+            "name": "Level",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "maxLength": 50,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          {
+            "name": "TeamId",
+            "in": "query",
+            "schema": {
+              "maxLength": 100,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          {
+            "name": "RoleName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/profile/change-password": {
+      "get": {
+        "tags": [
+          "Profile"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Profile"
+        ],
+        "parameters": [
+          {
+            "name": "UserId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "maxLength": 200,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          {
+            "name": "OldPassword",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "password"
+            }
+          },
+          {
+            "name": "NewPassword",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "maxLength": 100,
+              "minLength": 6,
+              "type": "string",
+              "format": "password"
+            }
+          },
+          {
+            "name": "ConfirmNewPassword",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "password"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/mytests/session/{id}": {
       "get": {
         "tags": [

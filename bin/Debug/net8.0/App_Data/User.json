@@ -10,12 +10,12 @@
   },
   {
     "Id": "u-hr",
-    "Name": "HR",
+    "Name": "HR1",
     "Email": "hr@local",
     "Role": 1,
     "Level": "Junior",
-    "TeamId": "",
-    "PasswordHash": "$2a$11$lH.Q.1JrdYTkJ27/g/2JMuU5kBCuSekzaZm/mQi4yIvKC9aLfyKN6"
+    "TeamId": "t-a",
+    "PasswordHash": "$2a$11$Da0AUGLOZjggT2D2GGM7vOn2qrrpExg/4Z6oXhrsSl/Obu834ezq."
   },
   {
     "Id": "u-emp",

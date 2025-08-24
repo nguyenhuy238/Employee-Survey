@@ -28,6 +28,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/LEGION/source/repos/Employee Survey/Employee Survey/Views/Feedback/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmVlZGJhY2tcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LEGION/source/repos/Employee Survey/Employee Survey/Views/Feedback/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmVlZGJhY2tcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/LEGION/source/repos/Employee Survey/Employee Survey/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -40,12 +48,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSFJcRGFzaGJvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/LEGION/source/repos/Employee Survey/Employee Survey/Views/HR/Feedbacks.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSFJcRmVlZGJhY2tzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/LEGION/source/repos/Employee Survey/Employee Survey/Views/MyTests/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlUZXN0c1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/LEGION/source/repos/Employee Survey/Employee Survey/Views/MyTests/Result.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlUZXN0c1xSZXN1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LEGION/source/repos/Employee Survey/Employee Survey/Views/Profile/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LEGION/source/repos/Employee Survey/Employee Survey/Views/Profile/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/LEGION/source/repos/Employee Survey/Employee Survey/Views/Questions/Create.cshtml]
@@ -66,6 +86,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/LEGION/source/repos/Employee Survey/Employee Survey/Views/Questions/_Form.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXVlc3Rpb25zXF9Gb3JtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LEGION/source/repos/Employee Survey/Employee Survey/Views/Sessions/Result.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2Vzc2lvbnNcUmVzdWx0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/LEGION/source/repos/Employee Survey/Employee Survey/Views/Sessions/Runner.cshtml]
@@ -90,6 +114,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/LEGION/source/repos/Employee Survey/Employee Survey/Views/Tests/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVzdHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LEGION/source/repos/Employee Survey/Employee Survey/Views/Tests/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVzdHNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LEGION/source/repos/Employee Survey/Employee Survey/Views/Tests/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVzdHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/LEGION/source/repos/Employee Survey/Employee Survey/Views/Tests/Index.cshtml]

@@ -1,0 +1,157 @@
+﻿@model Employee_Survey.Models.EditTestViewModel
+@using Employee_Survey.Domain
+
+<h2>Edit Test</h2>
+
+@if (TempData["Msg"] != null)
+{
+    <div class="alert alert-success">@TempData["Msg"]</div>
+}
+
+<form asp-action="Edit" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+
+    <div class="row">
+        <div class="col-md-5">
+            <div class="mb-3">
+                <label class="form-label">Title</label>
+                <input class="form-control" asp-for="Title" />
+                <span class="text-danger" asp-validation-for="Title"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Duration (minutes)</label>
+                <input class="form-control" asp-for="DurationMinutes" type="number" min="1" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Pass Score</label>
+                <input class="form-control" asp-for="PassScore" type="number" min="0" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Shuffle Questions</label>
+                <input class="form-check-input ms-2" asp-for="ShuffleQuestions" type="checkbox" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Skill Filter</label>
+                <input class="form-control" asp-for="SkillFilter" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Random Counts (used nếu không chọn thủ công)</label>
+                <div class="input-group">
+                    <span class="input-group-text">MCQ</span>
+                    <input class="form-control" asp-for="RandomMCQ" type="number" min="0" />
+                    <span class="input-group-text">TF</span>
+                    <input class="form-control" asp-for="RandomTF" type="number" min="0" />
+                    <span class="input-group-text">Essay</span>
+                    <input class="form-control" asp-for="RandomEssay" type="number" min="0" />
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Status</label>
+                @if (Model.IsPublished)
+                {
+                    <span class="badge bg-success ms-2">Published</span>
+                }
+                else
+                {
+                    <span class="badge bg-warning text-dark ms-2">Draft</span>
+                }
+            </div>
+
+            <div class="mt-4">
+                <button class="btn btn-primary">Save</button>
+                <a class="btn btn-secondary ms-2" href="/Tests">Back</a>
+            </div>
+
+            <div class="text-danger mt-3">
+                @Html.ValidationSummary()
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <p class="text-muted">
+                (Tùy chọn) Chọn thủ công các câu hỏi cho đề. Nếu chọn thủ công, hệ thống sẽ bỏ qua cấu hình random.
+            </p>
+
+            <ul class="nav nav-tabs" id="qTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-mcq" type="button" role="tab">MCQ</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-tf" type="button" role="tab">True/False</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-essay" type="button" role="tab">Essay</button>
+                </li>
+            </ul>
+
+            <div class="tab-content border p-3" id="qTabsContent">
+                <div class="tab-pane fade show active" id="tab-mcq" role="tabpanel">
+                    @if (Model.MCQQuestions?.Any() == true)
+                    {
+                        foreach (var q in Model.MCQQuestions)
+                        {
+                            var isChecked = Model.SelectedQuestionIds.Contains(q.Id);
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="SelectedQuestionIds" value="@q.Id" @(isChecked ? "checked" : "") />
+                                <label class="form-check-label">
+                                    <b>@q.Skill</b> — @q.Content
+                                </label>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="text-muted">No MCQ questions.</div>
+                    }
+                </div>
+
+                <div class="tab-pane fade" id="tab-tf" role="tabpanel">
+                    @if (Model.TFQuestions?.Any() == true)
+                    {
+                        foreach (var q in Model.TFQuestions)
+                        {
+                            var isChecked = Model.SelectedQuestionIds.Contains(q.Id);
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="SelectedQuestionIds" value="@q.Id" @(isChecked ? "checked" : "") />
+                                <label class="form-check-label">
+                                    <b>@q.Skill</b> — @q.Content
+                                </label>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="text-muted">No True/False questions.</div>
+                    }
+                </div>
+
+                <div class="tab-pane fade" id="tab-essay" role="tabpanel">
+                    @if (Model.EssayQuestions?.Any() == true)
+                    {
+                        foreach (var q in Model.EssayQuestions)
+                        {
+                            var isChecked = Model.SelectedQuestionIds.Contains(q.Id);
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="SelectedQuestionIds" value="@q.Id" @(isChecked ? "checked" : "") />
+                                <label class="form-check-label">
+                                    <b>@q.Skill</b> — @q.Content
+                                </label>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="text-muted">No Essay questions.</div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

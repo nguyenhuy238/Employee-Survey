@@ -6,9 +6,17 @@ public interface IQuestionExcelService
     Task<byte[]> ExportAsync(IEnumerable<Question> data);
     Task<ImportResult> ImportAsync(Stream fileStream, string actor);
 }
+
 public class ImportResult
 {
     public int Total { get; set; }
     public int Success { get; set; }
+
+    // NEW: số dòng bỏ qua do trùng (đã tồn tại)
+    public int Skipped { get; set; }
+
     public List<string> Errors { get; set; } = new();
+
+    // NEW: chi tiết vì sao bỏ qua (ví dụ trùng key)
+    public List<string> SkippedReasons { get; set; } = new();
 }

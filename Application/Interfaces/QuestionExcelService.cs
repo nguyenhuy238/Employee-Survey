@@ -1,13 +1,21 @@
 ﻿using ClosedXML.Excel;
 using Employee_Survey.Application;
 using Employee_Survey.Domain;
+using Employee_Survey.Infrastructure;
+using System.Globalization;
 
 namespace Employee_Survey.Infrastructure;
 
 public class QuestionExcelService : IQuestionExcelService
 {
     private readonly IQuestionService _svc;
-    public QuestionExcelService(IQuestionService svc) => _svc = svc;
+    private readonly IRepository<Question> _qRepo; // NEW: đọc dữ liệu hiện có để chống trùng
+
+    public QuestionExcelService(IQuestionService svc, IRepository<Question> qRepo)
+    {
+        _svc = svc;
+        _qRepo = qRepo;
+    }
 
     public Task<byte[]> ExportAsync(IEnumerable<Question> data)
     {
@@ -46,23 +54,69 @@ public class QuestionExcelService : IQuestionExcelService
         var range = ws.RangeUsed();
         if (range == null) return res;
 
-        var rows = range.RowsUsed().Skip(1);
+        // --- Load tất cả câu hỏi hiện có để so trùng ---
+        var existing = await _qRepo.GetAllAsync();
+        static string Norm(string? s) => (s ?? "").Trim().ToLowerInvariant();
+        static string MakeKey(string content, QType type, string skill)
+            => $"{Norm(content)}|{type}|{Norm(skill)}";
+
+        var existingKeys = existing
+            .Select(q => MakeKey(q.Content, q.Type, q.Skill))
+            .ToHashSet(StringComparer.Ordinal);
+
+        // Chống trùng lặp ngay trong file import hiện tại
+        var seenInThisFile = new HashSet<string>(StringComparer.Ordinal);
+
+        var rows = range.RowsUsed().Skip(1); // bỏ header
         foreach (var row in rows)
         {
             res.Total++;
             try
             {
+                var content = row.Cell(1).GetString().Trim();
+                var typeRaw = row.Cell(2).GetString().Trim();
+                var skill = row.Cell(3).GetString().Trim();
+
+                if (string.IsNullOrWhiteSpace(content))
+                    throw new Exception("Content is empty");
+                if (string.IsNullOrWhiteSpace(typeRaw))
+                    throw new Exception("Type is empty");
+                if (!Enum.TryParse<QType>(typeRaw, true, out var type))
+                    throw new Exception($"Invalid Type: {typeRaw}");
+
+                var key = MakeKey(content, type, skill);
+
+                // --- Check trùng: đã tồn tại trong DB hoặc trùng trong cùng file ---
+                if (existingKeys.Contains(key) || seenInThisFile.Contains(key))
+                {
+                    res.Skipped++;
+                    res.SkippedReasons.Add($"Row {row.RowNumber()}: skipped duplicate (Content,Type,Skill).");
+                    continue;
+                }
+
+                // Parse các cột còn lại (để Create)
+                var difficulty = row.Cell(4).GetString().Trim();
+                var tagsCsv = row.Cell(5).GetString();
+                var optionsStr = row.Cell(6).GetString();
+                var correctStr = row.Cell(7).GetString();
+
                 var q = new Question
                 {
-                    Content = row.Cell(1).GetString().Trim(),
-                    Type = Enum.Parse<QType>(row.Cell(2).GetString().Trim(), ignoreCase: true),
-                    Skill = row.Cell(3).GetString().Trim(),
-                    Difficulty = row.Cell(4).GetString().Trim(),
-                    Tags = row.Cell(5).GetString().Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList(),
-                    Options = row.Cell(6).GetString().Split('|', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList(),
-                    CorrectKeys = row.Cell(7).GetString().Split('|', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList()
+                    Content = content,
+                    Type = type,
+                    Skill = skill,
+                    Difficulty = string.IsNullOrWhiteSpace(difficulty) ? "Junior" : difficulty,
+                    Tags = tagsCsv.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList(),
+                    Options = optionsStr.Split('|', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList(),
+                    CorrectKeys = correctStr.Split('|', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList()
                 };
+
+                // Lưu — QuestionService sẽ validate theo Type (TF auto-setup Options True/False, v.v.)
                 await _svc.CreateAsync(q, actor);
+
+                // ghi nhận key để chống trùng tiếp
+                existingKeys.Add(key);
+                seenInThisFile.Add(key);
                 res.Success++;
             }
             catch (Exception ex)
@@ -70,6 +124,7 @@ public class QuestionExcelService : IQuestionExcelService
                 res.Errors.Add($"Row {row.RowNumber()}: {ex.Message}");
             }
         }
+
         return res;
     }
 }

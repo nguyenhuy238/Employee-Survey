@@ -23,12 +23,10 @@ namespace Employee_Survey.Controllers
         public async Task<IActionResult> Start(string id)
         {
             var uid = User.FindFirstValue(ClaimTypes.NameIdentifier)!;
-            // Chỉ cho phép start nếu test đang được assign cho user tại thời điểm hiện tại
             var allowed = await _assignSvc.GetAvailableTestIdsAsync(uid, DateTime.UtcNow);
             if (!allowed.Contains(id)) return Forbid();
 
             var s = await _svc.StartAsync(id, uid);
-            // Trả về đề (không có đáp án đúng)
             var q = s.Snapshot.Select(x => new { x.Id, x.Type, x.Content, x.Options });
             var test = await _tRepo.FirstOrDefaultAsync(t => t.Id == id);
             var duration = test?.DurationMinutes ?? 30;
@@ -40,14 +38,22 @@ namespace Employee_Survey.Controllers
         [HttpPost("sessions/{sid}/submit")]
         public async Task<IActionResult> Submit(string sid, [FromBody] SubmitPayload p)
         {
-            // Xác thực quyền sở hữu session
             var uid = User.FindFirstValue(ClaimTypes.NameIdentifier)!;
             var s0 = await _sRepo.FirstOrDefaultAsync(x => x.Id == sid);
             if (s0 == null) return NotFound();
             if (!string.Equals(s0.UserId, uid, StringComparison.Ordinal)) return Forbid();
 
             var s = await _svc.SubmitAsync(sid, p.Answers);
-            return Ok(new { s.Id, s.TotalScore, s.Status });
+
+            return Ok(new
+            {
+                s.Id,
+                s.TotalScore,
+                s.MaxScore,
+                s.Percent,
+                s.IsPassed,
+                s.Status
+            });
         }
     }
 }

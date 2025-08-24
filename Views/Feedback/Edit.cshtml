@@ -1,0 +1,35 @@
+﻿@* Views/Feedback/Edit.cshtml *@
+@model Employee_Survey.Models.FeedbackCreateViewModel
+@{
+    ViewData["Title"] = "Sửa Feedback";
+    var fid = (string)ViewBag.FeedbackId;
+}
+<h3>Sửa Feedback</h3>
+<p class="text-muted">Bài test: <b>@Model.TestTitle</b></p>
+
+<form asp-action="Edit" asp-controller="Feedback" method="post" asp-route-id="@fid">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="SessionId" />
+    <div class="mb-3">
+        <label asp-for="Rating" class="form-label"></label>
+        <select asp-for="Rating" class="form-select">
+            <option value="5">5 - Rất hài lòng</option>
+            <option value="4">4 - Hài lòng</option>
+            <option value="3">3 - Bình thường</option>
+            <option value="2">2 - Chưa tốt</option>
+            <option value="1">1 - Không hài lòng</option>
+        </select>
+        <span class="text-danger" asp-validation-for="Rating"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Content" class="form-label"></label>
+        <textarea asp-for="Content" class="form-control" rows="5"></textarea>
+        <span class="text-danger" asp-validation-for="Content"></span>
+    </div>
+    <button class="btn btn-primary" type="submit">Lưu</button>
+    <a class="btn btn-light border" asp-controller="Sessions" asp-action="Result" asp-route-id="@Model.SessionId">Quay lại kết quả</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -115,11 +115,15 @@ public class QuestionService : IQuestionService
                     throw new ValidationException("True/False requires exactly one of True/False as correct");
                 break;
             case QType.Matching:
-                if (q.MatchingPairs == null || q.MatchingPairs.Count == 0) throw new ValidationException("Matching requires at least 1 pair");
+                if (q.MatchingPairs == null || q.MatchingPairs.Count == 0)
+                    throw new ValidationException("Matching requires at least 1 pair (Left|Right)");
                 break;
             case QType.DragDrop:
-                if (q.DragDrop == null || q.DragDrop.Slots.Count == 0 || q.DragDrop.Tokens.Count == 0)
-                    throw new ValidationException("DragDrop requires tokens and slots");
+                if (q.DragDrop == null || (q.DragDrop.Slots?.Count ?? 0) == 0 || (q.DragDrop.Tokens?.Count ?? 0) == 0)
+                    throw new ValidationException("DragDrop requires tokens and slots (Name=Answer)");
+                break;
+            case QType.Essay:
+                // không yêu cầu đáp án; có thể khuyến nghị EssayMinWords
                 break;
         }
     }
