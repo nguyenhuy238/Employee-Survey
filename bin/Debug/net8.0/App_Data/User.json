@@ -25,5 +25,14 @@
     "Level": "Junior",
     "TeamId": "t-a",
     "PasswordHash": "$2a$11$7wgM.1w6Jxz1W3pmYfzVX.jxPxkL5ABlfc/6vUgtw3pws66lopwVG"
+  },
+  {
+    "Id": "b835484b8d2a4a8e94573b7d503d8727",
+    "Name": "Nguy\u1EC5n Qu\u1ED1c Huy",
+    "Email": "he186319nguyenquochuy@gmail.com",
+    "Role": 2,
+    "Level": "Junior",
+    "TeamId": "t-a",
+    "PasswordHash": "$2a$11$W2e1lxIDAaawvrNBCG9lTOxLEBmfcp3zyJsMdtNLO.oK5HPtetpQW"
   }
 ]

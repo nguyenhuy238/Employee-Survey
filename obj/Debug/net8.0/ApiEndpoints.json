@@ -48,6 +48,32 @@
   },
   {
     "ContainingType": "Employee_Survey.Controllers.AuthController",
+    "Method": "Forgot",
+    "RelativePath": "auth/forgot",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Employee_Survey.Controllers.AuthController",
+    "Method": "ForgotPost",
+    "RelativePath": "auth/forgot",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Employee_Survey.Controllers.AuthController",
     "Method": "Login",
     "RelativePath": "auth/login",
     "HttpMethod": "GET",
@@ -96,6 +122,85 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Employee_Survey.Controllers.AuthController",
+    "Method": "Reset",
+    "RelativePath": "auth/reset",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "token",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Employee_Survey.Controllers.AuthController",
+    "Method": "ResetPost",
+    "RelativePath": "auth/reset",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "token",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "password",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "confirm",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Employee_Survey.Controllers.AuthController",
+    "Method": "Verify",
+    "RelativePath": "auth/verify",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Employee_Survey.Controllers.AuthController",
+    "Method": "VerifyPost",
+    "RelativePath": "auth/verify",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "otp",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {

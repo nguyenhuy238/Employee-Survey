@@ -1,0 +1,93 @@
+﻿@using Employee_Survey.Domain
+@model List<Employee_Survey.Domain.User>
+@{
+    ViewData["Title"] = "User Management";
+    var teams = (IEnumerable<Employee_Survey.Domain.Team>)ViewBag.Teams ?? new List<Employee_Survey.Domain.Team>();
+    string q = ViewBag.Query as string ?? "";
+    string teamId = ViewBag.TeamId as string ?? "";
+    Role? role = ViewBag.Role as Role?;
+}
+
+<h2>User Management</h2>
+
+@if (TempData["Msg"] != null) { <div class="alert alert-success">@TempData["Msg"]</div> }
+@if (TempData["Err"] != null) { <div class="alert alert-danger">@TempData["Err"]</div> }
+
+<form method="get" class="row g-2 mb-3">
+    <div class="col-md-3">
+        <input name="q" class="form-control" value="@q" placeholder="Search name/email..." />
+    </div>
+
+    <div class="col-md-3">
+        <select name="teamId" class="form-select">
+            <option value="">-- All Teams --</option>
+            @foreach (var t in teams)
+            {
+                if (teamId == t.Id)
+                {
+                    <option value="@t.Id" selected>@t.Name</option>
+                }
+                else
+                {
+                    <option value="@t.Id">@t.Name</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div class="col-md-3">
+        <select name="role" class="form-select">
+            <option value="">-- All Roles --</option>
+            @foreach (Role r in Enum.GetValues(typeof(Role)))
+            {
+                if (role.HasValue && role.Value == r)
+                {
+                    <option value="@r" selected>@r</option>
+                }
+                else
+                {
+                    <option value="@r">@r</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div class="col-md-3">
+        <button class="btn btn-primary">Filter</button>
+        <a class="btn btn-secondary" asp-action="Index">Reset</a>
+        <a class="btn btn-success" asp-action="Create">+ Create User</a>
+    </div>
+</form>
+
+
+<table class="table table-striped align-middle">
+    <thead>
+        <tr>
+            <th>Name</th><th>Email</th><th>Role</th><th>Level</th><th>Team</th><th style="width:260px;"></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var u in Model)
+    {
+        <tr>
+            <td>@u.Name</td>
+            <td>@u.Email</td>
+            <td>@u.Role</td>
+            <td>@u.Level</td>
+            <td>@u.TeamId</td>
+            <td class="text-end">
+                <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@u.Id">Edit</a>
+
+                <form asp-action="ResetPassword" asp-route-id="@u.Id" method="post" class="d-inline" asp-antiforgery="true">
+                    <input name="newPassword" class="form-control form-control-sm d-inline-block" style="width:120px" placeholder="New pass" />
+                    <button class="btn btn-sm btn-warning">Reset</button>
+                </form>
+
+                <form asp-action="Delete" asp-route-id="@u.Id" method="post" class="d-inline" asp-antiforgery="true" onsubmit="return confirm('Delete this user?');">
+                    <button class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

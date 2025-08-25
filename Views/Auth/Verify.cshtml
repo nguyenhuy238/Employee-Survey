@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Xác thực OTP";
+    var email = ViewBag.Email as string ?? "";
+}
+<h2>Xác thực OTP</h2>
+
+@if (TempData["Info"] != null)
+{
+    <div class="alert alert-info">@TempData["Info"]</div>
+}
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<p>Chúng tôi đã gửi mã OTP đến email: <b>@email</b></p>
+
+<form method="post" action="/auth/verify">
+    <input type="hidden" name="email" value="@email" />
+    <div class="mb-3">
+        <label class="form-label">Mã OTP (6 chữ số)</label>
+        <input name="otp" class="form-control" maxlength="6" />
+    </div>
+    <button class="btn btn-primary">Xác nhận</button>
+</form>
+
+<div class="mt-3">
+    <a href="/auth/forgot">Gửi lại OTP</a> |
+    <a href="/auth/login">Quay lại đăng nhập</a>
+</div>

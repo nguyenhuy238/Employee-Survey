@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Quên mật khẩu";
+}
+<h2>Quên mật khẩu</h2>
+
+@if (TempData["Info"] != null)
+{
+    <div class="alert alert-info">@TempData["Info"]</div>
+}
+
+<form method="post" action="/auth/forgot">
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input name="email" class="form-control" placeholder="your@email.com" />
+    </div>
+    <button class="btn btn-primary">Gửi OTP</button>
+</form>
+<div class="mt-3">
+    <a href="/auth/login">Quay lại đăng nhập</a>
+</div>

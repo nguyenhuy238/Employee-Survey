@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Đặt lại mật khẩu";
+    var token = ViewBag.Token as string ?? "";
+}
+<h2>Đặt lại mật khẩu</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<form method="post" action="/auth/reset">
+    <input type="hidden" name="token" value="@token" />
+    <div class="mb-3">
+        <label class="form-label">Mật khẩu mới</label>
+        <input name="password" type="password" class="form-control" minlength="6" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Xác nhận mật khẩu</label>
+        <input name="confirm" type="password" class="form-control" minlength="6" />
+    </div>
+    <button class="btn btn-success">Đổi mật khẩu</button>
+</form>
+
+<div class="mt-3">
+    <a href="/auth/login">Quay lại đăng nhập</a>
+</div>

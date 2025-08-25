@@ -2398,5 +2398,1029 @@
         "UpdatedAt": null
       }
     ]
+  },
+  {
+    "Id": "e89026b20e474fb6b02e709be96e75d2",
+    "TestId": "84334582f3534537a0867aadefcf455d",
+    "UserId": "2ef1c63fd16f4352ba6c0f118f3ca066",
+    "StartAt": "2025-08-25T01:54:37.6606446Z",
+    "EndAt": "2025-08-25T01:55:55.4299938Z",
+    "Status": 1,
+    "TotalScore": 3,
+    "MaxScore": 11,
+    "Percent": 27.27,
+    "IsPassed": true,
+    "Answers": [
+      {
+        "QuestionId": "0a72d3b1d68743b18734afca55320135",
+        "Selected": "A",
+        "Score": 1,
+        "TextAnswer": null
+      },
+      {
+        "QuestionId": "33091ece1f2349f5ba64e5ef8b70fc93",
+        "Selected": "B",
+        "Score": 1,
+        "TextAnswer": null
+      },
+      {
+        "QuestionId": "5856761aa77446ffa92a27d93fc862d7",
+        "Selected": "True",
+        "Score": 0,
+        "TextAnswer": null
+      },
+      {
+        "QuestionId": "bc760c59974b4b61aa0bf541cba114da",
+        "Selected": "B",
+        "Score": 1,
+        "TextAnswer": null
+      },
+      {
+        "QuestionId": "263dc52224b1469f9ef3dba6fe34aae5",
+        "Selected": "True",
+        "Score": 0,
+        "TextAnswer": null
+      },
+      {
+        "QuestionId": "a14f146c70e64a7c96dde4676a5a2cba",
+        "Selected": "C",
+        "Score": 0,
+        "TextAnswer": null
+      },
+      {
+        "QuestionId": "55a55cd48ba64c13928a56bc9f17e376",
+        "Selected": "D",
+        "Score": 0,
+        "TextAnswer": null
+      },
+      {
+        "QuestionId": "c3e0816cdb5e4076a07e8fc44170d73a",
+        "Selected": "B",
+        "Score": 0,
+        "TextAnswer": null
+      },
+      {
+        "QuestionId": "ca1ca26e74ae487499341db94749dcc1",
+        "Selected": "B",
+        "Score": 0,
+        "TextAnswer": null
+      },
+      {
+        "QuestionId": "9f51d9a31c974ec1bc33668ff15fbcca",
+        "Selected": "C",
+        "Score": 0,
+        "TextAnswer": null
+      },
+      {
+        "QuestionId": "c310d9688146426c8ca5f2d5ae2dbf01",
+        "Selected": "A",
+        "Score": 0,
+        "TextAnswer": null
+      }
+    ],
+    "Snapshot": [
+      {
+        "Id": "0a72d3b1d68743b18734afca55320135",
+        "Content": ".gitignore d\u00F9ng \u0111\u1EC3?",
+        "Type": 0,
+        "Options": [
+          "B\u1ECF qua file/th\u01B0 m\u1EE5c kh\u00F4ng theo d\u00F5i",
+          "M\u00E3 h\u00F3a repo",
+          "\u0110\u1ED5i t\u00EAn repo",
+          "T\u1EA1o nh\u00E1nh"
+        ],
+        "CorrectKeys": [
+          "A"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "Git",
+        "Difficulty": "Junior",
+        "Tags": [
+          "git",
+          "ignore"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.45718Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "33091ece1f2349f5ba64e5ef8b70fc93",
+        "Content": "C\u00E2u l\u1EC7nh ch\u1ECDn to\u00E0n b\u1ED9 c\u1ED9t?",
+        "Type": 0,
+        "Options": [
+          "SELECT ALL",
+          "SELECT *",
+          "SELECT %",
+          "SELECT #"
+        ],
+        "CorrectKeys": [
+          "B"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "SQL",
+        "Difficulty": "Junior",
+        "Tags": [
+          "sql",
+          "select"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.366484Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "5856761aa77446ffa92a27d93fc862d7",
+        "Content": "Rebase v\u00E0 merge l\u00E0 ho\u00E0n to\u00E0n gi\u1ED1ng nhau v\u1EC1 l\u1ECBch s\u1EED commit.",
+        "Type": 1,
+        "Options": [
+          "True",
+          "False"
+        ],
+        "CorrectKeys": [
+          "False"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "Git",
+        "Difficulty": "Mid",
+        "Tags": [
+          "git",
+          "rebase"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.4878311Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "bc760c59974b4b61aa0bf541cba114da",
+        "Content": "Kh\u00F3a ch\u00EDnh theo convention l\u00E0 g\u00EC?",
+        "Type": 0,
+        "Options": [
+          "[PrimaryKey]",
+          "Id ho\u1EB7c \u003CTypeName\u003EId",
+          "ObjectId",
+          "UUID"
+        ],
+        "CorrectKeys": [
+          "B"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "EF Core",
+        "Difficulty": "Junior",
+        "Tags": [
+          "efcore",
+          "key"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.2800201Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "263dc52224b1469f9ef3dba6fe34aae5",
+        "Content": "Hello There",
+        "Type": 1,
+        "Options": [
+          "True",
+          "False"
+        ],
+        "CorrectKeys": [
+          "False"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "ASP.NET",
+        "Difficulty": "Mid",
+        "Tags": [
+          "git",
+          "rebase"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:49:26.4083301Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "a14f146c70e64a7c96dde4676a5a2cba",
+        "Content": "L\u1EA5y m\u00E3 ngu\u1ED3n v\u1EC1 l\u1EA7n \u0111\u1EA7u?",
+        "Type": 0,
+        "Options": [
+          "git pull",
+          "git clone",
+          "git fetch",
+          "git fork"
+        ],
+        "CorrectKeys": [
+          "B"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "Git",
+        "Difficulty": "Junior",
+        "Tags": [
+          "git",
+          "clone"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.4718464Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "55a55cd48ba64c13928a56bc9f17e376",
+        "Content": "Provider n\u00E0o sau \u0111\u00E2y l\u00E0 c\u1EE7a EF Core?",
+        "Type": 0,
+        "Options": [
+          "SQL Server",
+          "MongoDB",
+          "Redis",
+          "Elastic"
+        ],
+        "CorrectKeys": [
+          "A"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "EF Core",
+        "Difficulty": "Junior",
+        "Tags": [
+          "efcore",
+          "provider"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.2934349Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "c3e0816cdb5e4076a07e8fc44170d73a",
+        "Content": "L\u1EC7nh CLI t\u1EA1o migration?",
+        "Type": 0,
+        "Options": [
+          "dotnet ef migrations add",
+          "dotnet ef dbupdate",
+          "dotnet new mvc",
+          "dotnet tool install"
+        ],
+        "CorrectKeys": [
+          "A"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "EF Core",
+        "Difficulty": "Mid",
+        "Tags": [
+          "efcore",
+          "cli"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.3077631Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "ca1ca26e74ae487499341db94749dcc1",
+        "Content": "Foreign key th\u1EC3 hi\u1EC7n?",
+        "Type": 0,
+        "Options": [
+          "R\u00E0ng bu\u1ED9c quan h\u1EC7 gi\u1EEFa b\u1EA3ng",
+          "C\u1EA5p ph\u00E1t b\u1ED9 nh\u1EDB",
+          "T\u1EA1o thread",
+          "N\u00E9n file"
+        ],
+        "CorrectKeys": [
+          "A"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "EF Core",
+        "Difficulty": "Junior",
+        "Tags": [
+          "efcore",
+          "relations"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.3356894Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "9f51d9a31c974ec1bc33668ff15fbcca",
+        "Content": "INDEX ch\u1EE7 y\u1EBFu gi\u00FAp?",
+        "Type": 0,
+        "Options": [
+          "T\u0103ng t\u1ED1c truy v\u1EA5n \u0111\u1ECDc",
+          "T\u0103ng t\u1ED1c ghi",
+          "M\u00E3 h\u00F3a",
+          "Backup"
+        ],
+        "CorrectKeys": [
+          "A"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "SQL",
+        "Difficulty": "Junior",
+        "Tags": [
+          "sql",
+          "index"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.3966284Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "c310d9688146426c8ca5f2d5ae2dbf01",
+        "Content": "INNER JOIN tr\u1EA3 v\u1EC1?",
+        "Type": 0,
+        "Options": [
+          "T\u1EA5t c\u1EA3 b\u1EA3n ghi",
+          "Ch\u1EC9 c\u00E1c b\u1EA3n ghi kh\u1EDBp \u1EDF c\u1EA3 hai b\u1EA3ng",
+          "B\u1EA3n ghi tr\u00E1i",
+          "B\u1EA3n ghi ph\u1EA3i"
+        ],
+        "CorrectKeys": [
+          "B"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "SQL",
+        "Difficulty": "Junior",
+        "Tags": [
+          "sql",
+          "join"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.3815945Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      }
+    ]
+  },
+  {
+    "Id": "928f2b89a17541cd9b9b018a947160e8",
+    "TestId": "84334582f3534537a0867aadefcf455d",
+    "UserId": "2ef1c63fd16f4352ba6c0f118f3ca066",
+    "StartAt": "2025-08-25T01:57:45.0866536Z",
+    "EndAt": null,
+    "Status": 0,
+    "TotalScore": 0,
+    "MaxScore": 0,
+    "Percent": 0,
+    "IsPassed": false,
+    "Answers": [],
+    "Snapshot": [
+      {
+        "Id": "0a72d3b1d68743b18734afca55320135",
+        "Content": ".gitignore d\u00F9ng \u0111\u1EC3?",
+        "Type": 0,
+        "Options": [
+          "B\u1ECF qua file/th\u01B0 m\u1EE5c kh\u00F4ng theo d\u00F5i",
+          "M\u00E3 h\u00F3a repo",
+          "\u0110\u1ED5i t\u00EAn repo",
+          "T\u1EA1o nh\u00E1nh"
+        ],
+        "CorrectKeys": [
+          "A"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "Git",
+        "Difficulty": "Junior",
+        "Tags": [
+          "git",
+          "ignore"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.45718Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "ca1ca26e74ae487499341db94749dcc1",
+        "Content": "Foreign key th\u1EC3 hi\u1EC7n?",
+        "Type": 0,
+        "Options": [
+          "R\u00E0ng bu\u1ED9c quan h\u1EC7 gi\u1EEFa b\u1EA3ng",
+          "C\u1EA5p ph\u00E1t b\u1ED9 nh\u1EDB",
+          "T\u1EA1o thread",
+          "N\u00E9n file"
+        ],
+        "CorrectKeys": [
+          "A"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "EF Core",
+        "Difficulty": "Junior",
+        "Tags": [
+          "efcore",
+          "relations"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.3356894Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "c3e0816cdb5e4076a07e8fc44170d73a",
+        "Content": "L\u1EC7nh CLI t\u1EA1o migration?",
+        "Type": 0,
+        "Options": [
+          "dotnet ef migrations add",
+          "dotnet ef dbupdate",
+          "dotnet new mvc",
+          "dotnet tool install"
+        ],
+        "CorrectKeys": [
+          "A"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "EF Core",
+        "Difficulty": "Mid",
+        "Tags": [
+          "efcore",
+          "cli"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.3077631Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "263dc52224b1469f9ef3dba6fe34aae5",
+        "Content": "Hello There",
+        "Type": 1,
+        "Options": [
+          "True",
+          "False"
+        ],
+        "CorrectKeys": [
+          "False"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "ASP.NET",
+        "Difficulty": "Mid",
+        "Tags": [
+          "git",
+          "rebase"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:49:26.4083301Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "a14f146c70e64a7c96dde4676a5a2cba",
+        "Content": "L\u1EA5y m\u00E3 ngu\u1ED3n v\u1EC1 l\u1EA7n \u0111\u1EA7u?",
+        "Type": 0,
+        "Options": [
+          "git pull",
+          "git clone",
+          "git fetch",
+          "git fork"
+        ],
+        "CorrectKeys": [
+          "B"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "Git",
+        "Difficulty": "Junior",
+        "Tags": [
+          "git",
+          "clone"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.4718464Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "9f51d9a31c974ec1bc33668ff15fbcca",
+        "Content": "INDEX ch\u1EE7 y\u1EBFu gi\u00FAp?",
+        "Type": 0,
+        "Options": [
+          "T\u0103ng t\u1ED1c truy v\u1EA5n \u0111\u1ECDc",
+          "T\u0103ng t\u1ED1c ghi",
+          "M\u00E3 h\u00F3a",
+          "Backup"
+        ],
+        "CorrectKeys": [
+          "A"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "SQL",
+        "Difficulty": "Junior",
+        "Tags": [
+          "sql",
+          "index"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.3966284Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "55a55cd48ba64c13928a56bc9f17e376",
+        "Content": "Provider n\u00E0o sau \u0111\u00E2y l\u00E0 c\u1EE7a EF Core?",
+        "Type": 0,
+        "Options": [
+          "SQL Server",
+          "MongoDB",
+          "Redis",
+          "Elastic"
+        ],
+        "CorrectKeys": [
+          "A"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "EF Core",
+        "Difficulty": "Junior",
+        "Tags": [
+          "efcore",
+          "provider"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.2934349Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "33091ece1f2349f5ba64e5ef8b70fc93",
+        "Content": "C\u00E2u l\u1EC7nh ch\u1ECDn to\u00E0n b\u1ED9 c\u1ED9t?",
+        "Type": 0,
+        "Options": [
+          "SELECT ALL",
+          "SELECT *",
+          "SELECT %",
+          "SELECT #"
+        ],
+        "CorrectKeys": [
+          "B"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "SQL",
+        "Difficulty": "Junior",
+        "Tags": [
+          "sql",
+          "select"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.366484Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "bc760c59974b4b61aa0bf541cba114da",
+        "Content": "Kh\u00F3a ch\u00EDnh theo convention l\u00E0 g\u00EC?",
+        "Type": 0,
+        "Options": [
+          "[PrimaryKey]",
+          "Id ho\u1EB7c \u003CTypeName\u003EId",
+          "ObjectId",
+          "UUID"
+        ],
+        "CorrectKeys": [
+          "B"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "EF Core",
+        "Difficulty": "Junior",
+        "Tags": [
+          "efcore",
+          "key"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.2800201Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "5856761aa77446ffa92a27d93fc862d7",
+        "Content": "Rebase v\u00E0 merge l\u00E0 ho\u00E0n to\u00E0n gi\u1ED1ng nhau v\u1EC1 l\u1ECBch s\u1EED commit.",
+        "Type": 1,
+        "Options": [
+          "True",
+          "False"
+        ],
+        "CorrectKeys": [
+          "False"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "Git",
+        "Difficulty": "Mid",
+        "Tags": [
+          "git",
+          "rebase"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.4878311Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "c310d9688146426c8ca5f2d5ae2dbf01",
+        "Content": "INNER JOIN tr\u1EA3 v\u1EC1?",
+        "Type": 0,
+        "Options": [
+          "T\u1EA5t c\u1EA3 b\u1EA3n ghi",
+          "Ch\u1EC9 c\u00E1c b\u1EA3n ghi kh\u1EDBp \u1EDF c\u1EA3 hai b\u1EA3ng",
+          "B\u1EA3n ghi tr\u00E1i",
+          "B\u1EA3n ghi ph\u1EA3i"
+        ],
+        "CorrectKeys": [
+          "B"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "SQL",
+        "Difficulty": "Junior",
+        "Tags": [
+          "sql",
+          "join"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.3815945Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      }
+    ]
+  },
+  {
+    "Id": "8782fc969ccb4d82a13a2801c7865637",
+    "TestId": "84334582f3534537a0867aadefcf455d",
+    "UserId": "2ef1c63fd16f4352ba6c0f118f3ca066",
+    "StartAt": "2025-08-25T01:59:10.2472917Z",
+    "EndAt": null,
+    "Status": 0,
+    "TotalScore": 0,
+    "MaxScore": 0,
+    "Percent": 0,
+    "IsPassed": false,
+    "Answers": [],
+    "Snapshot": [
+      {
+        "Id": "5856761aa77446ffa92a27d93fc862d7",
+        "Content": "Rebase v\u00E0 merge l\u00E0 ho\u00E0n to\u00E0n gi\u1ED1ng nhau v\u1EC1 l\u1ECBch s\u1EED commit.",
+        "Type": 1,
+        "Options": [
+          "True",
+          "False"
+        ],
+        "CorrectKeys": [
+          "False"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "Git",
+        "Difficulty": "Mid",
+        "Tags": [
+          "git",
+          "rebase"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.4878311Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "263dc52224b1469f9ef3dba6fe34aae5",
+        "Content": "Hello There",
+        "Type": 1,
+        "Options": [
+          "True",
+          "False"
+        ],
+        "CorrectKeys": [
+          "False"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "ASP.NET",
+        "Difficulty": "Mid",
+        "Tags": [
+          "git",
+          "rebase"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:49:26.4083301Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "c310d9688146426c8ca5f2d5ae2dbf01",
+        "Content": "INNER JOIN tr\u1EA3 v\u1EC1?",
+        "Type": 0,
+        "Options": [
+          "T\u1EA5t c\u1EA3 b\u1EA3n ghi",
+          "Ch\u1EC9 c\u00E1c b\u1EA3n ghi kh\u1EDBp \u1EDF c\u1EA3 hai b\u1EA3ng",
+          "B\u1EA3n ghi tr\u00E1i",
+          "B\u1EA3n ghi ph\u1EA3i"
+        ],
+        "CorrectKeys": [
+          "B"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "SQL",
+        "Difficulty": "Junior",
+        "Tags": [
+          "sql",
+          "join"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.3815945Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "bc760c59974b4b61aa0bf541cba114da",
+        "Content": "Kh\u00F3a ch\u00EDnh theo convention l\u00E0 g\u00EC?",
+        "Type": 0,
+        "Options": [
+          "[PrimaryKey]",
+          "Id ho\u1EB7c \u003CTypeName\u003EId",
+          "ObjectId",
+          "UUID"
+        ],
+        "CorrectKeys": [
+          "B"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "EF Core",
+        "Difficulty": "Junior",
+        "Tags": [
+          "efcore",
+          "key"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.2800201Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "9f51d9a31c974ec1bc33668ff15fbcca",
+        "Content": "INDEX ch\u1EE7 y\u1EBFu gi\u00FAp?",
+        "Type": 0,
+        "Options": [
+          "T\u0103ng t\u1ED1c truy v\u1EA5n \u0111\u1ECDc",
+          "T\u0103ng t\u1ED1c ghi",
+          "M\u00E3 h\u00F3a",
+          "Backup"
+        ],
+        "CorrectKeys": [
+          "A"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "SQL",
+        "Difficulty": "Junior",
+        "Tags": [
+          "sql",
+          "index"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.3966284Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "55a55cd48ba64c13928a56bc9f17e376",
+        "Content": "Provider n\u00E0o sau \u0111\u00E2y l\u00E0 c\u1EE7a EF Core?",
+        "Type": 0,
+        "Options": [
+          "SQL Server",
+          "MongoDB",
+          "Redis",
+          "Elastic"
+        ],
+        "CorrectKeys": [
+          "A"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "EF Core",
+        "Difficulty": "Junior",
+        "Tags": [
+          "efcore",
+          "provider"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.2934349Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "33091ece1f2349f5ba64e5ef8b70fc93",
+        "Content": "C\u00E2u l\u1EC7nh ch\u1ECDn to\u00E0n b\u1ED9 c\u1ED9t?",
+        "Type": 0,
+        "Options": [
+          "SELECT ALL",
+          "SELECT *",
+          "SELECT %",
+          "SELECT #"
+        ],
+        "CorrectKeys": [
+          "B"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "SQL",
+        "Difficulty": "Junior",
+        "Tags": [
+          "sql",
+          "select"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.366484Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "a14f146c70e64a7c96dde4676a5a2cba",
+        "Content": "L\u1EA5y m\u00E3 ngu\u1ED3n v\u1EC1 l\u1EA7n \u0111\u1EA7u?",
+        "Type": 0,
+        "Options": [
+          "git pull",
+          "git clone",
+          "git fetch",
+          "git fork"
+        ],
+        "CorrectKeys": [
+          "B"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "Git",
+        "Difficulty": "Junior",
+        "Tags": [
+          "git",
+          "clone"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.4718464Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "0a72d3b1d68743b18734afca55320135",
+        "Content": ".gitignore d\u00F9ng \u0111\u1EC3?",
+        "Type": 0,
+        "Options": [
+          "B\u1ECF qua file/th\u01B0 m\u1EE5c kh\u00F4ng theo d\u00F5i",
+          "M\u00E3 h\u00F3a repo",
+          "\u0110\u1ED5i t\u00EAn repo",
+          "T\u1EA1o nh\u00E1nh"
+        ],
+        "CorrectKeys": [
+          "A"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "Git",
+        "Difficulty": "Junior",
+        "Tags": [
+          "git",
+          "ignore"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.45718Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "c3e0816cdb5e4076a07e8fc44170d73a",
+        "Content": "L\u1EC7nh CLI t\u1EA1o migration?",
+        "Type": 0,
+        "Options": [
+          "dotnet ef migrations add",
+          "dotnet ef dbupdate",
+          "dotnet new mvc",
+          "dotnet tool install"
+        ],
+        "CorrectKeys": [
+          "A"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "EF Core",
+        "Difficulty": "Mid",
+        "Tags": [
+          "efcore",
+          "cli"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.3077631Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      },
+      {
+        "Id": "ca1ca26e74ae487499341db94749dcc1",
+        "Content": "Foreign key th\u1EC3 hi\u1EC7n?",
+        "Type": 0,
+        "Options": [
+          "R\u00E0ng bu\u1ED9c quan h\u1EC7 gi\u1EEFa b\u1EA3ng",
+          "C\u1EA5p ph\u00E1t b\u1ED9 nh\u1EDB",
+          "T\u1EA1o thread",
+          "N\u00E9n file"
+        ],
+        "CorrectKeys": [
+          "A"
+        ],
+        "EssayMinWords": null,
+        "MatchingPairs": [],
+        "DragDrop": null,
+        "Skill": "EF Core",
+        "Difficulty": "Junior",
+        "Tags": [
+          "efcore",
+          "relations"
+        ],
+        "Media": [],
+        "CreatedBy": "HR",
+        "CreatedAt": "2025-08-22T07:31:34.3356894Z",
+        "UpdatedBy": null,
+        "UpdatedAt": null
+      }
+    ]
   }
 ]

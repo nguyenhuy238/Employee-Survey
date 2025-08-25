@@ -1,0 +1,60 @@
+﻿@model Employee_Survey.Models.Users.UserFormViewModel
+@using Employee_Survey.Domain
+@{
+    ViewData["Title"] = "Edit User";
+}
+
+<h2>Edit User</h2>
+
+<form asp-action="Edit" method="post" class="card card-body">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Role" class="form-label"></label>
+        <select asp-for="Role" asp-items="Html.GetEnumSelectList<Role>()" class="form-select"></select>
+        <span asp-validation-for="Role" class="text-danger" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Level" class="form-label"></label>
+        <select asp-for="Level" asp-items="ViewBag.LevelItems" class="form-select"></select>
+        <span asp-validation-for="Level" class="text-danger" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="TeamId" class="form-label"></label>
+        <select asp-for="TeamId" asp-items="ViewBag.TeamItems" class="form-select">
+            <option value="">-- None --</option>
+        </select>
+        <span asp-validation-for="TeamId" class="text-danger" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label"></label>
+        <input asp-for="Password" class="form-control" placeholder="Leave blank to keep current password" />
+        <span asp-validation-for="Password" class="text-danger" />
+    </div>
+
+    @Html.AntiForgeryToken()
+
+    <div class="d-flex gap-2">
+        <button class="btn btn-primary">Save</button>
+        <a asp-action="Index" class="btn btn-secondary">Back</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

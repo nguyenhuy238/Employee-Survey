@@ -9,7 +9,13 @@ namespace Employee_Survey.Controllers
     public class AuthController : Controller
     {
         private readonly AuthService _auth;
-        public AuthController(AuthService auth) => _auth = auth;
+        private readonly PasswordResetService _reset;
+
+        public AuthController(AuthService auth, PasswordResetService reset)
+        {
+            _auth = auth;
+            _reset = reset;
+        }
 
         [HttpGet("/auth/login")]
         public IActionResult Login(string? returnUrl = null)
@@ -31,11 +37,9 @@ namespace Employee_Survey.Controllers
 
             await HttpContext.SignInAsync("cookie", AuthService.CreatePrincipal(u));
 
-            // Nếu có ReturnUrl hợp lệ -> quay lại đó
             if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
                 return Redirect(returnUrl);
 
-            // Điều hướng theo Role
             return u.Role switch
             {
                 Role.Admin => RedirectToAction("Dashboard", "Admin"),
@@ -54,6 +58,74 @@ namespace Employee_Survey.Controllers
 
         [HttpGet("/auth/denied")]
         public IActionResult Denied() => Content("Bạn không có quyền truy cập.");
+
+        // ========== FORGOT PASSWORD FLOW ==========
+
+        // B1: nhập email
+        [HttpGet("/auth/forgot")]
+        public IActionResult Forgot() => View();
+
+        [HttpPost("/auth/forgot")]
+        public async Task<IActionResult> ForgotPost(string email)
+        {
+            await _reset.RequestAsync(email);
+            // Không tiết lộ email có tồn tại hay không
+            TempData["Info"] = "Nếu email tồn tại, mã OTP đã được gửi.";
+            // chuyển sang bước nhập OTP
+            return RedirectToAction("Verify", new { email });
+        }
+
+        // B2: nhập OTP
+        [HttpGet("/auth/verify")]
+        public IActionResult Verify(string email)
+        {
+            ViewBag.Email = email;
+            return View();
+        }
+
+        [HttpPost("/auth/verify")]
+        public async Task<IActionResult> VerifyPost(string email, string otp)
+        {
+            var token = await _reset.VerifyOtpAsync(email, otp);
+            if (string.IsNullOrEmpty(token))
+            {
+                ViewBag.Email = email;
+                ViewBag.Error = "OTP không hợp lệ hoặc đã hết hạn.";
+                return View("Verify");
+            }
+
+            // B3: chuyển đến form đặt mật khẩu, kèm token
+            return RedirectToAction("Reset", new { token });
+        }
+
+        // B3: đặt mật khẩu mới
+        [HttpGet("/auth/reset")]
+        public IActionResult Reset(string token)
+        {
+            ViewBag.Token = token;
+            return View();
+        }
+
+        [HttpPost("/auth/reset")]
+        public async Task<IActionResult> ResetPost(string token, string password, string confirm)
+        {
+            if (string.IsNullOrWhiteSpace(password) || password != confirm)
+            {
+                ViewBag.Token = token;
+                ViewBag.Error = "Mật khẩu không khớp.";
+                return View("Reset");
+            }
+
+            var ok = await _reset.ResetPasswordAsync(token, password);
+            if (!ok)
+            {
+                ViewBag.Token = token;
+                ViewBag.Error = "Liên kết đặt lại không hợp lệ hoặc đã hết hạn.";
+                return View("Reset");
+            }
+
+            TempData["Info"] = "Đặt lại mật khẩu thành công. Vui lòng đăng nhập.";
+            return RedirectToAction("Login");
+        }
     }
 }
-
