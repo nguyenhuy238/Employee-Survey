@@ -108,8 +108,43 @@
     "PublishedAt": "2025-08-26T02:05:40.9270125Z"
   },
   {
-    "Id": "137b320697c5438fa5dbbef64d484777",
-    "Title": "TestTime",
+    "Id": "e794d83b19084a2ba2d1e5e0283a54f2",
+    "Title": "TestMail1",
+    "DurationMinutes": 3,
+    "PassScore": 3,
+    "ShuffleQuestions": true,
+    "SkillFilter": "ASP.NET",
+    "RandomMCQ": 0,
+    "RandomTF": 0,
+    "RandomEssay": 0,
+    "IsPublished": true,
+    "QuestionIds": [
+      "142941272ffa4a549a062214f15e1b90",
+      "5ffa5453c4674b1abdab3e2b2db23f45",
+      "a14f146c70e64a7c96dde4676a5a2cba",
+      "0a72d3b1d68743b18734afca55320135",
+      "1b486c13c1154adc8382ea5ea320b922",
+      "822d82e6c51747ac92646c39cebc4996",
+      "bc8112663406439fb607316ca0863ea8",
+      "9f51d9a31c974ec1bc33668ff15fbcca",
+      "263dc52224b1469f9ef3dba6fe34aae5",
+      "5856761aa77446ffa92a27d93fc862d7"
+    ],
+    "FrozenRandom": {
+      "SkillFilter": "ASP.NET",
+      "RandomMCQ": 0,
+      "RandomTF": 0,
+      "RandomEssay": 0
+    },
+    "CreatedBy": null,
+    "CreatedAt": "2025-08-26T09:04:33.9030572Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null,
+    "PublishedAt": "2025-08-26T09:04:33.9030575Z"
+  },
+  {
+    "Id": "0dd966242f4c4a45bcf48c831115164c",
+    "Title": "TestMail2",
     "DurationMinutes": 3,
     "PassScore": 3,
     "ShuffleQuestions": true,
@@ -128,11 +163,6 @@
       "bc8112663406439fb607316ca0863ea8",
       "9f51d9a31c974ec1bc33668ff15fbcca",
       "c310d9688146426c8ca5f2d5ae2dbf01",
-      "33091ece1f2349f5ba64e5ef8b70fc93",
-      "aa0e27bdb17148feb46c879855ba8686",
-      "ca1ca26e74ae487499341db94749dcc1",
-      "944b3470c793435d8f9569e064a7b44d",
-      "c3e0816cdb5e4076a07e8fc44170d73a",
       "263dc52224b1469f9ef3dba6fe34aae5",
       "5856761aa77446ffa92a27d93fc862d7"
     ],
@@ -143,9 +173,9 @@
       "RandomEssay": 0
     },
     "CreatedBy": null,
-    "CreatedAt": "2025-08-26T07:05:04.9708701Z",
+    "CreatedAt": "2025-08-26T10:12:54.4039183Z",
     "UpdatedBy": null,
     "UpdatedAt": null,
-    "PublishedAt": "2025-08-26T07:05:04.9708704Z"
+    "PublishedAt": "2025-08-26T10:12:54.4039185Z"
   }
 ]

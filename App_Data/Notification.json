@@ -1,0 +1,47 @@
+[
+  {
+    "Id": "54eaf07a842d4296993df18097a02bda",
+    "UserId": "b835484b8d2a4a8e94573b7d503d8727",
+    "Title": "B\u1EA1n \u0111\u01B0\u1EE3c giao b\u00E0i test: TestTime",
+    "Message": "B\u1EA1n v\u1EEBa \u0111\u01B0\u1EE3c assign v\u00E0o test \u0022TestTime\u0022 (th\u1EDDi gian hi\u1EC7u l\u1EF1c: 2025-08-25 08:27:00Z \u2192 2025-09-25 08:27:00Z).",
+    "Link": "/Runner?testId=2d336229f48c4d228a42fbe0d27ab00c",
+    "IsRead": false,
+    "CreatedAt": "2025-08-26T08:27:17.7404352Z"
+  },
+  {
+    "Id": "2bdc864ad20149bc9065726d58a75116",
+    "UserId": "842d2b560fe24408b2ce49202ea18b7e",
+    "Title": "B\u1EA1n \u0111\u01B0\u1EE3c giao b\u00E0i test: TestTime",
+    "Message": "B\u1EA1n v\u1EEBa \u0111\u01B0\u1EE3c assign v\u00E0o test \u0022TestTime\u0022 (th\u1EDDi gian hi\u1EC7u l\u1EF1c: 2025-08-25 08:27:00Z \u2192 2025-09-25 08:27:00Z).",
+    "Link": "/Runner?testId=2d336229f48c4d228a42fbe0d27ab00c",
+    "IsRead": false,
+    "CreatedAt": "2025-08-26T08:27:21.8701917Z"
+  },
+  {
+    "Id": "3dd40c92e3fc41fd8ae603b090958cb4",
+    "UserId": "b835484b8d2a4a8e94573b7d503d8727",
+    "Title": "B\u1EA1n \u0111\u01B0\u1EE3c giao b\u00E0i test: TestMail",
+    "Message": "B\u1EA1n v\u1EEBa \u0111\u01B0\u1EE3c assign v\u00E0o test \u0022TestMail\u0022 (hi\u1EC7u l\u1EF1c: 2025-08-25 08:43:00Z \u2192 2025-09-25 08:43:00Z).",
+    "Link": "https://localhost:5001/mytests/start/17058ecf568b4de69bb8125d27cb4cd2",
+    "IsRead": false,
+    "CreatedAt": "2025-08-26T08:43:35.1362673Z"
+  },
+  {
+    "Id": "d31507676f2248a8aa04176382f28173",
+    "UserId": "b835484b8d2a4a8e94573b7d503d8727",
+    "Title": "B\u1EA1n \u0111\u01B0\u1EE3c giao b\u00E0i test: TestMail",
+    "Message": "B\u1EA1n v\u1EEBa \u0111\u01B0\u1EE3c assign v\u00E0o test \u0022TestMail\u0022 (hi\u1EC7u l\u1EF1c: 2025-08-25 08:51:00Z \u2192 2025-09-25 08:51:00Z).",
+    "Link": "https://localhost:5001/mytests/start/74c2e48976a24c6ebf3d24f7f6891f68",
+    "IsRead": false,
+    "CreatedAt": "2025-08-26T08:51:44.1443836Z"
+  },
+  {
+    "Id": "57f301d34ac64fd7972e2223135f91cd",
+    "UserId": "842d2b560fe24408b2ce49202ea18b7e",
+    "Title": "B\u1EA1n \u0111\u01B0\u1EE3c giao b\u00E0i test: TestMail",
+    "Message": "B\u1EA1n v\u1EEBa \u0111\u01B0\u1EE3c assign v\u00E0o test \u0022TestMail\u0022 (hi\u1EC7u l\u1EF1c: 2025-08-25 08:51:00Z \u2192 2025-09-25 08:51:00Z).",
+    "Link": "https://localhost:5001/mytests/start/74c2e48976a24c6ebf3d24f7f6891f68",
+    "IsRead": false,
+    "CreatedAt": "2025-08-26T08:51:48.5537246Z"
+  }
+]

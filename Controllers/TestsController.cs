@@ -18,22 +18,25 @@ namespace Employee_Survey.Controllers
         private readonly IRepository<Assignment> _aRepo;
         private readonly IRepository<User> _uRepo;
         private readonly IQuestionService _questionService;
+        private readonly INotificationService? _notiService;
 
         public TestsController(
             IRepository<Test> r,
             IRepository<Assignment> aRepo,
             IRepository<User> uRepo,
-            IQuestionService questionService)
+            IQuestionService questionService,
+            INotificationService? notiService = null)
         {
             _repo = r;
             _aRepo = aRepo;
             _uRepo = uRepo;
             _questionService = questionService;
+            _notiService = notiService;
         }
 
         public async Task<IActionResult> Index() => View(await _repo.GetAllAsync());
 
-        // ---------- Create (GET) có phân trang ----------
+        // ---------- Create (GET) ----------
         [HttpGet]
         public async Task<IActionResult> Create([FromQuery] QuestionFilter f)
         {
@@ -41,12 +44,10 @@ namespace Employee_Survey.Controllers
             if (f.PageSize <= 0) f.PageSize = 20;
 
             var paged = await _questionService.SearchAsync(f);
-
             var model = new CreateTestViewModel
             {
                 Filter = f,
                 Page = paged,
-
                 Title = "",
                 DurationMinutes = 10,
                 PassScore = 3,
@@ -93,7 +94,6 @@ namespace Employee_Survey.Controllers
                 {
                     Filter = f,
                     Page = paged,
-
                     Title = t.Title,
                     DurationMinutes = t.DurationMinutes,
                     PassScore = t.PassScore,
@@ -146,10 +146,8 @@ namespace Employee_Survey.Controllers
                 RandomTF = t.RandomTF,
                 RandomEssay = t.RandomEssay,
                 IsPublished = t.IsPublished,
-
                 Filter = f,
                 Page = paged,
-
                 SelectedQuestionIds = (t.QuestionIds ?? new()).ToList()
             };
 
@@ -255,7 +253,7 @@ namespace Employee_Survey.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // ---------- Assign nhanh ----------
+        // ---------- Assign nhanh (1 user) ----------
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AssignToUser(string testId, string userId)
@@ -268,23 +266,41 @@ namespace Employee_Survey.Controllers
                 await _repo.UpsertAsync(t => t.Id == testId, test);
             }
 
+            var s = DateTime.UtcNow.AddDays(-1);
+            var e = DateTime.UtcNow.AddDays(30);
+
             await _aRepo.InsertAsync(new Assignment
             {
                 TestId = testId,
                 TargetType = "User",
                 TargetValue = userId,
-                StartAt = DateTime.UtcNow.AddDays(-1),
-                EndAt = DateTime.UtcNow.AddDays(30)
+                StartAt = s,
+                EndAt = e
             });
 
-            TempData["Msg"] = $"Đã assign test '{test?.Title ?? testId}' cho user '{userId}' thành công!";
+            var u = await _uRepo.FirstOrDefaultAsync(x => x.Id == userId);
+            if (test != null && u != null)
+            {
+                var targets = new[]
+                {
+                    new AssignmentNotifyTarget { User = u, SessionId = string.Empty }
+                };
+                await NotifySafe(test, targets, s, e);
+            }
+
+            TempData["Msg"] = $"Đã assign test '{test?.Title ?? testId}' cho user '{userId}'" +
+                              (_notiService != null ? " và đã gửi thông báo/email." : ".");
             return RedirectToAction(nameof(Index));
         }
 
         // ---------- Assign (GET) + lọc Department ----------
-        [HttpGet]
-        public async Task<IActionResult> Assign(string id, string? department = null)
+        [HttpGet("Tests/Assign/{id}")]
+        [HttpGet("/Tests/Assign")]
+        public async Task<IActionResult> Assign(string id, [FromQuery] string? department = null)
         {
+            if (string.IsNullOrWhiteSpace(id))
+                return NotFound();
+
             var test = await _repo.FirstOrDefaultAsync(t => t.Id == id);
             if (test == null) return NotFound();
 
@@ -292,14 +308,12 @@ namespace Employee_Survey.Controllers
                 .Where(u => u.Role == Role.Employee)
                 .ToList();
 
-            // Danh sách Department (distinct, có thể có rỗng)
             var departments = allUsers
                 .Select(u => u.Department ?? "")
                 .Distinct(StringComparer.OrdinalIgnoreCase)
                 .OrderBy(s => s)
                 .ToList();
 
-            // Lọc theo Department nếu có chọn
             var usersToShow = allUsers;
             if (!string.IsNullOrWhiteSpace(department))
             {
@@ -326,8 +340,8 @@ namespace Employee_Survey.Controllers
             return View(vm);
         }
 
-        // ---------- Assign (POST) tick từng user ----------
-        [HttpPost]
+        // ---------- Assign (POST) ----------
+        [HttpPost("/Tests/Assign")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Assign(string testId, List<string> userIds, DateTime? startAt, DateTime? endAt)
         {
@@ -341,33 +355,54 @@ namespace Employee_Survey.Controllers
                 await _repo.UpsertAsync(t => t.Id == testId, test);
             }
 
-            // Xoá assign User cũ rồi lưu lại theo danh sách mới
-            await _aRepo.DeleteAsync(a => a.TestId == testId && a.TargetType == "User");
-
             var s = startAt ?? DateTime.UtcNow.AddDays(-1);
             var e = endAt ?? DateTime.UtcNow.AddDays(30);
 
-            if (userIds != null)
+            var oldAssigned = (await _aRepo.GetAllAsync())
+                .Where(a => a.TestId == testId && a.TargetType == "User")
+                .Select(a => a.TargetValue)
+                .Where(x => !string.IsNullOrWhiteSpace(x))
+                .ToHashSet(StringComparer.Ordinal);
+
+            await _aRepo.DeleteAsync(a => a.TestId == testId && a.TargetType == "User");
+
+            var newAssigned = (userIds ?? new()).Distinct().ToList();
+            foreach (var uid in newAssigned)
             {
-                foreach (var uid in userIds.Distinct())
+                await _aRepo.InsertAsync(new Assignment
                 {
-                    await _aRepo.InsertAsync(new Assignment
-                    {
-                        TestId = testId,
-                        TargetType = "User",
-                        TargetValue = uid,
-                        StartAt = s,
-                        EndAt = e
-                    });
-                }
+                    TestId = testId,
+                    TargetType = "User",
+                    TargetValue = uid,
+                    StartAt = s,
+                    EndAt = e
+                });
             }
 
-            TempData["Msg"] = "Đã lưu danh sách assign và publish test";
+            var newlyAdded = newAssigned.Where(uid => !oldAssigned.Contains(uid)).ToList();
+            if (newlyAdded.Count > 0)
+            {
+                var allUsers = await _uRepo.GetAllAsync();
+                var targets = allUsers
+                    .Where(u => newlyAdded.Contains(u.Id))
+                    .Select(u => new AssignmentNotifyTarget
+                    {
+                        User = u,
+                        SessionId = string.Empty
+                    })
+                    .ToList();
+
+                if (targets.Count > 0)
+                    await NotifySafe(test!, targets, s, e);
+            }
+
+            TempData["Msg"] = "Đã lưu danh sách assign và publish test" +
+                              (_notiService != null ? " (đã gửi thông báo/email cho user mới)." : ".");
             return RedirectToAction(nameof(Assign), new { id = testId });
         }
 
-        // ---------- NEW: Assign toàn bộ Department ----------
-        [HttpPost]
+        // ---------- Assign toàn bộ Department ----------
+        [HttpPost("/Tests/AssignByDepartment")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AssignByDepartment(string testId, string department, DateTime? startAt, DateTime? endAt)
         {
@@ -406,9 +441,13 @@ namespace Employee_Survey.Controllers
                 return RedirectToAction(nameof(Assign), new { id = testId, department });
             }
 
-            // Xoá các assign User cũ để tránh trùng, sau đó gán lại theo department
-            await _aRepo.DeleteAsync(a => a.TestId == testId && a.TargetType == "User");
+            var oldAssigned = (await _aRepo.GetAllAsync())
+                .Where(a => a.TestId == testId && a.TargetType == "User")
+                .Select(a => a.TargetValue)
+                .Where(x => !string.IsNullOrWhiteSpace(x))
+                .ToHashSet(StringComparer.Ordinal);
 
+            await _aRepo.DeleteAsync(a => a.TestId == testId && a.TargetType == "User");
             foreach (var uid in selectedUsers)
             {
                 await _aRepo.InsertAsync(new Assignment
@@ -421,8 +460,43 @@ namespace Employee_Survey.Controllers
                 });
             }
 
-            TempData["Msg"] = $"Đã assign {selectedUsers.Count} user của Department '{department}' vào test và publish test.";
+            var newlyAdded = selectedUsers.Where(uid => !oldAssigned.Contains(uid)).ToList();
+            if (newlyAdded.Count > 0)
+            {
+                var targets = allUsers
+                    .Where(u => newlyAdded.Contains(u.Id))
+                    .Select(u => new AssignmentNotifyTarget
+                    {
+                        User = u,
+                        SessionId = string.Empty
+                    })
+                    .ToList();
+
+                if (targets.Count > 0)
+                    await NotifySafe(test!, targets, s, e);
+            }
+
+            TempData["Msg"] = $"Đã assign {selectedUsers.Count} user của Department '{department}' vào test và publish test" +
+                              (_notiService != null ? " (đã gửi thông báo/email cho user mới)." : ".");
             return RedirectToAction(nameof(Assign), new { id = testId, department });
+        }
+
+        // ---------- Helper ----------
+        private async Task NotifySafe(
+            Test test,
+            IEnumerable<AssignmentNotifyTarget> targets,
+            DateTime startAtUtc,
+            DateTime endAtUtc)
+        {
+            if (_notiService == null) return;
+            try
+            {
+                await _notiService.NotifyAssignmentsAsync(test, targets, startAtUtc, endAtUtc);
+            }
+            catch
+            {
+                // TODO: log nếu có IAuditService/ILogger
+            }
         }
     }
 }

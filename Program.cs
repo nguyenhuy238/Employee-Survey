@@ -28,7 +28,6 @@ builder.Services.AddAuthorization();
 // -------------------- Multipart upload limit -----------
 builder.Services.Configure<FormOptions>(opt =>
 {
-    // request tối đa 50MB (có thể chỉnh)
     opt.MultipartBodyLengthLimit = 50L * 1024 * 1024;
 });
 
@@ -41,26 +40,26 @@ builder.Services.AddSingleton<IRepository<Assignment>, JsonFileRepository<Assign
 builder.Services.AddSingleton<IRepository<Session>, JsonFileRepository<Session>>();
 builder.Services.AddSingleton<IRepository<Feedback>, JsonFileRepository<Feedback>>();
 
-// Audit service
-builder.Services.AddSingleton<IAuditService, AuditService>();
-// Services
-builder.Services.AddSingleton<IQuestionService, QuestionService>();
-builder.Services.AddSingleton<IQuestionExcelService, QuestionExcelService>();
-
-// NEW: repo + service reset mật khẩu (OTP) — nếu đã có thì giữ nguyên
-builder.Services.AddSingleton<IRepository<PasswordReset>, JsonFileRepository<PasswordReset>>();
+// (Nếu bạn không cần, có thể bỏ dòng generic dưới — tránh trùng đăng ký)
 builder.Services.AddSingleton(typeof(IRepository<>), typeof(JsonFileRepository<>));
 
 // -------------------- App Services ---------------------
+builder.Services.AddSingleton<IAuditService, AuditService>();
+builder.Services.AddSingleton<IQuestionService, QuestionService>();
+builder.Services.AddSingleton<IQuestionExcelService, QuestionExcelService>();
 builder.Services.AddSingleton<AuthService>();
 builder.Services.AddSingleton<TestService>();
 builder.Services.AddSingleton<AssignmentService>();
 builder.Services.AddSingleton<ReportService>();
 builder.Services.AddSingleton<PasswordResetService>();
 
-// -------------------- Email (SMTP) ---------------------
+// -------------------- Options --------------------------
+builder.Services.Configure<AppOptions>(builder.Configuration.GetSection("App"));     // NEW
 builder.Services.Configure<EmailOptions>(builder.Configuration.GetSection("Email"));
+
+// -------------------- Email & Notification -------------
 builder.Services.AddSingleton<IEmailSender, SmtpEmailSender>();
+builder.Services.AddSingleton<INotificationService, NotificationService>();
 
 var app = builder.Build();
 
@@ -94,9 +93,10 @@ app.MapControllers();
 // -------------------- Ensure folders & Seed ------------
 Directory.CreateDirectory(Path.Combine(app.Environment.WebRootPath ?? "wwwroot", "uploads"));
 
+// Nếu bạn có Seeder, giữ lại; nếu không dùng, có thể bỏ khối using này
 using (var scope = app.Services.CreateScope())
 {
-    await Seeder.RunAsync(scope.ServiceProvider); // nếu đã có Seeder; nếu chưa có, có thể bỏ đi.
+    await Seeder.RunAsync(scope.ServiceProvider);
 }
 
 app.Run();
