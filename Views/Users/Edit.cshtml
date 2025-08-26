@@ -42,6 +42,14 @@
     </div>
 
     <div class="mb-3">
+        <label asp-for="Department" class="form-label"></label>
+        <select asp-for="Department" asp-items="ViewBag.DepartmentItems" class="form-select">
+            <option value="">-- None --</option>
+        </select>
+        <span asp-validation-for="Department" class="text-danger" />
+    </div>
+
+    <div class="mb-3">
         <label asp-for="Password" class="form-label"></label>
         <input asp-for="Password" class="form-control" placeholder="Leave blank to keep current password" />
         <span asp-validation-for="Password" class="text-danger" />

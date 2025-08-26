@@ -13,6 +13,19 @@ namespace Employee_Survey.Controllers
 
         public SessionsController(IRepository<Session> s, IRepository<Test> t) { _sRepo = s; _tRepo = t; }
 
+        private int ComputeRemainingSeconds(Session s, Test t)
+        {
+            var durationMinutes = Math.Max(1, t.DurationMinutes);
+            var total = durationMinutes * 60;
+
+            var runningDelta = s.TimerStartedAt.HasValue
+                ? (int)Math.Floor((DateTime.UtcNow - s.TimerStartedAt.Value).TotalSeconds)
+                : 0;
+
+            var consumed = Math.Max(0, s.ConsumedSeconds + runningDelta);
+            return Math.Max(0, total - consumed);
+        }
+
         [HttpGet("/mytests/session/{id}")]
         public async Task<IActionResult> Runner(string id)
         {
@@ -23,12 +36,21 @@ namespace Employee_Survey.Controllers
             var uid = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
             if (uid == null || !string.Equals(uid, s.UserId, StringComparison.Ordinal)) return Forbid();
 
-            // Đánh dấu hoạt động gần nhất để trang "In Progress" chọn phiên mới nhất
+            // đánh dấu hoạt động
             s.LastActivityAt = DateTime.UtcNow;
+
+            // Khi vào trang Runner -> nếu đang pause thì resume để bắt đầu tính giờ
+            if (!s.TimerStartedAt.HasValue)
+                s.TimerStartedAt = DateTime.UtcNow;
+
             await _sRepo.UpsertAsync(x => x.Id == s.Id, s);
 
-            ViewBag.Duration = t.DurationMinutes;
+            var remainingSeconds = ComputeRemainingSeconds(s, t);
+
             ViewBag.TestTitle = t.Title;
+            ViewBag.Duration = t.DurationMinutes;               // compat
+            ViewBag.RemainingSeconds = remainingSeconds;
+
             return View(s);
         }
 
@@ -41,7 +63,7 @@ namespace Employee_Survey.Controllers
             var uid = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
             if (uid == null || !string.Equals(uid, s.UserId, StringComparison.Ordinal)) return Forbid();
 
-            // Sau khi có kết quả: dọn mọi nháp khác của cùng Test cho user này
+            // dọn session nháp khác
             var currentTestId = s.TestId;
             await _sRepo.DeleteAsync(x => x.UserId == uid
                                           && x.TestId == currentTestId

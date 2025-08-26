@@ -17,6 +17,38 @@
   },
   {
     "ContainingType": "Employee_Survey.Controllers.Api.SessionsApiController",
+    "Method": "Pause",
+    "RelativePath": "api/tests/sessions/{id}/pause",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Employee_Survey.Controllers.Api.SessionsApiController",
+    "Method": "Resume",
+    "RelativePath": "api/tests/sessions/{id}/resume",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Employee_Survey.Controllers.Api.SessionsApiController",
     "Method": "Touch",
     "RelativePath": "api/tests/sessions/{id}/touch",
     "HttpMethod": "POST",
@@ -375,6 +407,11 @@
       },
       {
         "Name": "TeamId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Department",
         "Type": "System.String",
         "IsRequired": false
       },

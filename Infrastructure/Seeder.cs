@@ -15,12 +15,11 @@ namespace Employee_Survey.Infrastructure
 
             if (!(await users.GetAllAsync()).Any())
             {
-                await users.InsertAsync(new User { Id = "u-admin", Name = "Admin", Email = "admin@local", Role = Role.Admin, PasswordHash = BCrypt.Net.BCrypt.HashPassword("admin123") });
-                await users.InsertAsync(new User { Id = "u-hr", Name = "HR", Email = "hr@local", Role = Role.HR, PasswordHash = BCrypt.Net.BCrypt.HashPassword("hr123") });
-                await users.InsertAsync(new User { Id = "u-emp", Name = "Alice", Email = "alice@local", Role = Role.Employee, Level = "Junior", TeamId = "t-a", PasswordHash = BCrypt.Net.BCrypt.HashPassword("alice123") });
-
-                // THÊM TÀI KHOẢN MANAGER MẪU
-                await users.InsertAsync(new User { Id = "u-manager", Name = "Manager", Email = "manager@local", Role = Role.Manager, Level = "Senior", TeamId = "t-a", PasswordHash = BCrypt.Net.BCrypt.HashPassword("manager123") });
+                await users.InsertAsync(new User { Id = "u-admin", Name = "Admin", Email = "admin@local", Role = Role.Admin, Department = "Operations", PasswordHash = BCrypt.Net.BCrypt.HashPassword("admin123") });
+                await users.InsertAsync(new User { Id = "u-hr", Name = "HR", Email = "hr@local", Role = Role.HR, Department = "HR", PasswordHash = BCrypt.Net.BCrypt.HashPassword("hr123") });
+                await users.InsertAsync(new User { Id = "u-emp", Name = "Alice", Email = "alice@local", Role = Role.Employee, Level = "Junior", TeamId = "t-a", Department = "Engineering", PasswordHash = BCrypt.Net.BCrypt.HashPassword("alice123") });
+                // Thêm MANAGER mẫu
+                await users.InsertAsync(new User { Id = "u-manager", Name = "Manager", Email = "manager@local", Role = Role.Manager, Level = "Senior", TeamId = "t-a", Department = "Engineering", PasswordHash = BCrypt.Net.BCrypt.HashPassword("manager123") });
             }
 
             if (!(await teams.GetAllAsync()).Any())

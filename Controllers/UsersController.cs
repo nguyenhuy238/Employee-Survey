@@ -74,7 +74,8 @@ namespace Employee_Survey.Controllers
                 Email = vm.Email.Trim(),
                 Role = vm.Role,
                 Level = vm.Level.Trim(),
-                TeamId = vm.TeamId ?? ""
+                TeamId = vm.TeamId ?? "",
+                Department = vm.Department?.Trim() ?? ""   // ✅ Thêm
             };
             entity.PasswordHash = BCrypt.Net.BCrypt.HashPassword(vm.Password!);
 
@@ -98,7 +99,8 @@ namespace Employee_Survey.Controllers
                 Email = u.Email,
                 Role = u.Role,
                 Level = u.Level,
-                TeamId = u.TeamId
+                TeamId = u.TeamId,
+                Department = u.Department   // ✅ Thêm
             };
             return View(vm);
         }
@@ -123,6 +125,7 @@ namespace Employee_Survey.Controllers
             u.Role = vm.Role;
             u.Level = vm.Level.Trim();
             u.TeamId = vm.TeamId ?? u.TeamId;
+            u.Department = vm.Department?.Trim() ?? u.Department;  // ✅ Thêm
 
             if (!string.IsNullOrWhiteSpace(vm.Password))
                 u.PasswordHash = BCrypt.Net.BCrypt.HashPassword(vm.Password);
@@ -167,7 +170,10 @@ namespace Employee_Survey.Controllers
 
             var levels = new List<string> { "Intern", "Junior", "Middle", "Senior", "Lead" };
             ViewBag.LevelItems = new SelectList(levels);
-            // Role -> dùng Html.GetEnumSelectList<Role>() trong View
+
+            // ✅ Gợi ý danh sách phòng ban (có thể sửa theo thực tế hoặc chuyển sang repo riêng)
+            var departments = new List<string> { "Engineering", "HR", "Finance", "Sales", "Marketing", "Operations" };
+            ViewBag.DepartmentItems = new SelectList(departments);
         }
     }
 }

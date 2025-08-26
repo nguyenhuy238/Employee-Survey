@@ -10,8 +10,14 @@
 
 <h2>User Management</h2>
 
-@if (TempData["Msg"] != null) { <div class="alert alert-success">@TempData["Msg"]</div> }
-@if (TempData["Err"] != null) { <div class="alert alert-danger">@TempData["Err"]</div> }
+@if (TempData["Msg"] != null)
+{
+    <div class="alert alert-success">@TempData["Msg"]</div>
+}
+@if (TempData["Err"] != null)
+{
+    <div class="alert alert-danger">@TempData["Err"]</div>
+}
 
 <form method="get" class="row g-2 mb-3">
     <div class="col-md-3">
@@ -59,35 +65,41 @@
     </div>
 </form>
 
-
 <table class="table table-striped align-middle">
     <thead>
         <tr>
-            <th>Name</th><th>Email</th><th>Role</th><th>Level</th><th>Team</th><th style="width:260px;"></th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Level</th>
+            <th>Team</th>
+            <th>Department</th>
+            <th style="width:260px;"></th>
         </tr>
     </thead>
     <tbody>
-    @foreach (var u in Model)
-    {
-        <tr>
-            <td>@u.Name</td>
-            <td>@u.Email</td>
-            <td>@u.Role</td>
-            <td>@u.Level</td>
-            <td>@u.TeamId</td>
-            <td class="text-end">
-                <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@u.Id">Edit</a>
+        @foreach (var u in Model)
+        {
+            <tr>
+                <td>@u.Name</td>
+                <td>@u.Email</td>
+                <td>@u.Role</td>
+                <td>@u.Level</td>
+                <td>@u.TeamId</td>
+                <td>@(string.IsNullOrWhiteSpace(u.Department) ? "-" : u.Department)</td>
+                <td class="text-end">
+                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@u.Id">Edit</a>
 
-                <form asp-action="ResetPassword" asp-route-id="@u.Id" method="post" class="d-inline" asp-antiforgery="true">
-                    <input name="newPassword" class="form-control form-control-sm d-inline-block" style="width:120px" placeholder="New pass" />
-                    <button class="btn btn-sm btn-warning">Reset</button>
-                </form>
+                    <form asp-action="ResetPassword" asp-route-id="@u.Id" method="post" class="d-inline" asp-antiforgery="true">
+                        <input name="newPassword" class="form-control form-control-sm d-inline-block" style="width:120px" placeholder="New pass" />
+                        <button class="btn btn-sm btn-warning">Reset</button>
+                    </form>
 
-                <form asp-action="Delete" asp-route-id="@u.Id" method="post" class="d-inline" asp-antiforgery="true" onsubmit="return confirm('Delete this user?');">
-                    <button class="btn btn-sm btn-danger">Delete</button>
-                </form>
-            </td>
-        </tr>
-    }
+                    <form asp-action="Delete" asp-route-id="@u.Id" method="post" class="d-inline" asp-antiforgery="true" onsubmit="return confirm('Delete this user?');">
+                        <button class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

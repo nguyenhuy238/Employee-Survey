@@ -5,64 +5,124 @@
 <h2>Assign Users to Test</h2>
 <div class="mb-2"><a class="btn btn-secondary" href="/Tests">Back</a></div>
 
+@if (TempData["Err"] is string err)
+{
+    <div class="alert alert-danger">@err</div>
+}
+@if (TempData["Msg"] is string m)
+{
+    <div class="alert alert-success">@m</div>
+}
+
 <div class="alert alert-info">
-    <i class="bi bi-info-circle"></i>
-    <strong>Lưu ý:</strong> Test sẽ được tự động publish khi assign. Nếu không chọn thời gian, test sẽ có hiệu lực từ hôm qua đến 30 ngày tới.
+    <strong>Lưu ý:</strong> Test sẽ được tự động publish khi assign.
+    Nếu không chọn thời gian, test sẽ có hiệu lực từ hôm qua đến 30 ngày tới.
 </div>
 
 <div class="card p-3 mb-3">
-    <div><strong>Test:</strong> @Model.TestTitle (@Model.TestId)</div>
+    <div class="mb-2"><strong>Test:</strong> @Model.TestTitle (@Model.TestId)</div>
+
+    <!-- Bộ lọc Department (GET) -->
+    <form method="get" action="/Tests/Assign" class="row g-2 align-items-end mb-3">
+        <input type="hidden" name="id" value="@Model.TestId" />
+        <div class="col-auto">
+            <label class="form-label">Department</label>
+            <select name="department" class="form-select">
+                <option value="">-- All Departments --</option>
+                @foreach (var d in Model.Departments)
+                {
+                    var isSelected = string.Equals(d ?? "", Model.SelectedDepartment ?? "", StringComparison.OrdinalIgnoreCase);
+                    <option value="@d" selected="@(isSelected ? "selected" : null)">
+                        @(string.IsNullOrEmpty(d) ? "(Empty)" : d)
+                    </option>
+                }
+            </select>
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-outline-primary">Filter</button>
+        </div>
+    </form>
+
+    <!-- Assign toàn bộ Department (POST) -->
+    <form method="post" asp-action="AssignByDepartment" asp-controller="Tests" class="row g-2 align-items-end mb-4">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="testId" value="@Model.TestId" />
+        <div class="col-auto">
+            <label class="form-label">Department</label>
+            <select name="department" class="form-select" required>
+                <option value="">-- Select Department --</option>
+                @foreach (var d in Model.Departments)
+                {
+                    var isSelected = string.Equals(d ?? "", Model.SelectedDepartment ?? "", StringComparison.OrdinalIgnoreCase);
+                    <option value="@d" selected="@(isSelected ? "selected" : null)">
+                        @(string.IsNullOrEmpty(d) ? "(Empty)" : d)
+                    </option>
+                }
+            </select>
+        </div>
+        <div class="col-auto">
+            <label class="form-label">Start At (UTC)</label>
+            <input type="datetime-local" class="form-control" name="startAt"
+                   value="@DateTime.UtcNow.AddDays(-1).ToString("yyyy-MM-ddTHH:mm")" />
+        </div>
+        <div class="col-auto">
+            <label class="form-label">End At (UTC)</label>
+            <input type="datetime-local" class="form-control" name="endAt"
+                   value="@DateTime.UtcNow.AddDays(30).ToString("yyyy-MM-ddTHH:mm")" />
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-danger">Assign toàn bộ Department</button>
+        </div>
+    </form>
+
+    <!-- Assign theo tick từng user (POST) -->
     <form method="post" asp-action="Assign" asp-controller="Tests">
         @Html.AntiForgeryToken()
         <input type="hidden" name="testId" value="@Model.TestId" />
+
         <div class="row g-2 align-items-end mb-3">
             <div class="col-auto">
                 <label class="form-label">Start At (UTC)</label>
-                <input type="datetime-local" class="form-control" name="startAt" 
+                <input type="datetime-local" class="form-control" name="startAt"
                        value="@DateTime.UtcNow.AddDays(-1).ToString("yyyy-MM-ddTHH:mm")" />
             </div>
             <div class="col-auto">
                 <label class="form-label">End At (UTC)</label>
-                <input type="datetime-local" class="form-control" name="endAt" 
+                <input type="datetime-local" class="form-control" name="endAt"
                        value="@DateTime.UtcNow.AddDays(30).ToString("yyyy-MM-ddTHH:mm")" />
             </div>
             <div class="col-auto">
-                <button class="btn btn-primary">Save Assignments</button>
+                <button class="btn btn-primary">Save Assignments (từng người)</button>
             </div>
         </div>
 
-        <table class="table table-sm table-striped">
+        <table class="table table-sm table-striped align-middle">
             <thead>
                 <tr>
                     <th style="width:40px"></th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Team</th>
+                    <th>Department</th>
                     <th>Level</th>
                 </tr>
             </thead>
             <tbody>
-            @foreach (var u in Model.Users)
-            {
-                var checkedAttr = Model.AssignedUserIds.Contains(u.Id) ? "checked" : "";
-                <tr>
-                    <td>
-                        <input type="checkbox" name="userIds" value="@u.Id" @checkedAttr />
-                    </td>
-                    <td>@u.Name</td>
-                    <td>@u.Email</td>
-                    <td>@u.TeamId</td>
-                    <td>@u.Level</td>
-                </tr>
-            }
+                @foreach (var u in Model.Users)
+                {
+                    var isChecked = Model.AssignedUserIds.Contains(u.Id);
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="userIds" value="@u.Id" checked="@(isChecked ? "checked" : null)" />
+                        </td>
+                        <td>@u.Name</td>
+                        <td>@u.Email</td>
+                        <td>@u.TeamId</td>
+                        <td>@(string.IsNullOrEmpty(u.Department) ? "(Empty)" : u.Department)</td>
+                        <td>@u.Level</td>
+                    </tr>
+                }
             </tbody>
         </table>
     </form>
 </div>
-
-@if (TempData["Msg"] is string m)
-{
-    <div class="alert alert-success">@m</div>
-}
-
-

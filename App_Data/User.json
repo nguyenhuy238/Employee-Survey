@@ -4,8 +4,9 @@
     "Name": "Admin",
     "Email": "admin@local",
     "Role": 0,
-    "Level": "Junior",
-    "TeamId": "",
+    "Level": "Lead",
+    "TeamId": "t-a",
+    "Department": "",
     "PasswordHash": "$2a$11$OwRqgdncA0dgbv901c00xubHg9HwOtIRHOTVd6N3FUpQ6FjASe1CC"
   },
   {
@@ -15,6 +16,7 @@
     "Role": 1,
     "Level": "Junior",
     "TeamId": "t-a",
+    "Department": "HR",
     "PasswordHash": "$2a$11$Da0AUGLOZjggT2D2GGM7vOn2qrrpExg/4Z6oXhrsSl/Obu834ezq."
   },
   {
@@ -24,6 +26,7 @@
     "Role": 2,
     "Level": "Junior",
     "TeamId": "t-a",
+    "Department": "Finance",
     "PasswordHash": "$2a$11$7wgM.1w6Jxz1W3pmYfzVX.jxPxkL5ABlfc/6vUgtw3pws66lopwVG"
   },
   {
@@ -33,6 +36,7 @@
     "Role": 2,
     "Level": "Junior",
     "TeamId": "t-a",
+    "Department": "Engineering",
     "PasswordHash": "$2a$11$W2e1lxIDAaawvrNBCG9lTOxLEBmfcp3zyJsMdtNLO.oK5HPtetpQW"
   },
   {
@@ -42,6 +46,17 @@
     "Role": 3,
     "Level": "Senior",
     "TeamId": "t-a",
+    "Department": "Engineering",
     "PasswordHash": "$2a$11$UeY2ar5gc7lBhRFzD6f.j.kyKlwFeLE2UFIRFoMojgqo9JfcFclA."
+  },
+  {
+    "Id": "842d2b560fe24408b2ce49202ea18b7e",
+    "Name": "Ph\u1EA1m Minh C\u01B0\u1EDDng",
+    "Email": "nguyenhuy23082004@gmail.com",
+    "Role": 2,
+    "Level": "Middle",
+    "TeamId": "t-a",
+    "Department": "Engineering",
+    "PasswordHash": "$2a$11$1vr.MzHwk/owVIdZvYNMkeVKSlce7p1ruBrs80N5l.jwE2FYgvLSK"
   }
 ]

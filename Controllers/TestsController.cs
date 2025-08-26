@@ -4,6 +4,10 @@ using Employee_Survey.Infrastructure;
 using Employee_Survey.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Employee_Survey.Controllers
 {
@@ -118,25 +122,20 @@ namespace Employee_Survey.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // ---------- Edit (GET/POST) (giữ nguyên) ----------
-        // ... using giống cũ
-
+        // ---------- Edit ----------
         [HttpGet]
         public async Task<IActionResult> Edit(string id, [FromQuery] QuestionFilter f)
         {
             var t = await _repo.FirstOrDefaultAsync(x => x.Id == id);
             if (t == null) return NotFound();
 
-            // Mặc định paging
             if (f.Page <= 0) f.Page = 1;
             if (f.PageSize <= 0) f.PageSize = 20;
 
-            // Tải 1 trang câu hỏi theo filter/paging
             var paged = await _questionService.SearchAsync(f);
 
             var vm = new EditTestViewModel
             {
-                // Core
                 Id = t.Id,
                 Title = t.Title,
                 DurationMinutes = t.DurationMinutes,
@@ -148,11 +147,9 @@ namespace Employee_Survey.Controllers
                 RandomEssay = t.RandomEssay,
                 IsPublished = t.IsPublished,
 
-                // Paging
                 Filter = f,
                 Page = paged,
 
-                // Selected
                 SelectedQuestionIds = (t.QuestionIds ?? new()).ToList()
             };
 
@@ -166,7 +163,6 @@ namespace Employee_Survey.Controllers
             var t = await _repo.FirstOrDefaultAsync(x => x.Id == vm.Id);
             if (t == null) return NotFound();
 
-            // Validate: hoặc chọn thủ công, hoặc random > 0
             if ((SelectedQuestionIds == null || !SelectedQuestionIds.Any()) &&
                 (vm.RandomMCQ + vm.RandomTF + vm.RandomEssay <= 0))
             {
@@ -175,7 +171,6 @@ namespace Employee_Survey.Controllers
 
             if (!ModelState.IsValid)
             {
-                // Khi lỗi, nạp lại đúng trang/filter hiện tại từ query string
                 var f = new QuestionFilter
                 {
                     Page = int.TryParse(HttpContext.Request.Query["Page"], out var p) ? p : 1,
@@ -193,7 +188,6 @@ namespace Employee_Survey.Controllers
                 return View(vm);
             }
 
-            // Cập nhật test
             t.Title = vm.Title;
             t.DurationMinutes = vm.DurationMinutes;
             t.PassScore = vm.PassScore;
@@ -218,7 +212,6 @@ namespace Employee_Survey.Controllers
             TempData["Msg"] = "Đã lưu thay đổi.";
             return RedirectToAction(nameof(Index));
         }
-
 
         // ---------- Delete ----------
         [HttpPost]
@@ -288,28 +281,52 @@ namespace Employee_Survey.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // ---------- Assign (GET) + lọc Department ----------
         [HttpGet]
-        public async Task<IActionResult> Assign(string id)
+        public async Task<IActionResult> Assign(string id, string? department = null)
         {
             var test = await _repo.FirstOrDefaultAsync(t => t.Id == id);
             if (test == null) return NotFound();
 
-            var users = (await _uRepo.GetAllAsync()).Where(u => u.Role == Role.Employee).ToList();
+            var allUsers = (await _uRepo.GetAllAsync())
+                .Where(u => u.Role == Role.Employee)
+                .ToList();
+
+            // Danh sách Department (distinct, có thể có rỗng)
+            var departments = allUsers
+                .Select(u => u.Department ?? "")
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .OrderBy(s => s)
+                .ToList();
+
+            // Lọc theo Department nếu có chọn
+            var usersToShow = allUsers;
+            if (!string.IsNullOrWhiteSpace(department))
+            {
+                usersToShow = allUsers
+                    .Where(u => string.Equals(u.Department ?? "", department, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+            }
+
             var assigns = (await _aRepo.GetAllAsync())
                 .Where(a => a.TestId == id && a.TargetType == "User")
                 .Select(a => a.TargetValue)
-                .ToHashSet();
+                .Where(v => !string.IsNullOrWhiteSpace(v))
+                .ToHashSet(StringComparer.Ordinal);
 
             var vm = new AssignUsersViewModel
             {
                 TestId = id,
                 TestTitle = test.Title,
-                Users = users,
-                AssignedUserIds = assigns
+                Users = usersToShow,
+                AssignedUserIds = assigns,
+                Departments = departments,
+                SelectedDepartment = department
             };
             return View(vm);
         }
 
+        // ---------- Assign (POST) tick từng user ----------
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Assign(string testId, List<string> userIds, DateTime? startAt, DateTime? endAt)
@@ -324,6 +341,7 @@ namespace Employee_Survey.Controllers
                 await _repo.UpsertAsync(t => t.Id == testId, test);
             }
 
+            // Xoá assign User cũ rồi lưu lại theo danh sách mới
             await _aRepo.DeleteAsync(a => a.TestId == testId && a.TargetType == "User");
 
             var s = startAt ?? DateTime.UtcNow.AddDays(-1);
@@ -345,7 +363,66 @@ namespace Employee_Survey.Controllers
             }
 
             TempData["Msg"] = "Đã lưu danh sách assign và publish test";
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Assign), new { id = testId });
+        }
+
+        // ---------- NEW: Assign toàn bộ Department ----------
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AssignByDepartment(string testId, string department, DateTime? startAt, DateTime? endAt)
+        {
+            var test = await _repo.FirstOrDefaultAsync(t => t.Id == testId);
+            if (test == null) return NotFound();
+
+            if (string.IsNullOrWhiteSpace(department))
+            {
+                TempData["Err"] = "Vui lòng chọn Department.";
+                return RedirectToAction(nameof(Assign), new { id = testId });
+            }
+
+            if (!test.IsPublished)
+            {
+                test.IsPublished = true;
+                test.PublishedAt = DateTime.UtcNow;
+                await _repo.UpsertAsync(t => t.Id == testId, test);
+            }
+
+            var s = startAt ?? DateTime.UtcNow.AddDays(-1);
+            var e = endAt ?? DateTime.UtcNow.AddDays(30);
+
+            var allUsers = (await _uRepo.GetAllAsync())
+                .Where(u => u.Role == Role.Employee)
+                .ToList();
+
+            var selectedUsers = allUsers
+                .Where(u => string.Equals(u.Department ?? "", department, StringComparison.OrdinalIgnoreCase))
+                .Select(u => u.Id)
+                .Distinct()
+                .ToList();
+
+            if (selectedUsers.Count == 0)
+            {
+                TempData["Err"] = $"Không tìm thấy user nào trong Department '{department}'.";
+                return RedirectToAction(nameof(Assign), new { id = testId, department });
+            }
+
+            // Xoá các assign User cũ để tránh trùng, sau đó gán lại theo department
+            await _aRepo.DeleteAsync(a => a.TestId == testId && a.TargetType == "User");
+
+            foreach (var uid in selectedUsers)
+            {
+                await _aRepo.InsertAsync(new Assignment
+                {
+                    TestId = testId,
+                    TargetType = "User",
+                    TargetValue = uid,
+                    StartAt = s,
+                    EndAt = e
+                });
+            }
+
+            TempData["Msg"] = $"Đã assign {selectedUsers.Count} user của Department '{department}' vào test và publish test.";
+            return RedirectToAction(nameof(Assign), new { id = testId, department });
         }
     }
 }

@@ -401,6 +401,15 @@
             }
           },
           {
+            "name": "Department",
+            "in": "query",
+            "schema": {
+              "maxLength": 100,
+              "minLength": 0,
+              "type": "string"
+            }
+          },
+          {
             "name": "RoleName",
             "in": "query",
             "schema": {
@@ -770,6 +779,50 @@
       }
     },
     "/api/tests/sessions/{id}/touch": {
+      "post": {
+        "tags": [
+          "SessionsApi"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tests/sessions/{id}/resume": {
+      "post": {
+        "tags": [
+          "SessionsApi"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tests/sessions/{id}/pause": {
       "post": {
         "tags": [
           "SessionsApi"

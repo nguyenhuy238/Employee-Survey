@@ -23,6 +23,10 @@ namespace Employee_Survey.Models
         [StringLength(100)]
         public string TeamId { get; set; } = "";
 
+        [Display(Name = "Phòng ban")]
+        [StringLength(100)]
+        public string Department { get; set; } = "";   // ✅ Thêm mới
+
         // Chỉ hiển thị đọc-only
         public string RoleName { get; set; } = "";
     }

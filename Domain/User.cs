@@ -8,6 +8,7 @@
         public Role Role { get; set; } = Role.Employee;
         public string Level { get; set; } = "Junior";
         public string TeamId { get; set; } = "";
+        public string Department { get; set; } = ""; 
         public string PasswordHash { get; set; } = "";
     }
 }

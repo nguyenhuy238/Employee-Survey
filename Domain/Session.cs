@@ -9,8 +9,13 @@
         public DateTime? EndAt { get; set; }
         public SessionStatus Status { get; set; } = SessionStatus.Draft;
 
-        // NEW: thời điểm hoạt động gần nhất (mở bài/auto-save…)
         public DateTime LastActivityAt { get; set; } = DateTime.UtcNow;
+
+        // ====== NEW: tính giờ chủ động (pause/resume) ======
+        // Tổng số giây đã tiêu thụ (khi đã "pause" xong mới chốt vào đây)
+        public int ConsumedSeconds { get; set; } = 0;
+        // Nếu khác null => đang chạy; thời điểm bắt đầu phiên chạy hiện tại
+        public DateTime? TimerStartedAt { get; set; }
 
         // Điểm & snapshot
         public double TotalScore { get; set; } = 0;

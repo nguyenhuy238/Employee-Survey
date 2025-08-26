@@ -1,12 +1,23 @@
 ﻿@model Employee_Survey.Domain.Session
 @using Employee_Survey.Domain
 @{
-    var duration = (int)ViewBag.Duration;                 // phút
+    var duration = (int)ViewBag.Duration;
     var testTitle = (string)(ViewBag.TestTitle ?? "Test Runner");
+    var remainingSeconds = (int)(ViewBag.RemainingSeconds ?? (duration * 60));
+
+    var ts = TimeSpan.FromSeconds(remainingSeconds);
+    var initialMinutesTotal = Math.Max(0, (int)Math.Floor(ts.TotalMinutes));
+    var initialSecondsOnly = Math.Max(0, ts.Seconds);
+    var initialText = $"{initialMinutesTotal:D2}:{initialSecondsOnly:D2}";
+
+    var snapshot = Model.Snapshot ?? new List<Employee_Survey.Domain.Question>();
+    var questionCount = snapshot.Count;
+
     ViewData["Title"] = testTitle;
 }
 
 <style>
+    /* Header */
     .runner-header {
         position: sticky;
         top: 0;
@@ -32,28 +43,6 @@
         background: #eff6ff;
         color: #1d4ed8;
         border: 1px solid #bfdbfe
-    }
-
-    .badge-warn {
-        background: #fff7ed;
-        color: #c2410c;
-        border: 1px solid #fed7aa
-    }
-
-    .question {
-        padding: 1rem;
-        border: 1px solid #e5e7eb;
-        border-radius: .5rem;
-        margin-bottom: 1rem
-    }
-
-    .q-title {
-        font-weight: 600;
-        margin-bottom: .5rem
-    }
-
-    .q-options > div {
-        margin: .25rem 0
     }
 
     .actions {
@@ -99,11 +88,11 @@
     }
 
     .progress {
-        height: 8px;
+        height: 10px;
         background: #e5e7eb;
         border-radius: 999px;
         overflow: hidden;
-        min-width: 160px
+        min-width: 200px
     }
 
         .progress > span {
@@ -118,6 +107,195 @@
         color: #6b7280
     }
 
+    /* Layout: sidebar nhỏ, main rộng */
+    .layout {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 1.5rem;
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 1rem 1rem 2rem;
+    }
+
+    @@media (max-width: 900px) {
+        .layout {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .sidebar {
+        position: sticky;
+        top: 72px;
+        align-self: start;
+        border: 1px solid #e5e7eb;
+        border-radius: .9rem;
+        padding: .85rem;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(0,0,0,.04);
+    }
+
+    .side-sec-title {
+        font-weight: 800;
+        font-size: .95rem;
+        margin: .25rem 0 .5rem;
+    }
+
+    .timer-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        border-radius: .7rem;
+        padding: .55rem .7rem;
+        margin-bottom: .7rem;
+        font-weight: 800;
+        color: #1d4ed8;
+    }
+
+    /* Legend */
+    .legend {
+        display: flex;
+        gap: .6rem;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: .4rem 0 .9rem;
+    }
+
+        .legend .item {
+            display: flex;
+            align-items: center;
+            gap: .35rem;
+            font-size: .85rem;
+            color: #475569;
+        }
+
+        .legend .box {
+            width: 18px;
+            height: 18px;
+            border-radius: 6px;
+        }
+
+    .box-ans {
+        background: #22c55e;
+    }
+
+    .box-un {
+        background: #f87171;
+    }
+
+    .box-flag {
+        background: #7c3aed;
+    }
+
+    .filter-row {
+        display: flex;
+        gap: .5rem;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: .6rem;
+    }
+
+    .small {
+        font-size: .85rem;
+        color: #64748b;
+    }
+
+    /* Navigator: lưới chip to, màu rõ ràng */
+    .qnav {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(42px,1fr));
+        gap: .5rem;
+    }
+
+    .qchip {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        cursor: pointer;
+        user-select: none;
+        transition: all .15s;
+        border: 2px solid transparent;
+        background: #f1f5f9;
+        color: #0f172a;
+    }
+
+        .qchip:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 10px rgba(0,0,0,.06);
+        }
+
+        .qchip.unanswered {
+            background: #fef2f2;
+            border-color: #fca5a5;
+            color: #991b1b;
+        }
+
+        .qchip.answered {
+            background: #dcfce7;
+            border-color: #22c55e;
+            color: #065f46;
+        }
+
+        .qchip.flagged {
+            background: #ede9fe;
+            border-color: #7c3aed;
+            color: #4c1d95;
+        }
+
+        .qchip.active {
+            box-shadow: 0 0 0 3px #60a5fa;
+        }
+
+    /* Main: rộng, thưa, dễ đọc */
+    .main {
+        min-width: 0;
+    }
+
+    .question {
+        padding: 1.25rem;
+        border: 1px solid #e5e7eb;
+        border-radius: .9rem;
+        margin-bottom: 1.6rem;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(0,0,0,.04);
+        scroll-margin-top: 100px;
+    }
+
+    .q-title {
+        font-size: 1.05rem;
+        font-weight: 800;
+        margin-bottom: .8rem;
+        display: flex;
+        align-items: center;
+        gap: .6rem;
+        flex-wrap: wrap;
+    }
+
+    .q-options > div {
+        margin: .4rem 0
+    }
+
+    .flag-btn {
+        background: #f5f3ff;
+        color: #6d28d9;
+        border: 1px solid #ddd6fe;
+        border-radius: 10px;
+        padding: .28rem .6rem;
+        font-weight: 800;
+        cursor: pointer;
+    }
+
+        .flag-btn.active {
+            background: #c7d2fe;
+            color: #1e3a8a;
+            border-color: #93c5fd;
+        }
+
     .unanswered {
         outline: 2px dashed #f59e0b;
         outline-offset: 4px
@@ -125,16 +303,16 @@
 </style>
 
 <div class="runner-header">
-    <div class="bar container">
+    <div class="bar container" style="max-width:1300px; margin:0 auto;">
         <div style="flex:1 1 auto">
-            <div style="font-size:1.1rem;font-weight:700">@testTitle</div>
+            <div style="font-size:1.1rem;font-weight:800">@testTitle</div>
             <div class="hint">Session: <b>@Model.Id</b></div>
         </div>
         <div class="progress-wrap">
             <div class="progress" aria-label="Progress"><span id="pg"></span></div>
-            <div><span id="pgtext">0</span>/<span id="pgtotal">@Model.Snapshot.Count</span> answered</div>
+            <div><span id="pgtext">0</span>/<span id="pgtotal">@questionCount</span> answered</div>
         </div>
-        <div><span class="badge badge-info">Time left: <span id="t">@duration:00</span></span></div>
+        <div><span class="badge badge-info">Time left: <span id="t">@initialText</span></span></div>
         <div class="actions">
             <button type="button" class="btn btn-secondary" id="saveLocalBtn" title="Save draft to this device">Save draft</button>
             <button type="button" class="btn btn-danger" id="clearLocalBtn" title="Clear local draft">Clear draft</button>
@@ -143,82 +321,164 @@
     </div>
 </div>
 
-<div class="container">
-    <form id="f" autocomplete="off">
-        @for (int qi = 0; qi < Model.Snapshot.Count; qi++)
-        {
-            var q = Model.Snapshot[qi];
-            <div class="question" id="q-@q.Id" data-qid="@q.Id" data-qtype="@q.Type">
-                <div class="q-title">@(qi + 1). @q.Content</div>
+<div class="layout">
+    <aside class="sidebar" id="sidebar">
+        <div class="timer-box">
+            <span>Time left</span>
+            <span id="t_side">@initialText</span>
+        </div>
 
-                @* Hiển thị media của câu hỏi (nếu có) *@
-                @if (q.Media?.Any() ?? false)
-                {
-                    <div class="mb-2">
-                        <partial name="~/Views/Shared/_MediaViewer.cshtml" model="q.Media" />
+        <div class="filter-row">
+            <div class="side-sec-title">Questions</div>
+            <label class="small"><input type="checkbox" id="onlyFlaggedChk" /> Only flagged</label>
+        </div>
+
+        <div class="legend">
+            <span class="item"><span class="box box-ans"></span> Answered</span>
+            <span class="item"><span class="box box-un"></span> Unanswered</span>
+            <span class="item"><span class="box box-flag"></span> Flagged</span>
+        </div>
+
+        <div class="qnav" id="qnav">
+            @for (int i = 0; i < questionCount; i++)
+            {
+                var q = snapshot[i];
+                <div class="qchip unanswered" data-qindex="@i" data-qid="@q.Id" tabindex="0">@((i + 1).ToString())</div>
+            }
+        </div>
+    </aside>
+
+    <main class="main">
+        <form id="f" autocomplete="off">
+            @for (int qi = 0; qi < questionCount; qi++)
+            {
+                var q = snapshot[qi];
+                var qAnchor = $"q-{q.Id}";
+                <div class="question" id="@qAnchor" data-qid="@q.Id" data-qindex="@qi" data-qtype="@q.Type">
+                    <div class="q-title">
+                        @(qi + 1). @q.Content
+                        <button type="button" class="flag-btn" data-flag-qid="@q.Id">★ Flag</button>
                     </div>
-                }
 
-                @if (q.Type == QType.MCQ)
-                {
-                    <div class="q-options">
-                        @for (int i = 0; i < (q.Options?.Count ?? 0); i++)
-                        {
-                            var label = ((char)('A' + i)).ToString();
-                            var rid = $"r_{q.Id}_{label}";
-                            <div>
-                                <input id="@rid" type="radio" name="@q.Id" value="@label" />
-                                <label for="@rid">@label) @q.Options[i]</label>
-                            </div>
-                        }
-                    </div>
-                }
-                else if (q.Type == QType.TrueFalse)
-                {
-                    var r1 = $"r_{q.Id}_True";
-                    var r0 = $"r_{q.Id}_False";
-                    <div class="q-options">
-                        <div><input id="@r1" type="radio" name="@q.Id" value="True" /><label for="@r1">True</label></div>
-                        <div><input id="@r0" type="radio" name="@q.Id" value="False" /><label for="@r0">False</label></div>
-                    </div>
-                }
-                else
-                {
-                    <textarea class="form-control" name="@q.Id" rows="4" placeholder="Type your answer here..."></textarea>
-                }
-                <div class="hint">Question ID: @q.Id • Type: @q.Type</div>
-            </div>
-        }
-    </form>
+                    @if (q.Media?.Any() ?? false)
+                    {
+                        <div class="mb-2">
+                            <partial name="~/Views/Shared/_MediaViewer.cshtml" model="q.Media" />
+                        </div>
+                    }
 
-    <div class="actions" style="margin:1rem 0 2rem">
-        <button type="button" class="btn btn-secondary" id="saveLocalBtn2">Save draft</button>
-        <button type="button" class="btn btn-primary" id="submitBtn2">Submit & Finish</button>
-    </div>
+                    @{
+                        var opts = q.Options ?? new List<string>();
+                    }
+                    @if (q.Type == QType.MCQ)
+                    {
+                        <div class="q-options">
+                            @for (int i = 0; i < opts.Count; i++)
+                            {
+                                var label = ((char)('A' + i)).ToString();
+                                var rid = $"r_{q.Id}_{label}";
+                                <div>
+                                    <input id="@rid" type="radio" name="@q.Id" value="@label" />
+                                    <label for="@rid">@label) @opts[i]</label>
+                                </div>
+                            }
+                        </div>
+                    }
+                    else if (q.Type == QType.TrueFalse)
+                    {
+                        var r1 = $"r_{q.Id}_True";
+                        var r0 = $"r_{q.Id}_False";
+                        <div class="q-options">
+                            <div><input id="@r1" type="radio" name="@q.Id" value="True" /><label for="@r1">True</label></div>
+                            <div><input id="@r0" type="radio" name="@q.Id" value="False" /><label for="@r0">False</label></div>
+                        </div>
+                    }
+                    else
+                    {
+                        <textarea class="form-control" name="@q.Id" rows="4" placeholder="Type your answer here..."></textarea>
+                    }
+                    <div class="hint">Question ID: @q.Id • Type: @q.Type</div>
+                </div>
+            }
+        </form>
 
-    <p class="hint">Your answers are <b>not</b> sent to server until you press <i>Submit &amp; Finish</i>. Draft saves only on this device.</p>
+        <div class="actions" style="margin:1rem 0 2rem">
+            <button type="button" class="btn btn-secondary" id="saveLocalBtn2">Save draft</button>
+            <button type="button" class="btn btn-primary" id="submitBtn2">Submit & Finish</button>
+        </div>
+
+        <p class="hint">Your answers are <b>not</b> sent to server until you press <i>Submit &amp; Finish</i>. Draft saves only on this device.</p>
+    </main>
 </div>
 
 <script>
-    // ====== Timer ======
-    let secs = @duration * 60;
-    const elTime = document.getElementById('t');
+    /* ===== Timer with pause/resume ===== */
+    let secs = @remainingSeconds;
+    let running = true;
+    let timer = null;
+
+    const elTimeTop  = document.getElementById('t');
+    const elTimeSide = document.getElementById('t_side');
     const sid = "@Model.Id";
-    const totalQs = @Model.Snapshot.Count;
+    const totalQs = @questionCount;
 
-    function tick(){
-      secs--;
-      const m = Math.floor(secs/60).toString().padStart(2,'0');
-      const s = (secs%60).toString().padStart(2,'0');
-      elTime.textContent = `${m}:${s}`;
-      if(secs === 120){ toast("Only 2 minutes left. Please submit soon.", "warn"); }
-      if(secs<=0){ toast("Time is up. Auto-submitting...", "warn"); submitNow(true); }
+    function fmt(ss){ const m = Math.floor(ss/60).toString().padStart(2,'0'); const s = (ss%60).toString().padStart(2,'0'); return `${m}:${s}`; }
+    function renderTime(){ const t = fmt(secs); elTimeTop.textContent = t; elTimeSide.textContent = t; }
+
+    function startTimer(){
+        if(timer) return;
+        running = true;
+        timer = setInterval(()=>{
+            if(!running) return;
+            secs = Math.max(0, secs - 1);
+            renderTime();
+            if(secs === 120){ toast("Only 2 minutes left. Please submit soon.", "warn"); }
+            if(secs <= 0){
+                stopTimer();
+                toast("Time is up. Auto-submitting...", "warn");
+                submitNow(true);
+            }
+        }, 1000);
     }
-    const timer = setInterval(tick, 1000);
+    function stopTimer(){ running = false; if(timer){ clearInterval(timer); timer = null; } }
 
-    // ====== Draft in localStorage ======
+    async function callResume(){
+        try{
+            const r = await fetch(`/api/tests/sessions/${sid}/resume`, { method:'POST' });
+            if(r.ok){
+                const data = await r.json();
+                secs = data.remainingSeconds ?? secs;
+                running = !!data.running;
+                renderTime();
+                startTimer();
+            }
+        }catch(e){}
+    }
+    async function callPause(){
+        try{
+            const r = await fetch(`/api/tests/sessions/${sid}/pause`, { method:'POST' });
+            if(r.ok){
+                const data = await r.json();
+                secs = data.remainingSeconds ?? secs;
+                running = !!data.running;
+                renderTime();
+                stopTimer();
+            }
+        }catch(e){}
+    }
+
+    renderTime(); startTimer(); callResume();
+    document.addEventListener('visibilitychange', ()=>{ if(document.hidden){ callPause(); } else { callResume(); } });
+    window.addEventListener('beforeunload', ()=>{ navigator.sendBeacon?.(`/api/tests/sessions/${sid}/pause`); });
+
+    /* ===== Draft / Flags / Navigator ===== */
     const KEY = `runner_${sid}`;
+    const KEY_FLAGS = `runner_flags_${sid}`;
     const formEl = document.getElementById('f');
+    const navEl = document.getElementById('qnav');
+    const onlyFlaggedChk = document.getElementById('onlyFlaggedChk');
+    const pgBar = document.getElementById('pg');
+    const pgText = document.getElementById('pgtext');
 
     function collect(){
       const data = {};
@@ -228,7 +488,6 @@
       });
       return data;
     }
-
     function applyDraft(draft){
       if(!draft) return;
       Object.entries(draft).forEach(([k,v])=>{
@@ -242,54 +501,142 @@
           els[0].value = v ?? '';
         }
       });
-      updateProgress();
     }
-
-    // NEW: ping server để cập nhật LastActivityAt
-    async function touch(){
-      try{ await fetch(`/api/tests/sessions/${sid}/touch`, { method:'POST' }); }catch(e){}
-    }
-
     function saveDraft(silent=false){
       localStorage.setItem(KEY, JSON.stringify(collect()));
-      touch();
       if(!silent) toast("Draft saved on this device.");
     }
     function clearDraft(){ localStorage.removeItem(KEY); toast("Local draft cleared."); }
 
-    // Load draft on start
-    try{ const raw = localStorage.getItem(KEY); if(raw){ applyDraft(JSON.parse(raw)); } }catch(e){}
-    // Auto save every 20s (silent)
-    setInterval(()=>{ try{ saveDraft(true); }catch(e){} }, 20000);
+    function loadFlags(){ try{ return JSON.parse(localStorage.getItem(KEY_FLAGS) || '{}'); }catch(e){ return {}; } }
+    function saveFlags(flags){ localStorage.setItem(KEY_FLAGS, JSON.stringify(flags||{})); }
 
-    // ====== Progress ======
-    const pgBar = document.getElementById('pg');
-    const pgText = document.getElementById('pgtext');
+    function isAnsweredById(qid){
+      const radios = formEl.querySelectorAll(`[name="${CSS.escape(qid)}"][type="radio"]`);
+      if(radios.length){ return Array.from(radios).some(r=>r.checked); }
+      const ta = formEl.querySelector(`[name="${CSS.escape(qid)}"]:not([type])`);
+      return !!(ta && String(ta.value||'').trim().length>0);
+    }
 
-    function updateProgress(){
-      const data = collect();
+    /* Cập nhật 1 câu hỏi ngay lập tức */
+    function updateOneQuestion(qid){
+      const ok = isAnsweredById(qid);
+      const qb = document.querySelector(`.question[data-qid="${CSS.escape(qid)}"]`);
+      if(qb){ qb.classList.toggle('unanswered', !ok); }
+
+      const chip = navEl.querySelector(`.qchip[data-qid="${CSS.escape(qid)}"]`);
+      if(chip){
+        chip.classList.toggle('answered', ok);
+        chip.classList.toggle('unanswered', !ok);
+        // không động vào flagged ở đây
+        if(onlyFlaggedChk?.checked){
+          const flags = loadFlags();
+          chip.style.display = flags[qid] ? '' : 'none';
+        }
+      }
+      refreshProgress();
+    }
+
+    /* Cập nhật progress nhanh */
+    function refreshProgress(){
+      const answered = navEl.querySelectorAll('.qchip.answered').length;
+      pgText.textContent = answered.toString();
+      const pct = Math.max(0, Math.min(100, Math.round(answered * 100 / totalQs)));
+      pgBar.style.width = pct + '%';
+    }
+
+    /* Refresh toàn bộ navigator (khi bật tắt filter hoặc sync flags) */
+    function refreshNavigatorFull(){
+      const flags = loadFlags();
       let answered = 0;
       document.querySelectorAll('.question').forEach(qb=>{
         const qid = qb.getAttribute('data-qid');
-        const val = data[qid];
-        const ok = val && String(val).trim().length>0;
+        const ok = isAnsweredById(qid);
         qb.classList.toggle('unanswered', !ok);
         if(ok) answered++;
+
+        const chip = navEl.querySelector(`.qchip[data-qid="${CSS.escape(qid)}"]`);
+        if(chip){
+          chip.classList.toggle('answered', ok);
+          chip.classList.toggle('unanswered', !ok);
+          chip.classList.toggle('flagged', !!flags[qid]);
+          chip.style.display = (!onlyFlaggedChk?.checked || flags[qid]) ? '' : 'none';
+        }
       });
       pgText.textContent = answered.toString();
       const pct = Math.max(0, Math.min(100, Math.round(answered * 100 / totalQs)));
       pgBar.style.width = pct + '%';
     }
-    formEl.addEventListener('change', ()=>{ updateProgress(); });
-    formEl.addEventListener('input',  ()=>{ updateProgress(); });
 
-    // ====== Leave warning ======
-    let submitted = false;
-    window.addEventListener('beforeunload', (e)=>{
-      if(!submitted){ e.preventDefault(); e.returnValue = ''; }
+    /* Sự kiện input/change -> cập nhật tức thì */
+    formEl.addEventListener('change', (e)=>{
+      const t = e.target;
+      if(t && t.name){ updateOneQuestion(t.name); }
+    });
+    formEl.addEventListener('input', (e)=>{
+      const t = e.target;
+      if(t && t.name){ updateOneQuestion(t.name); }
     });
 
-    // ====== Submit ======
+    /* Bật filter chỉ flagged */
+    if(onlyFlaggedChk){ onlyFlaggedChk.addEventListener('change', refreshNavigatorFull); }
+
+    /* Click chip để nhảy */
+    navEl.addEventListener('click', (e)=>{
+      const chip = e.target.closest('.qchip');
+      if(!chip) return;
+      const idx = parseInt(chip.getAttribute('data-qindex'),10);
+      const qb = document.querySelector(`.question[data-qindex="${idx}"]`);
+      if(qb){ qb.scrollIntoView({behavior:'smooth', block:'start'}); setActiveChip(idx); }
+    });
+    function setActiveChip(index){
+      navEl.querySelectorAll('.qchip').forEach(c=>c.classList.remove('active'));
+      const chip = navEl.querySelector(`.qchip[data-qindex="${index}"]`);
+      if(chip){ chip.classList.add('active'); }
+    }
+
+    /* Sync active chip theo cuộn */
+    let throttleTO=null;
+    window.addEventListener('scroll', ()=>{
+      if(throttleTO) return;
+      throttleTO = setTimeout(()=>{
+        throttleTO=null;
+        const qs = Array.from(document.querySelectorAll('.question'));
+        let bestIdx = 0, bestTop = Infinity;
+        qs.forEach(q=>{
+          const rect = q.getBoundingClientRect();
+          const top = Math.abs(rect.top - 120);
+          const idx = parseInt(q.getAttribute('data-qindex'),10);
+          if(top < bestTop){ bestTop=top; bestIdx=idx; }
+        });
+        setActiveChip(bestIdx);
+      }, 120);
+    });
+
+    /* Flag buttons */
+    document.addEventListener('click', (e)=>{
+      const btn = e.target.closest('.flag-btn');
+      if(!btn) return;
+      const qid = btn.getAttribute('data-flag-qid');
+      const flags = loadFlags();
+      flags[qid] = !flags[qid];
+      saveFlags(flags);
+      btn.classList.toggle('active', !!flags[qid]);
+
+      const chip = navEl.querySelector(`.qchip[data-qid="${CSS.escape(qid)}"]`);
+      if(chip){
+        chip.classList.toggle('flagged', !!flags[qid]);
+        if(onlyFlaggedChk?.checked){
+          chip.style.display = flags[qid] ? '' : 'none';
+        }
+      }
+    });
+
+    /* Leave warning */
+    let submitted = false;
+    window.addEventListener('beforeunload', (e)=>{ if(!submitted){ e.preventDefault(); e.returnValue = ''; } });
+
+    /* Submit */
     const submitBtn = document.getElementById('submitBtn');
     const submitBtn2 = document.getElementById('submitBtn2');
     const saveLocalBtn = document.getElementById('saveLocalBtn');
@@ -306,12 +653,10 @@
     let submitting = false;
 
     function highlightUnanswered(){
-      const data = collect();
       let firstUn = null;
       document.querySelectorAll('.question').forEach(qb=>{
         const qid = qb.getAttribute('data-qid');
-        const val = data[qid];
-        const ok = val && String(val).trim().length>0;
+        const ok = isAnsweredById(qid);
         qb.classList.toggle('unanswered', !ok);
         if(!ok && !firstUn) firstUn = qb;
       });
@@ -338,7 +683,8 @@
       submitting = true;
       submitBtn.disabled = true; submitBtn2.disabled = true;
 
-      clearInterval(timer);
+      stopTimer(); await callPause();
+
       const payload = { answers: collect() };
       try{
         const r = await fetch(`/api/tests/sessions/${sid}/submit`,{
@@ -351,9 +697,8 @@
           submitBtn.disabled = false; submitBtn2.disabled = false; submitting = false;
           return;
         }
-        const res = await r.json();
         submitted = true;
-        try{ localStorage.removeItem(KEY); }catch(e){}
+        try{ localStorage.removeItem(KEY); localStorage.removeItem(KEY_FLAGS); }catch(e){}
         window.location = `/mytests/result/${sid}`;
       }catch(err){
         console.error(err);
@@ -374,7 +719,20 @@
       setTimeout(()=>{ el.remove(); }, 3500);
     }
 
-    // initial
-    updateProgress();
-    touch(); // ping ngay khi mở
+    /* Initial */
+    try{ const raw = localStorage.getItem(KEY); if(raw){ applyDraft(JSON.parse(raw)); } }catch(e){}
+    (function syncFlagButtons(){
+      const flags = loadFlags();
+      document.querySelectorAll('.flag-btn').forEach(btn=>{
+        const qid = btn.getAttribute('data-flag-qid');
+        btn.classList.toggle('active', !!flags[qid]);
+      });
+    })();
+
+    // Đánh dấu trạng thái ban đầu rõ ràng
+    refreshNavigatorFull();
+    setActiveChip(0);
+
+    // Auto save
+    setInterval(()=>{ try{ saveDraft(true); }catch(e){} }, 20000);
 </script>

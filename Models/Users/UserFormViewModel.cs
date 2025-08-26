@@ -22,6 +22,10 @@ namespace Employee_Survey.Models.Users
         [Display(Name = "Team")]
         public string TeamId { get; set; } = "";
 
+        [Display(Name = "Department")]
+        [StringLength(100)]
+        public string? Department { get; set; } = "";  // ✅ Thêm mới
+
         // dùng khi tạo mới hoặc đổi mật khẩu
         [DataType(DataType.Password)]
         [Display(Name = "Password (leave blank to keep)")]
