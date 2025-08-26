@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Employee_Survey.Domain.MediaFile>
+
+@if (Model != null && Model.Any())
+{
+    <div class="row row-cols-1 row-cols-md-2 g-3">
+        @foreach (var m in Model)
+        {
+            <div class="col">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        @{
+                            var ct = (m.ContentType ?? "").ToLowerInvariant();
+                        }
+                        @if (ct.StartsWith("image/"))
+                        {
+                            <img src="@m.Url" alt="@m.FileName" class="img-fluid rounded mb-2" />
+                        }
+                        else if (ct.StartsWith("audio/"))
+                        {
+                            <audio controls class="w-100 mb-2">
+                                <source src="@m.Url" type="@m.ContentType" />
+                                Trình duyệt không hỗ trợ audio.
+                            </audio>
+                        }
+                        else if (ct.StartsWith("video/"))
+                        {
+                            <video controls class="w-100 mb-2">
+                                <source src="@m.Url" type="@m.ContentType" />
+                                Trình duyệt không hỗ trợ video.
+                            </video>
+                        }
+                        else if (ct == "application/pdf")
+                        {
+                            <div class="ratio ratio-4x3 mb-2">
+                                <iframe src="@m.Url" class="rounded" title="@m.FileName"></iframe>
+                            </div>
+                        }
+                        else
+                        {
+                            <a href="@m.Url" target="_blank" rel="noopener">@m.FileName</a>
+                        }
+
+                        <div class="small text-muted">
+                            @m.FileName (@(Math.Round(m.Size / 1024.0)) KB)
+                        </div>
+
+                        @if (ViewBag.AllowDeleteMedia is bool allow && allow)
+                        {
+                            <form asp-action="DeleteMedia" method="post" class="mt-2 d-inline">
+                                <input type="hidden" name="questionId" value="@ViewBag.QuestionId" />
+                                <input type="hidden" name="mediaId" value="@m.Id" />
+                                <button class="btn btn-sm btn-outline-danger" onclick="return confirm('Xóa file này?')">
+                                    Xóa
+                                </button>
+                            </form>
+                            <a class="btn btn-sm btn-outline-secondary ms-1" href="@m.Url" download>Download</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

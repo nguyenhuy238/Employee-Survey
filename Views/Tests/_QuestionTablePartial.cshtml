@@ -1,29 +1,27 @@
 ﻿@model IEnumerable<Employee_Survey.Domain.Question>
 @{
-    var selected = (List<string>)ViewData["Selected"] ?? new List<string>();
+    var selected = (ViewData["Selected"] as List<string>) ?? new List<string>();
 }
-
-<table class="table table-sm table-hover align-middle">
+<table class="table table-sm align-middle">
     <thead>
         <tr>
-            <th style="width:40px;">
-                <input type="checkbox" id="chkAll"
-                       onclick="this.closest('table').querySelectorAll('tbody input[type=checkbox]').forEach(x=>x.checked=this.checked); document.dispatchEvent(new Event('change'));" />
-            </th>
+            <th style="width:40px;"></th>
             <th>Nội dung</th>
-            <th>Skill</th>
-            <th>Difficulty</th>
+            <th style="width:120px;">Loại</th>
+            <th style="width:140px;">Kỹ năng</th>
+            <th style="width:120px;">Độ khó</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var q in Model)
         {
             var isChecked = selected.Contains(q.Id) ? "checked" : "";
-            <tr class="q-row" data-text="@( (q.Content ?? "").ToLower() )">
+            <tr class="q-row" data-text="@q.Content?.ToLower()">
                 <td>
                     <input type="checkbox" name="SelectedQuestionIds" value="@q.Id" @isChecked />
                 </td>
                 <td>@q.Content</td>
+                <td>@q.Type</td>
                 <td>@q.Skill</td>
                 <td>@q.Difficulty</td>
             </tr>

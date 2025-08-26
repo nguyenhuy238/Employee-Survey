@@ -113,12 +113,15 @@
     "DragDrop": null,
     "Skill": "ASP.NET",
     "Difficulty": "Junior",
-    "Tags": [],
+    "Tags": [
+      "sql",
+      "select"
+    ],
     "Media": [],
     "CreatedBy": null,
     "CreatedAt": "2025-08-22T07:09:18.1894873Z",
-    "UpdatedBy": "HR",
-    "UpdatedAt": "2025-08-22T07:09:18.2022108Z"
+    "UpdatedBy": "HR1",
+    "UpdatedAt": "2025-08-25T10:35:39.667343Z"
   },
   {
     "Id": "27cb592ecc3b4bafaa8be850a589a738",
@@ -1695,10 +1698,93 @@
       "git",
       "rebase"
     ],
-    "Media": [],
+    "Media": [
+      {
+        "Id": "e76776880be34e2dbd65a2e80669e72d",
+        "FileName": "R.jpg",
+        "Url": "/uploads/52c400563ef84f83b512335ea6433552.jpg",
+        "ContentType": "image/jpeg",
+        "Size": 190915,
+        "Caption": null
+      }
+    ],
     "CreatedBy": "HR",
     "CreatedAt": "2025-08-22T07:49:26.4083301Z",
+    "UpdatedBy": "HR1",
+    "UpdatedAt": "2025-08-26T02:04:58.3725176Z"
+  },
+  {
+    "Id": "5ffa5453c4674b1abdab3e2b2db23f45",
+    "Content": "fdsfsdfasf",
+    "Type": 0,
+    "Options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "CorrectKeys": [
+      "A"
+    ],
+    "EssayMinWords": null,
+    "MatchingPairs": [],
+    "DragDrop": null,
+    "Skill": "C#",
+    "Difficulty": "Junior",
+    "Tags": [
+      "git",
+      "clone"
+    ],
+    "Media": [
+      {
+        "Id": "a1bf8833e37643d0afecaa73ced3b292",
+        "FileName": "z6924797103210_1a60916cd980f05726b8515105fdfb46.jpg",
+        "Url": "/uploads/e950553df63946328faeb4bc279775f5.jpg",
+        "ContentType": "image/jpeg",
+        "Size": 453878,
+        "Caption": null
+      }
+    ],
+    "CreatedBy": "HR1",
+    "CreatedAt": "2025-08-25T08:50:58.3410495Z",
     "UpdatedBy": null,
     "UpdatedAt": null
+  },
+  {
+    "Id": "142941272ffa4a549a062214f15e1b90",
+    "Content": "TestMP3",
+    "Type": 0,
+    "Options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "CorrectKeys": [
+      "A"
+    ],
+    "EssayMinWords": null,
+    "MatchingPairs": [],
+    "DragDrop": null,
+    "Skill": "C#",
+    "Difficulty": "Junior",
+    "Tags": [
+      "sql",
+      "select"
+    ],
+    "Media": [
+      {
+        "Id": "2c112034dbdc4ef1a939e28caca3f351",
+        "FileName": "informational-quiz-381667.mp3",
+        "Url": "/uploads/423733cbfb9c4df5a19158dbdcaf9604.mp3",
+        "ContentType": "audio/mpeg",
+        "Size": 1360039,
+        "Caption": null
+      }
+    ],
+    "CreatedBy": "HR1",
+    "CreatedAt": "2025-08-25T09:50:45.945837Z",
+    "UpdatedBy": "HR1",
+    "UpdatedAt": "2025-08-26T02:04:15.8565117Z"
   }
 ]

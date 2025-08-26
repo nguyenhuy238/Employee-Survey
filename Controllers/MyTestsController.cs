@@ -20,12 +20,53 @@ namespace Employee_Survey.Controllers
         public async Task<IActionResult> Index()
         {
             var uid = User.FindFirstValue(ClaimTypes.NameIdentifier)!;
-            var testIds = await _assignSvc.GetAvailableTestIdsAsync(uid, DateTime.UtcNow);
-            var tests = (await _tRepo.GetAllAsync()).Where(x => testIds.Contains(x.Id)).ToList();
+            var now = DateTime.UtcNow;
 
-            var sessions = (await _sRepo.GetAllAsync()).Where(x => x.UserId == uid).ToList();
-            ViewBag.InProgress = sessions.Where(x => x.Status == SessionStatus.Draft).ToList();
-            ViewBag.Submitted = sessions.Where(x => x.Status != SessionStatus.Draft).ToList();
+            // Tests được assign còn hạn
+            var testIds = await _assignSvc.GetAvailableTestIdsAsync(uid, now);
+            var allTests = await _tRepo.GetAllAsync();
+
+            // Mọi session của user
+            var sessions = (await _sRepo.GetAllAsync())
+                .Where(x => x.UserId == uid)
+                .ToList();
+
+            // 1) Available = assigned - đã start
+            var startedTestIds = sessions.Select(s => s.TestId).ToHashSet();
+            var tests = allTests
+                .Where(x => testIds.Contains(x.Id) && !startedTestIds.Contains(x.Id))
+                .ToList();
+
+            // Helper chọn thời điểm mới nhất
+            static DateTime Key(Session s)
+                => (s.LastActivityAt == default ? s.StartAt : s.LastActivityAt);
+
+            // Các test đã có kết quả
+            var submittedTestIds = sessions
+                .Where(x => x.Status != SessionStatus.Draft)
+                .Select(x => x.TestId)
+                .ToHashSet();
+
+            // 2) In Progress: chỉ 1 phiên mới nhất cho mỗi Test, và loại bỏ test đã có kết quả
+            var inProgress = sessions
+                .Where(x => x.Status == SessionStatus.Draft && !submittedTestIds.Contains(x.TestId))
+                .GroupBy(x => x.TestId)
+                .Select(g => g.OrderByDescending(Key).First())
+                .OrderByDescending(Key)
+                .ToList();
+
+            // 3) Submitted: mới nhất lên trước
+            var submitted = sessions
+                .Where(x => x.Status != SessionStatus.Draft)
+                .OrderByDescending(x => x.EndAt ?? x.StartAt)
+                .ToList();
+
+            ViewBag.InProgress = inProgress;
+            ViewBag.Submitted = submitted;
+
+            // (tuỳ chọn) cung cấp dict tiêu đề test cho view nếu cần hiển thị đẹp
+            ViewBag.TestTitles = allTests.ToDictionary(t => t.Id, t => t.Title);
+
             return View(tests);
         }
     }

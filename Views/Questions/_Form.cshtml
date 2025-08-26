@@ -1,5 +1,12 @@
 ﻿@model Employee_Survey.Domain.Question
-<div class="mb-2"><label>Content</label><textarea name="Content" class="form-control" required>@Model.Content</textarea></div>
+
+<!-- Hidden ID để POST giữ đúng bản ghi -->
+<input type="hidden" name="Id" value="@Model.Id" />
+
+<div class="mb-2">
+    <label>Content</label>
+    <textarea name="Content" class="form-control" required>@Model.Content</textarea>
+</div>
 
 <div class="mb-2">
     <label>Type</label>
@@ -14,7 +21,7 @@
 <div id="mcqBlock" class="mb-2">
     <label>Options (each line)</label>
     <textarea name="Options" class="form-control">@string.Join('\n', Model.Options ?? new())</textarea>
-    <label class="mt-1">Correct Keys (separate by |, e.g., A or A|C or True)</label>
+    <label class="mt-1">Correct Keys (A hoặc A|C hoặc True)</label>
     <input name="CorrectKeys" value="@string.Join('|', Model.CorrectKeys ?? new())" class="form-control" />
 </div>
 
@@ -40,21 +47,14 @@
     <div class="col"><label>Difficulty</label><input name="Difficulty" value="@Model.Difficulty" class="form-control" required /></div>
 </div>
 
-<div class="mb-2"><label>Tags (comma)</label><input name="TagsCsv" value="@string.Join(',', Model.Tags)" class="form-control" /></div>
+<div class="mb-2">
+    <label>Tags (comma)</label>
+    <input name="TagsCsv" value="@string.Join(',', Model.Tags)" class="form-control" />
+</div>
 
 <div class="mb-2">
     <label>Upload media (multi)</label>
     <input type="file" name="mediaFiles" multiple class="form-control" />
-    @if ((Model.Media?.Any() ?? false))
-    {
-        <div class="mt-2">
-            @foreach (var m in Model.Media)
-            {
-                <a href="@m.Url" target="_blank">@m.FileName</a>
-                <span> | </span>
-     }
-        </div>
-    }
 </div>
 
 <script>

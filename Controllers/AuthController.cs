@@ -40,10 +40,12 @@ namespace Employee_Survey.Controllers
             if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
                 return Redirect(returnUrl);
 
+            // ĐÃ THÊM CASE Manager
             return u.Role switch
             {
                 Role.Admin => RedirectToAction("Dashboard", "Admin"),
                 Role.HR => RedirectToAction("Dashboard", "HR"),
+                Role.Manager => RedirectToAction("Dashboard", "Manager"),
                 Role.Employee => RedirectToAction("MySurveys", "Survey"),
                 _ => RedirectToAction("MySurveys", "Survey")
             };
@@ -59,9 +61,8 @@ namespace Employee_Survey.Controllers
         [HttpGet("/auth/denied")]
         public IActionResult Denied() => Content("Bạn không có quyền truy cập.");
 
-        // ========== FORGOT PASSWORD FLOW ==========
+        // ======= Forgot/Reset password flow giữ nguyên như trước =======
 
-        // B1: nhập email
         [HttpGet("/auth/forgot")]
         public IActionResult Forgot() => View();
 
@@ -69,13 +70,10 @@ namespace Employee_Survey.Controllers
         public async Task<IActionResult> ForgotPost(string email)
         {
             await _reset.RequestAsync(email);
-            // Không tiết lộ email có tồn tại hay không
             TempData["Info"] = "Nếu email tồn tại, mã OTP đã được gửi.";
-            // chuyển sang bước nhập OTP
             return RedirectToAction("Verify", new { email });
         }
 
-        // B2: nhập OTP
         [HttpGet("/auth/verify")]
         public IActionResult Verify(string email)
         {
@@ -93,12 +91,9 @@ namespace Employee_Survey.Controllers
                 ViewBag.Error = "OTP không hợp lệ hoặc đã hết hạn.";
                 return View("Verify");
             }
-
-            // B3: chuyển đến form đặt mật khẩu, kèm token
             return RedirectToAction("Reset", new { token });
         }
 
-        // B3: đặt mật khẩu mới
         [HttpGet("/auth/reset")]
         public IActionResult Reset(string token)
         {

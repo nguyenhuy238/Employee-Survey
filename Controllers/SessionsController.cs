@@ -23,6 +23,10 @@ namespace Employee_Survey.Controllers
             var uid = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
             if (uid == null || !string.Equals(uid, s.UserId, StringComparison.Ordinal)) return Forbid();
 
+            // Đánh dấu hoạt động gần nhất để trang "In Progress" chọn phiên mới nhất
+            s.LastActivityAt = DateTime.UtcNow;
+            await _sRepo.UpsertAsync(x => x.Id == s.Id, s);
+
             ViewBag.Duration = t.DurationMinutes;
             ViewBag.TestTitle = t.Title;
             return View(s);
@@ -36,6 +40,13 @@ namespace Employee_Survey.Controllers
 
             var uid = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
             if (uid == null || !string.Equals(uid, s.UserId, StringComparison.Ordinal)) return Forbid();
+
+            // Sau khi có kết quả: dọn mọi nháp khác của cùng Test cho user này
+            var currentTestId = s.TestId;
+            await _sRepo.DeleteAsync(x => x.UserId == uid
+                                          && x.TestId == currentTestId
+                                          && x.Id != s.Id
+                                          && x.Status == SessionStatus.Draft);
 
             var t = await _tRepo.FirstOrDefaultAsync(x => x.Id == s.TestId);
             ViewBag.TestTitle = t?.Title ?? "Result";

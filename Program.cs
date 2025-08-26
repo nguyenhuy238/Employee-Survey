@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http.Features;
 using Employee_Survey.Application;
 using Employee_Survey.Domain;
 using Employee_Survey.Infrastructure;
@@ -24,6 +25,13 @@ builder.Services
     });
 builder.Services.AddAuthorization();
 
+// -------------------- Multipart upload limit -----------
+builder.Services.Configure<FormOptions>(opt =>
+{
+    // request tối đa 50MB (có thể chỉnh)
+    opt.MultipartBodyLengthLimit = 50L * 1024 * 1024;
+});
+
 // -------------------- Repositories (JSON) --------------
 builder.Services.AddSingleton<IRepository<User>, JsonFileRepository<User>>();
 builder.Services.AddSingleton<IRepository<Team>, JsonFileRepository<Team>>();
@@ -33,10 +41,14 @@ builder.Services.AddSingleton<IRepository<Assignment>, JsonFileRepository<Assign
 builder.Services.AddSingleton<IRepository<Session>, JsonFileRepository<Session>>();
 builder.Services.AddSingleton<IRepository<Feedback>, JsonFileRepository<Feedback>>();
 
-// NEW: repo cho reset mật khẩu (OTP)
-builder.Services.AddSingleton<IRepository<PasswordReset>, JsonFileRepository<PasswordReset>>();
+// Audit service
+builder.Services.AddSingleton<IAuditService, AuditService>();
+// Services
+builder.Services.AddSingleton<IQuestionService, QuestionService>();
+builder.Services.AddSingleton<IQuestionExcelService, QuestionExcelService>();
 
-// (Tùy chọn) generic fallback cho các type khác nếu sau này thêm
+// NEW: repo + service reset mật khẩu (OTP) — nếu đã có thì giữ nguyên
+builder.Services.AddSingleton<IRepository<PasswordReset>, JsonFileRepository<PasswordReset>>();
 builder.Services.AddSingleton(typeof(IRepository<>), typeof(JsonFileRepository<>));
 
 // -------------------- App Services ---------------------
@@ -44,13 +56,10 @@ builder.Services.AddSingleton<AuthService>();
 builder.Services.AddSingleton<TestService>();
 builder.Services.AddSingleton<AssignmentService>();
 builder.Services.AddSingleton<ReportService>();
-
-// NEW: dịch vụ reset mật khẩu qua OTP
 builder.Services.AddSingleton<PasswordResetService>();
 
 // -------------------- Email (SMTP) ---------------------
 builder.Services.Configure<EmailOptions>(builder.Configuration.GetSection("Email"));
-// Triển khai gửi mail thực tế bằng SMTP
 builder.Services.AddSingleton<IEmailSender, SmtpEmailSender>();
 
 var app = builder.Build();
@@ -82,10 +91,12 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapControllers();
 
-// -------------------- Seed dữ liệu mẫu -----------------
+// -------------------- Ensure folders & Seed ------------
+Directory.CreateDirectory(Path.Combine(app.Environment.WebRootPath ?? "wwwroot", "uploads"));
+
 using (var scope = app.Services.CreateScope())
 {
-    await Seeder.RunAsync(scope.ServiceProvider);
+    await Seeder.RunAsync(scope.ServiceProvider); // nếu đã có Seeder; nếu chưa có, có thể bỏ đi.
 }
 
 app.Run();

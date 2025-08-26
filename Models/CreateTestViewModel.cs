@@ -1,17 +1,14 @@
-﻿// File: Controllers/CreateTestViewModel.cs
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Employee_Survey.Application;
 using Employee_Survey.Domain;
 
 namespace Employee_Survey.Models
 {
     public class CreateTestViewModel
     {
-        // Danh sách câu hỏi để hiển thị
-        public List<Question> MCQQuestions { get; set; } = new();
-        public List<Question> TFQuestions { get; set; } = new();
-        public List<Question> EssayQuestions { get; set; } = new();
+        public PagedResult<Question> Page { get; set; } = new();
+        public QuestionFilter Filter { get; set; } = new();
 
-        // Các field cấu hình Test (để bind lại khi post lỗi)
         public string Title { get; set; } = "";
         public int DurationMinutes { get; set; } = 10;
         public int PassScore { get; set; } = 3;
@@ -20,7 +17,10 @@ namespace Employee_Survey.Models
         public int RandomTF { get; set; } = 1;
         public int RandomEssay { get; set; } = 0;
 
-        // Danh sách Id câu hỏi được chọn (checkbox)
         public List<string> SelectedQuestionIds { get; set; } = new();
+
+        public List<Question> MCQQuestions => Page.Items?.FindAll(q => q.Type == QType.MCQ) ?? new();
+        public List<Question> TFQuestions => Page.Items?.FindAll(q => q.Type == QType.TrueFalse) ?? new();
+        public List<Question> EssayQuestions => Page.Items?.FindAll(q => q.Type == QType.Essay) ?? new();
     }
 }

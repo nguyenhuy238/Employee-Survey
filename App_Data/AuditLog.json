@@ -2679,5 +2679,575 @@
       "UpdatedBy": null,
       "UpdatedAt": null
     }
+  },
+  {
+    "At": "2025-08-25T08:18:01.0915927Z",
+    "Actor": "HR1",
+    "Action": "Question.Create",
+    "EntityId": "1e25a5dde8284117912b0344d134774d",
+    "Before": null,
+    "After": {
+      "Id": "1e25a5dde8284117912b0344d134774d",
+      "Content": "adsdsad",
+      "Type": 0,
+      "Options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "CorrectKeys": [
+        "A"
+      ],
+      "EssayMinWords": null,
+      "MatchingPairs": [],
+      "DragDrop": null,
+      "Skill": "C#",
+      "Difficulty": "Junior",
+      "Tags": [
+        "git",
+        "clone"
+      ],
+      "Media": [],
+      "CreatedBy": "HR1",
+      "CreatedAt": "2025-08-25T08:18:01.0593694Z",
+      "UpdatedBy": null,
+      "UpdatedAt": null
+    }
+  },
+  {
+    "At": "2025-08-25T08:18:11.6950191Z",
+    "Actor": "HR1",
+    "Action": "Question.Delete",
+    "EntityId": "1e25a5dde8284117912b0344d134774d",
+    "Before": {
+      "Id": "1e25a5dde8284117912b0344d134774d",
+      "Content": "adsdsad",
+      "Type": 0,
+      "Options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "CorrectKeys": [
+        "A"
+      ],
+      "EssayMinWords": null,
+      "MatchingPairs": [],
+      "DragDrop": null,
+      "Skill": "C#",
+      "Difficulty": "Junior",
+      "Tags": [
+        "git",
+        "clone"
+      ],
+      "Media": [],
+      "CreatedBy": "HR1",
+      "CreatedAt": "2025-08-25T08:18:01.0593694Z",
+      "UpdatedBy": null,
+      "UpdatedAt": null
+    },
+    "After": null
+  },
+  {
+    "At": "2025-08-25T08:50:09.3119517Z",
+    "Actor": "HR1",
+    "Action": "Question.Create",
+    "EntityId": "b5a90ec426c24666b8bbb7e2aa00a73e",
+    "Before": null,
+    "After": {
+      "Id": "b5a90ec426c24666b8bbb7e2aa00a73e",
+      "Content": "fsdfsdfasfsa",
+      "Type": 0,
+      "Options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "CorrectKeys": [
+        "A"
+      ],
+      "EssayMinWords": null,
+      "MatchingPairs": [],
+      "DragDrop": null,
+      "Skill": "C#",
+      "Difficulty": "Junior",
+      "Tags": [
+        "git",
+        "rebase"
+      ],
+      "Media": [
+        {
+          "Id": "105ec99b342b44138f009e0858e8ade4",
+          "FileName": "z6924797120521_719269ab089816f1d1b8e640dc944993.jpg",
+          "Url": "/uploads/af7530aca78c471891ab3992f9ff323d.jpg",
+          "ContentType": "image/jpeg",
+          "Size": 528961,
+          "Caption": null
+        }
+      ],
+      "CreatedBy": "HR1",
+      "CreatedAt": "2025-08-25T08:50:09.2912211Z",
+      "UpdatedBy": null,
+      "UpdatedAt": null
+    }
+  },
+  {
+    "At": "2025-08-25T08:50:19.335888Z",
+    "Actor": "HR1",
+    "Action": "Question.Update",
+    "EntityId": "b5a90ec426c24666b8bbb7e2aa00a73e",
+    "Before": {
+      "Id": "b5a90ec426c24666b8bbb7e2aa00a73e",
+      "Content": "fsdfsdfasfsa",
+      "Type": 0,
+      "Options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "CorrectKeys": [
+        "A"
+      ],
+      "EssayMinWords": null,
+      "MatchingPairs": [],
+      "DragDrop": null,
+      "Skill": "C#",
+      "Difficulty": "Junior",
+      "Tags": [
+        "git",
+        "rebase"
+      ],
+      "Media": [
+        {
+          "Id": "105ec99b342b44138f009e0858e8ade4",
+          "FileName": "z6924797120521_719269ab089816f1d1b8e640dc944993.jpg",
+          "Url": "/uploads/af7530aca78c471891ab3992f9ff323d.jpg",
+          "ContentType": "image/jpeg",
+          "Size": 528961,
+          "Caption": null
+        }
+      ],
+      "CreatedBy": "HR1",
+      "CreatedAt": "2025-08-25T08:50:09.2912211Z",
+      "UpdatedBy": null,
+      "UpdatedAt": null
+    },
+    "After": {
+      "Id": "b5a90ec426c24666b8bbb7e2aa00a73e",
+      "Content": "fsdfsdfasfsa",
+      "Type": 0,
+      "Options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "CorrectKeys": [
+        "A"
+      ],
+      "EssayMinWords": null,
+      "MatchingPairs": [],
+      "DragDrop": null,
+      "Skill": "C#",
+      "Difficulty": "Junior",
+      "Tags": [
+        "git",
+        "rebase"
+      ],
+      "Media": [],
+      "CreatedBy": null,
+      "CreatedAt": "2025-08-25T08:50:19.32113Z",
+      "UpdatedBy": "HR1",
+      "UpdatedAt": "2025-08-25T08:50:19.325551Z"
+    }
+  },
+  {
+    "At": "2025-08-25T08:50:20.866785Z",
+    "Actor": "HR1",
+    "Action": "Question.Update",
+    "EntityId": "b5a90ec426c24666b8bbb7e2aa00a73e",
+    "Before": {
+      "Id": "b5a90ec426c24666b8bbb7e2aa00a73e",
+      "Content": "fsdfsdfasfsa",
+      "Type": 0,
+      "Options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "CorrectKeys": [
+        "A"
+      ],
+      "EssayMinWords": null,
+      "MatchingPairs": [],
+      "DragDrop": null,
+      "Skill": "C#",
+      "Difficulty": "Junior",
+      "Tags": [
+        "git",
+        "rebase"
+      ],
+      "Media": [],
+      "CreatedBy": null,
+      "CreatedAt": "2025-08-25T08:50:19.32113Z",
+      "UpdatedBy": "HR1",
+      "UpdatedAt": "2025-08-25T08:50:19.325551Z"
+    },
+    "After": {
+      "Id": "b5a90ec426c24666b8bbb7e2aa00a73e",
+      "Content": "fsdfsdfasfsa",
+      "Type": 0,
+      "Options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "CorrectKeys": [
+        "A"
+      ],
+      "EssayMinWords": null,
+      "MatchingPairs": [],
+      "DragDrop": null,
+      "Skill": "C#",
+      "Difficulty": "Junior",
+      "Tags": [
+        "git",
+        "rebase"
+      ],
+      "Media": [],
+      "CreatedBy": null,
+      "CreatedAt": "2025-08-25T08:50:20.8541354Z",
+      "UpdatedBy": "HR1",
+      "UpdatedAt": "2025-08-25T08:50:20.8588573Z"
+    }
+  },
+  {
+    "At": "2025-08-25T08:50:23.962146Z",
+    "Actor": "HR1",
+    "Action": "Question.Delete",
+    "EntityId": "b5a90ec426c24666b8bbb7e2aa00a73e",
+    "Before": {
+      "Id": "b5a90ec426c24666b8bbb7e2aa00a73e",
+      "Content": "fsdfsdfasfsa",
+      "Type": 0,
+      "Options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "CorrectKeys": [
+        "A"
+      ],
+      "EssayMinWords": null,
+      "MatchingPairs": [],
+      "DragDrop": null,
+      "Skill": "C#",
+      "Difficulty": "Junior",
+      "Tags": [
+        "git",
+        "rebase"
+      ],
+      "Media": [],
+      "CreatedBy": null,
+      "CreatedAt": "2025-08-25T08:50:20.8541354Z",
+      "UpdatedBy": "HR1",
+      "UpdatedAt": "2025-08-25T08:50:20.8588573Z"
+    },
+    "After": null
+  },
+  {
+    "At": "2025-08-25T08:50:58.3497397Z",
+    "Actor": "HR1",
+    "Action": "Question.Create",
+    "EntityId": "5ffa5453c4674b1abdab3e2b2db23f45",
+    "Before": null,
+    "After": {
+      "Id": "5ffa5453c4674b1abdab3e2b2db23f45",
+      "Content": "fdsfsdfasf",
+      "Type": 0,
+      "Options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "CorrectKeys": [
+        "A"
+      ],
+      "EssayMinWords": null,
+      "MatchingPairs": [],
+      "DragDrop": null,
+      "Skill": "C#",
+      "Difficulty": "Junior",
+      "Tags": [
+        "git",
+        "clone"
+      ],
+      "Media": [
+        {
+          "Id": "a1bf8833e37643d0afecaa73ced3b292",
+          "FileName": "z6924797103210_1a60916cd980f05726b8515105fdfb46.jpg",
+          "Url": "/uploads/e950553df63946328faeb4bc279775f5.jpg",
+          "ContentType": "image/jpeg",
+          "Size": 453878,
+          "Caption": null
+        }
+      ],
+      "CreatedBy": "HR1",
+      "CreatedAt": "2025-08-25T08:50:58.3410495Z",
+      "UpdatedBy": null,
+      "UpdatedAt": null
+    }
+  },
+  {
+    "At": "2025-08-25T09:50:45.9675111Z",
+    "Actor": "HR1",
+    "Action": "Question.Create",
+    "EntityId": "142941272ffa4a549a062214f15e1b90",
+    "Before": null,
+    "After": {
+      "Id": "142941272ffa4a549a062214f15e1b90",
+      "Content": "TestMP3",
+      "Type": 0,
+      "Options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "CorrectKeys": [
+        "A"
+      ],
+      "EssayMinWords": null,
+      "MatchingPairs": [],
+      "DragDrop": null,
+      "Skill": "C#",
+      "Difficulty": "Junior",
+      "Tags": [],
+      "Media": [
+        {
+          "Id": "2c112034dbdc4ef1a939e28caca3f351",
+          "FileName": "informational-quiz-381667.mp3",
+          "Url": "/uploads/423733cbfb9c4df5a19158dbdcaf9604.mp3",
+          "ContentType": "audio/mpeg",
+          "Size": 1360039,
+          "Caption": null
+        }
+      ],
+      "CreatedBy": "HR1",
+      "CreatedAt": "2025-08-25T09:50:45.945837Z",
+      "UpdatedBy": null,
+      "UpdatedAt": null
+    }
+  },
+  {
+    "At": "2025-08-25T10:35:39.6873792Z",
+    "Actor": "HR1",
+    "Action": "Question.Update",
+    "EntityId": "0643b53f6922412f928f0bd23c43c813",
+    "Before": {
+      "Id": "0643b53f6922412f928f0bd23c43c813",
+      "Content": "Razor l\u00E0...",
+      "Type": 0,
+      "Options": [
+        "Template engine",
+        "DB",
+        "OS",
+        "Shell"
+      ],
+      "CorrectKeys": [
+        "A"
+      ],
+      "EssayMinWords": null,
+      "MatchingPairs": [],
+      "DragDrop": null,
+      "Skill": "ASP.NET",
+      "Difficulty": "Junior",
+      "Tags": [],
+      "Media": [],
+      "CreatedBy": null,
+      "CreatedAt": "2025-08-22T07:09:18.1894873Z",
+      "UpdatedBy": "HR",
+      "UpdatedAt": "2025-08-22T07:09:18.2022108Z"
+    },
+    "After": {
+      "Id": "0643b53f6922412f928f0bd23c43c813",
+      "Content": "Razor l\u00E0...",
+      "Type": 0,
+      "Options": [
+        "Template engine",
+        "DB",
+        "OS",
+        "Shell"
+      ],
+      "CorrectKeys": [
+        "A"
+      ],
+      "EssayMinWords": null,
+      "MatchingPairs": [],
+      "DragDrop": null,
+      "Skill": "ASP.NET",
+      "Difficulty": "Junior",
+      "Tags": [
+        "sql",
+        "select"
+      ],
+      "Media": [],
+      "CreatedBy": null,
+      "CreatedAt": "2025-08-22T07:09:18.1894873Z",
+      "UpdatedBy": "HR1",
+      "UpdatedAt": "2025-08-25T10:35:39.667343Z"
+    }
+  },
+  {
+    "At": "2025-08-26T02:04:15.8864988Z",
+    "Actor": "HR1",
+    "Action": "Question.Update",
+    "EntityId": "142941272ffa4a549a062214f15e1b90",
+    "Before": {
+      "Id": "142941272ffa4a549a062214f15e1b90",
+      "Content": "TestMP3",
+      "Type": 0,
+      "Options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "CorrectKeys": [
+        "A"
+      ],
+      "EssayMinWords": null,
+      "MatchingPairs": [],
+      "DragDrop": null,
+      "Skill": "C#",
+      "Difficulty": "Junior",
+      "Tags": [],
+      "Media": [
+        {
+          "Id": "2c112034dbdc4ef1a939e28caca3f351",
+          "FileName": "informational-quiz-381667.mp3",
+          "Url": "/uploads/423733cbfb9c4df5a19158dbdcaf9604.mp3",
+          "ContentType": "audio/mpeg",
+          "Size": 1360039,
+          "Caption": null
+        }
+      ],
+      "CreatedBy": "HR1",
+      "CreatedAt": "2025-08-25T09:50:45.945837Z",
+      "UpdatedBy": null,
+      "UpdatedAt": null
+    },
+    "After": {
+      "Id": "142941272ffa4a549a062214f15e1b90",
+      "Content": "TestMP3",
+      "Type": 0,
+      "Options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "CorrectKeys": [
+        "A"
+      ],
+      "EssayMinWords": null,
+      "MatchingPairs": [],
+      "DragDrop": null,
+      "Skill": "C#",
+      "Difficulty": "Junior",
+      "Tags": [
+        "sql",
+        "select"
+      ],
+      "Media": [
+        {
+          "Id": "2c112034dbdc4ef1a939e28caca3f351",
+          "FileName": "informational-quiz-381667.mp3",
+          "Url": "/uploads/423733cbfb9c4df5a19158dbdcaf9604.mp3",
+          "ContentType": "audio/mpeg",
+          "Size": 1360039,
+          "Caption": null
+        }
+      ],
+      "CreatedBy": "HR1",
+      "CreatedAt": "2025-08-25T09:50:45.945837Z",
+      "UpdatedBy": "HR1",
+      "UpdatedAt": "2025-08-26T02:04:15.8565117Z"
+    }
+  },
+  {
+    "At": "2025-08-26T02:04:58.382072Z",
+    "Actor": "HR1",
+    "Action": "Question.Update",
+    "EntityId": "263dc52224b1469f9ef3dba6fe34aae5",
+    "Before": {
+      "Id": "263dc52224b1469f9ef3dba6fe34aae5",
+      "Content": "Hello There",
+      "Type": 1,
+      "Options": [
+        "True",
+        "False"
+      ],
+      "CorrectKeys": [
+        "False"
+      ],
+      "EssayMinWords": null,
+      "MatchingPairs": [],
+      "DragDrop": null,
+      "Skill": "ASP.NET",
+      "Difficulty": "Mid",
+      "Tags": [
+        "git",
+        "rebase"
+      ],
+      "Media": [],
+      "CreatedBy": "HR",
+      "CreatedAt": "2025-08-22T07:49:26.4083301Z",
+      "UpdatedBy": null,
+      "UpdatedAt": null
+    },
+    "After": {
+      "Id": "263dc52224b1469f9ef3dba6fe34aae5",
+      "Content": "Hello There",
+      "Type": 1,
+      "Options": [
+        "True",
+        "False"
+      ],
+      "CorrectKeys": [
+        "False"
+      ],
+      "EssayMinWords": null,
+      "MatchingPairs": [],
+      "DragDrop": null,
+      "Skill": "ASP.NET",
+      "Difficulty": "Mid",
+      "Tags": [
+        "git",
+        "rebase"
+      ],
+      "Media": [
+        {
+          "Id": "e76776880be34e2dbd65a2e80669e72d",
+          "FileName": "R.jpg",
+          "Url": "/uploads/52c400563ef84f83b512335ea6433552.jpg",
+          "ContentType": "image/jpeg",
+          "Size": 190915,
+          "Caption": null
+        }
+      ],
+      "CreatedBy": "HR",
+      "CreatedAt": "2025-08-22T07:49:26.4083301Z",
+      "UpdatedBy": "HR1",
+      "UpdatedAt": "2025-08-26T02:04:58.3725176Z"
+    }
   }
 ]

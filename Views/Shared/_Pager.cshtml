@@ -1,0 +1,57 @@
+﻿@model Employee_Survey.Application.PagedResult<Employee_Survey.Domain.Question>
+@using Microsoft.AspNetCore.WebUtilities
+@using System.Linq
+
+@{
+    var req = ViewContext.HttpContext.Request;
+
+    // ParseQuery trả về IDictionary<string, StringValues>.
+    // Chuyển sang Dictionary<string,string> (thực chất là string?) bằng lambda CHUẨN.
+    var parsed = QueryHelpers.ParseQuery(req.QueryString.ToString());
+    var qsDict = parsed.ToDictionary(
+        pair => pair.Key,
+        pair => pair.Value.ToString(),     // <-- Sửa: có lambda đầy đủ
+        StringComparer.OrdinalIgnoreCase
+    );
+
+    int page = Model.Page;
+    int pageSize = Model.PageSize;
+    int total = Model.Total;
+    int totalPages = (int)Math.Ceiling(total / (double)pageSize);
+
+    string BuildUrl(int newPage)
+    {
+        // Dùng kiểu Dictionary<string, string?> để hợp chữ ký AddQueryString
+        var dict = new Dictionary<string, string?>(qsDict, StringComparer.OrdinalIgnoreCase)
+        {
+            ["Page"] = newPage.ToString(),
+            ["PageSize"] = pageSize.ToString()
+        };
+
+        var path = req.Path.HasValue ? req.Path.Value! : "";
+        return QueryHelpers.AddQueryString(path, dict);
+    }
+}
+
+@if (totalPages > 1)
+{
+    <nav aria-label="Question pagination">
+        <ul class="pagination mb-0">
+            <li class="page-item @(page <= 1 ? "disabled" : "")">
+                <a class="page-link" href="@(page > 1 ? BuildUrl(page - 1) : "#")">« Prev</a>
+            </li>
+
+            @for (var i = Math.Max(1, page - 2); i <= Math.Min(totalPages, page + 2); i++)
+            {
+                <li class="page-item @(i == page ? "active" : "")">
+                    <a class="page-link" href="@BuildUrl(i)">@i</a>
+                </li>
+            }
+
+            <li class="page-item @(page >= totalPages ? "disabled" : "")">
+                <a class="page-link" href="@(page<totalPages? BuildUrl(page + 1) : "#")">Next »</a>
+            </li>
+        </ul>
+        <span class="ms-2 small text-muted">Page @(page) / @(totalPages) • @(total) items</span>
+    </nav>
+}

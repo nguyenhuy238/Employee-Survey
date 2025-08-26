@@ -2,10 +2,15 @@
 @using Employee_Survey.Domain
 <h2>My Tests</h2>
 
-@if (!Model.Any() && !((List<Session>)ViewBag.InProgress).Any() && !((List<Session>)ViewBag.Submitted).Any())
+@{
+    var inProgress = (List<Session>)ViewBag.InProgress ?? new();
+    var submitted = (List<Session>)ViewBag.Submitted ?? new();
+    var titles = ViewBag.TestTitles as Dictionary<string, string> ?? new();
+}
+
+@if (!Model.Any() && !inProgress.Any() && !submitted.Any())
 {
     <div class="alert alert-info">
-        <i class="bi bi-info-circle"></i>
         <strong>Không có test nào:</strong> Bạn chưa được assign test nào hoặc tất cả test đã hết hạn.
     </div>
 }
@@ -49,7 +54,7 @@ else
 }
 
 <h4>In Progress</h4>
-@if (((List<Session>)ViewBag.InProgress).Any())
+@if (inProgress.Any())
 {
     <table class="table table-striped">
         <thead>
@@ -61,11 +66,12 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var s in (List<Session>)ViewBag.InProgress)
+            @foreach (var s in inProgress)
             {
+                var title = titles.TryGetValue(s.TestId, out var ttitle) ? ttitle : s.TestId;
                 <tr>
                     <td><code>@s.Id.Substring(0, 8)...</code></td>
-                    <td>@s.TestId</td>
+                    <td>@title</td>
                     <td>@s.StartAt.ToString("yyyy-MM-dd HH:mm")</td>
                     <td>
                         <a class="btn btn-sm btn-warning" href="/mytests/session/@s.Id">
@@ -83,7 +89,7 @@ else
 }
 
 <h4>Submitted</h4>
-@if (((List<Session>)ViewBag.Submitted).Any())
+@if (submitted.Any())
 {
     <table class="table table-striped">
         <thead>
@@ -96,15 +102,14 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var s in (List<Session>)ViewBag.Submitted)
+            @foreach (var s in submitted)
             {
+                var title = titles.TryGetValue(s.TestId, out var ttitle) ? ttitle : s.TestId;
                 <tr>
                     <td><code>@s.Id.Substring(0, 8)...</code></td>
-                    <td>@s.TestId</td>
+                    <td>@title</td>
                     <td>
-                        <span class="badge @(s.TotalScore >= 3 ? "bg-success" : "bg-danger")">
-                            @s.TotalScore
-                        </span>
+                        <span class="badge @(s.TotalScore >= 3 ? "bg-success" : "bg-danger")">@s.TotalScore</span>
                     </td>
                     <td>@s.EndAt?.ToString("yyyy-MM-dd HH:mm")</td>
                     <td>

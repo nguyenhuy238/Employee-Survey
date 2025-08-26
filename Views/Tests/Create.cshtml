@@ -9,7 +9,26 @@
     <em>(khi đó hệ thống sẽ không random)</em>. Nếu không chọn, đề sẽ sinh theo cấu hình random.
 </div>
 
-<form method="post">
+<!-- FORM GET: lọc/paging (tách riêng, không lồng vào POST) -->
+<form method="get" class="d-flex align-items-center mb-2" style="gap:.5rem;">
+    <input name="Keyword" value="@Model.Filter.Keyword" type="text" class="form-control" placeholder="Search keyword..." style="max-width: 220px;" />
+    <select name="PageSize" class="form-select" style="max-width: 110px;">
+        @{
+            var sizes = new[] { 10, 20, 50, 100 };
+            var current = Model.Filter.PageSize > 0 ? Model.Filter.PageSize : 20;
+        }
+        @foreach (var s in sizes)
+        {
+            <option value="@s" selected="@(current == s)">@s / page</option>
+        }
+    </select>
+    <button class="btn btn-outline-secondary" type="submit">Apply</button>
+</form>
+
+<!-- FORM POST: lưu Test -->
+<form method="post" asp-action="Create">
+    @Html.AntiForgeryToken()
+
     <div class="row">
         <div class="col-md-5">
             <div class="mb-2">
@@ -54,11 +73,6 @@
         </div>
 
         <div class="col-md-7">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-                <h5 class="mb-0">Chọn câu hỏi (tùy chọn)</h5>
-                <input id="qSearch" type="text" class="form-control" placeholder="Lọc nhanh theo nội dung..." style="max-width: 260px;" />
-            </div>
-
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-mcq" type="button" role="tab">
@@ -79,48 +93,40 @@
 
             <div class="tab-content border border-top-0 p-2" style="max-height: 520px; overflow:auto;">
                 <div class="tab-pane fade show active" id="tab-mcq" role="tabpanel">
-                    @Html.Partial("_QuestionTablePartial",
-                        (IEnumerable<Question>)Model.MCQQuestions,
-                        new ViewDataDictionary(ViewData) { { "Selected", Model.SelectedQuestionIds } })
+                    <partial name="_QuestionTablePartial"
+                             model="(IEnumerable<Employee_Survey.Domain.Question>)Model.MCQQuestions"
+                             view-data='new ViewDataDictionary(ViewData) { { "Selected", Model.SelectedQuestionIds } }' />
                 </div>
                 <div class="tab-pane fade" id="tab-tf" role="tabpanel">
-                    @Html.Partial("_QuestionTablePartial",
-                        (IEnumerable<Question>)Model.TFQuestions,
-                        new ViewDataDictionary(ViewData) { { "Selected", Model.SelectedQuestionIds } })
+                    <partial name="_QuestionTablePartial"
+                             model="(IEnumerable<Employee_Survey.Domain.Question>)Model.TFQuestions"
+                             view-data='new ViewDataDictionary(ViewData) { { "Selected", Model.SelectedQuestionIds } }' />
                 </div>
                 <div class="tab-pane fade" id="tab-essay" role="tabpanel">
-                    @Html.Partial("_QuestionTablePartial",
-                        (IEnumerable<Question>)Model.EssayQuestions,
-                        new ViewDataDictionary(ViewData) { { "Selected", Model.SelectedQuestionIds } })
+                    <partial name="_QuestionTablePartial"
+                             model="(IEnumerable<Employee_Survey.Domain.Question>)Model.EssayQuestions"
+                             view-data='new ViewDataDictionary(ViewData) { { "Selected", Model.SelectedQuestionIds } }' />
                 </div>
             </div>
 
-            <div class="mt-2 small text-muted">
-                Đã chọn: <span id="selectedCount">0</span> câu hỏi.
+            <div class="d-flex justify-content-between align-items-center mt-2">
+                <div class="small text-muted">Đã chọn: <span id="selectedCount">0</span> câu hỏi.</div>
+                <partial name="_Pager" model="Model.Page" />
             </div>
         </div>
     </div>
 </form>
 
-@section Scripts{
-<script>
-// Lọc nhanh theo nội dung
-document.getElementById('qSearch')?.addEventListener('input', function(){
-    const q = this.value.toLowerCase();
-    document.querySelectorAll('.q-row').forEach(tr=>{
-        const text = tr.getAttribute('data-text') || '';
-        tr.style.display = text.includes(q) ? '' : 'none';
-    });
-});
-
-// Đếm số checkbox được chọn
-function updateSelectedCount(){
-    const cbs = document.querySelectorAll('input[name="SelectedQuestionIds"]:checked');
-    document.getElementById('selectedCount').innerText = cbs.length;
-}
-document.addEventListener('change', function(e){
-    if(e.target && e.target.name === 'SelectedQuestionIds') updateSelectedCount();
-});
-updateSelectedCount();
-</script>
+@section Scripts {
+    <script>
+        function updateSelectedCount(){
+            const cbs = document.querySelectorAll('input[name="SelectedQuestionIds"]:checked');
+            const el = document.getElementById('selectedCount');
+            if (el) el.innerText = cbs.length;
+        }
+        document.addEventListener('change', function(e){
+            if(e.target && e.target.name === 'SelectedQuestionIds') updateSelectedCount();
+        });
+        updateSelectedCount();
+    </script>
 }

@@ -1,5 +1,4 @@
-﻿// File: Controllers/TestsController.cs
-using Employee_Survey.Application;
+﻿using Employee_Survey.Application;
 using Employee_Survey.Domain;
 using Employee_Survey.Infrastructure;
 using Employee_Survey.Models;
@@ -30,47 +29,67 @@ namespace Employee_Survey.Controllers
 
         public async Task<IActionResult> Index() => View(await _repo.GetAllAsync());
 
+        // ---------- Create (GET) có phân trang ----------
         [HttpGet]
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create([FromQuery] QuestionFilter f)
         {
-            var pagedResult = await _questionService.SearchAsync(new QuestionFilter());
-            var questions = pagedResult.Items;
+            if (f.Page <= 0) f.Page = 1;
+            if (f.PageSize <= 0) f.PageSize = 20;
+
+            var paged = await _questionService.SearchAsync(f);
 
             var model = new CreateTestViewModel
             {
-                MCQQuestions = questions.Where(q => q.Type == QType.MCQ).ToList(),
-                TFQuestions = questions.Where(q => q.Type == QType.TrueFalse).ToList(),
-                EssayQuestions = questions.Where(q => q.Type == QType.Essay).ToList()
+                Filter = f,
+                Page = paged,
+
+                Title = "",
+                DurationMinutes = 10,
+                PassScore = 3,
+                SkillFilter = "ASP.NET",
+                RandomMCQ = 2,
+                RandomTF = 1,
+                RandomEssay = 0
             };
             return View(model);
         }
 
+        // ---------- Create (POST) ----------
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Test t, [FromForm] List<string>? SelectedQuestionIds)
         {
-            // Nếu có chọn thủ công thì ưu tiên QuestionIds và tắt random
             if (SelectedQuestionIds != null && SelectedQuestionIds.Any())
             {
                 t.QuestionIds = SelectedQuestionIds.Distinct().ToList();
-                t.RandomMCQ = 0;
-                t.RandomTF = 0;
-                t.RandomEssay = 0;
+                t.RandomMCQ = 0; t.RandomTF = 0; t.RandomEssay = 0;
             }
             else
             {
-                // Không chọn thủ công -> yêu cầu random > 0
                 if (t.RandomMCQ + t.RandomTF + t.RandomEssay <= 0)
                     ModelState.AddModelError("", "Vui lòng chọn ít nhất 1 câu hỏi hoặc cấu hình số lượng random > 0");
             }
 
             if (!ModelState.IsValid)
             {
-                // Nạp lại dữ liệu cho view
-                var paged = await _questionService.SearchAsync(new QuestionFilter());
-                var qs = paged.Items;
+                var f = new QuestionFilter
+                {
+                    Page = int.TryParse(HttpContext.Request.Query["Page"], out var p) ? p : 1,
+                    PageSize = int.TryParse(HttpContext.Request.Query["PageSize"], out var ps) ? ps : 20,
+                    Keyword = HttpContext.Request.Query["Keyword"],
+                    Skill = HttpContext.Request.Query["Skill"],
+                    Difficulty = HttpContext.Request.Query["Difficulty"],
+                    TagsCsv = HttpContext.Request.Query["TagsCsv"],
+                    Sort = HttpContext.Request.Query["Sort"]
+                };
+
+                var paged = await _questionService.SearchAsync(f);
+
                 var vm = new CreateTestViewModel
                 {
+                    Filter = f,
+                    Page = paged,
+
                     Title = t.Title,
                     DurationMinutes = t.DurationMinutes,
                     PassScore = t.PassScore,
@@ -78,20 +97,14 @@ namespace Employee_Survey.Controllers
                     RandomMCQ = t.RandomMCQ,
                     RandomTF = t.RandomTF,
                     RandomEssay = t.RandomEssay,
-                    SelectedQuestionIds = SelectedQuestionIds ?? new List<string>(),
-                    MCQQuestions = qs.Where(q => q.Type == QType.MCQ).ToList(),
-                    TFQuestions = qs.Where(q => q.Type == QType.TrueFalse).ToList(),
-                    EssayQuestions = qs.Where(q => q.Type == QType.Essay).ToList()
+                    SelectedQuestionIds = SelectedQuestionIds ?? new List<string>()
                 };
                 return View(vm);
             }
 
-            // Tự động publish
             t.IsPublished = true;
             t.CreatedAt = DateTime.UtcNow;
             t.PublishedAt = DateTime.UtcNow;
-
-            // Audit cấu hình random tại thời điểm publish
             t.FrozenRandom = new FrozenRandomConfig
             {
                 SkillFilter = t.SkillFilter,
@@ -105,18 +118,25 @@ namespace Employee_Survey.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // --- Edit ---
+        // ---------- Edit (GET/POST) (giữ nguyên) ----------
+        // ... using giống cũ
+
         [HttpGet]
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(string id, [FromQuery] QuestionFilter f)
         {
             var t = await _repo.FirstOrDefaultAsync(x => x.Id == id);
             if (t == null) return NotFound();
 
-            var paged = await _questionService.SearchAsync(new QuestionFilter());
-            var qs = paged.Items;
+            // Mặc định paging
+            if (f.Page <= 0) f.Page = 1;
+            if (f.PageSize <= 0) f.PageSize = 20;
+
+            // Tải 1 trang câu hỏi theo filter/paging
+            var paged = await _questionService.SearchAsync(f);
 
             var vm = new EditTestViewModel
             {
+                // Core
                 Id = t.Id,
                 Title = t.Title,
                 DurationMinutes = t.DurationMinutes,
@@ -127,11 +147,15 @@ namespace Employee_Survey.Controllers
                 RandomTF = t.RandomTF,
                 RandomEssay = t.RandomEssay,
                 IsPublished = t.IsPublished,
-                SelectedQuestionIds = (t.QuestionIds ?? new()).ToList(),
-                MCQQuestions = qs.Where(q => q.Type == QType.MCQ).ToList(),
-                TFQuestions = qs.Where(q => q.Type == QType.TrueFalse).ToList(),
-                EssayQuestions = qs.Where(q => q.Type == QType.Essay).ToList()
+
+                // Paging
+                Filter = f,
+                Page = paged,
+
+                // Selected
+                SelectedQuestionIds = (t.QuestionIds ?? new()).ToList()
             };
+
             return View(vm);
         }
 
@@ -142,7 +166,7 @@ namespace Employee_Survey.Controllers
             var t = await _repo.FirstOrDefaultAsync(x => x.Id == vm.Id);
             if (t == null) return NotFound();
 
-            // validate cơ bản
+            // Validate: hoặc chọn thủ công, hoặc random > 0
             if ((SelectedQuestionIds == null || !SelectedQuestionIds.Any()) &&
                 (vm.RandomMCQ + vm.RandomTF + vm.RandomEssay <= 0))
             {
@@ -151,18 +175,25 @@ namespace Employee_Survey.Controllers
 
             if (!ModelState.IsValid)
             {
-                var paged = await _questionService.SearchAsync(new QuestionFilter());
-                var qs = paged.Items;
+                // Khi lỗi, nạp lại đúng trang/filter hiện tại từ query string
+                var f = new QuestionFilter
+                {
+                    Page = int.TryParse(HttpContext.Request.Query["Page"], out var p) ? p : 1,
+                    PageSize = int.TryParse(HttpContext.Request.Query["PageSize"], out var ps) ? ps : 20,
+                    Keyword = HttpContext.Request.Query["Keyword"],
+                    Skill = HttpContext.Request.Query["Skill"],
+                    Difficulty = HttpContext.Request.Query["Difficulty"],
+                    TagsCsv = HttpContext.Request.Query["TagsCsv"],
+                    Sort = HttpContext.Request.Query["Sort"]
+                };
 
-                // nạp lại danh sách câu hỏi
-                vm.MCQQuestions = qs.Where(q => q.Type == QType.MCQ).ToList();
-                vm.TFQuestions = qs.Where(q => q.Type == QType.TrueFalse).ToList();
-                vm.EssayQuestions = qs.Where(q => q.Type == QType.Essay).ToList();
+                vm.Filter = f;
+                vm.Page = await _questionService.SearchAsync(f);
                 vm.SelectedQuestionIds = SelectedQuestionIds ?? new List<string>();
                 return View(vm);
             }
 
-            // cập nhật các trường
+            // Cập nhật test
             t.Title = vm.Title;
             t.DurationMinutes = vm.DurationMinutes;
             t.PassScore = vm.PassScore;
@@ -173,7 +204,6 @@ namespace Employee_Survey.Controllers
             t.RandomEssay = vm.RandomEssay;
             t.UpdatedAt = DateTime.UtcNow;
 
-            // nếu chọn thủ công -> set QuestionIds & tắt random
             if (SelectedQuestionIds != null && SelectedQuestionIds.Any())
             {
                 t.QuestionIds = SelectedQuestionIds.Distinct().ToList();
@@ -181,7 +211,6 @@ namespace Employee_Survey.Controllers
             }
             else
             {
-                // không chọn thủ công -> để random theo cấu hình
                 t.QuestionIds = new();
             }
 
@@ -190,20 +219,19 @@ namespace Employee_Survey.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // --- Delete ---
+
+        // ---------- Delete ----------
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(string id)
         {
-            // Xoá assignments liên quan (nếu có)
             await _aRepo.DeleteAsync(a => a.TestId == id);
-
             await _repo.DeleteAsync(t => (t as Test)!.Id == id);
             TempData["Msg"] = "Đã xoá bài test.";
             return RedirectToAction(nameof(Index));
         }
 
-        // --- Toggle publish/draft ---
+        // ---------- Toggle publish ----------
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ToggleStatus(string id)
@@ -234,7 +262,7 @@ namespace Employee_Survey.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // --- Gán nhanh MVP ---
+        // ---------- Assign nhanh ----------
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AssignToUser(string testId, string userId)
@@ -260,7 +288,6 @@ namespace Employee_Survey.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // Danh sách user để chọn assign
         [HttpGet]
         public async Task<IActionResult> Assign(string id)
         {
@@ -283,7 +310,6 @@ namespace Employee_Survey.Controllers
             return View(vm);
         }
 
-        // Lưu danh sách assign theo User
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Assign(string testId, List<string> userIds, DateTime? startAt, DateTime? endAt)

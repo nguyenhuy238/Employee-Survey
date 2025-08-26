@@ -8,6 +8,24 @@
     <div class="alert alert-success">@TempData["Msg"]</div>
 }
 
+<!-- FORM GET: lọc/paging (tách riêng, không lồng) -->
+<form method="get" asp-action="Edit" asp-controller="Tests" class="d-flex align-items-center mb-2" style="gap:.5rem;">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <input name="Keyword" value="@Model.Filter.Keyword" type="text" class="form-control" placeholder="Search keyword..." style="max-width: 220px;" />
+    <select name="PageSize" class="form-select" style="max-width: 110px;">
+        @{
+            var sizes = new[] { 10, 20, 50, 100 };
+            var current = Model.Filter.PageSize > 0 ? Model.Filter.PageSize : 20;
+        }
+        @foreach (var s in sizes)
+        {
+            <option value="@s" selected="@(current == s)">@s / page</option>
+        }
+    </select>
+    <button class="btn btn-outline-secondary" type="submit">Apply</button>
+</form>
+
+<!-- FORM POST: lưu thay đổi -->
 <form asp-action="Edit" method="post">
     @Html.AntiForgeryToken()
     <input type="hidden" asp-for="Id" />
@@ -75,23 +93,19 @@
         </div>
 
         <div class="col-md-7">
-            <p class="text-muted">
-                (Tùy chọn) Chọn thủ công các câu hỏi cho đề. Nếu chọn thủ công, hệ thống sẽ bỏ qua cấu hình random.
-            </p>
-
             <ul class="nav nav-tabs" id="qTabs" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-mcq" type="button" role="tab">MCQ</button>
+                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-mcq" type="button" role="tab">MCQ (@Model.MCQQuestions.Count)</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-tf" type="button" role="tab">True/False</button>
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-tf" type="button" role="tab">True/False (@Model.TFQuestions.Count)</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-essay" type="button" role="tab">Essay</button>
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-essay" type="button" role="tab">Essay (@Model.EssayQuestions.Count)</button>
                 </li>
             </ul>
 
-            <div class="tab-content border p-3" id="qTabsContent">
+            <div class="tab-content border p-3" id="qTabsContent" style="max-height: 520px; overflow:auto;">
                 <div class="tab-pane fade show active" id="tab-mcq" role="tabpanel">
                     @if (Model.MCQQuestions?.Any() == true)
                     {
@@ -100,14 +114,13 @@
                             var isChecked = Model.SelectedQuestionIds.Contains(q.Id);
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="SelectedQuestionIds" value="@q.Id" @(isChecked ? "checked" : "") />
-                                <label class="form-check-label">
-                                    <b>@q.Skill</b> — @q.Content
-                                </label>
+                                <label class="form-check-label"><b>@q.Skill</b> — @q.Content</label>
                             </div>
                         }
                     }
                     else
                     {
+
                         <div class="text-muted">No MCQ questions.</div>
                     }
                 </div>
@@ -120,14 +133,13 @@
                             var isChecked = Model.SelectedQuestionIds.Contains(q.Id);
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="SelectedQuestionIds" value="@q.Id" @(isChecked ? "checked" : "") />
-                                <label class="form-check-label">
-                                    <b>@q.Skill</b> — @q.Content
-                                </label>
+                                <label class="form-check-label"><b>@q.Skill</b> — @q.Content</label>
                             </div>
                         }
                     }
                     else
                     {
+
                         <div class="text-muted">No True/False questions.</div>
                     }
                 </div>
@@ -140,17 +152,20 @@
                             var isChecked = Model.SelectedQuestionIds.Contains(q.Id);
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="SelectedQuestionIds" value="@q.Id" @(isChecked ? "checked" : "") />
-                                <label class="form-check-label">
-                                    <b>@q.Skill</b> — @q.Content
-                                </label>
+                                <label class="form-check-label"><b>@q.Skill</b> — @q.Content</label>
                             </div>
                         }
                     }
                     else
                     {
+
                         <div class="text-muted">No Essay questions.</div>
                     }
                 </div>
+            </div>
+
+            <div class="d-flex justify-content-end align-items-center mt-2">
+                <partial name="_Pager" model="Model.Page" />
             </div>
         </div>
     </div>

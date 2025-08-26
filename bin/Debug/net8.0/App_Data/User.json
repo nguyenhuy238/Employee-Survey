@@ -34,5 +34,14 @@
     "Level": "Junior",
     "TeamId": "t-a",
     "PasswordHash": "$2a$11$W2e1lxIDAaawvrNBCG9lTOxLEBmfcp3zyJsMdtNLO.oK5HPtetpQW"
+  },
+  {
+    "Id": "u-manager",
+    "Name": "Manager",
+    "Email": "manager@local",
+    "Role": 3,
+    "Level": "Senior",
+    "TeamId": "t-a",
+    "PasswordHash": "$2a$11$UeY2ar5gc7lBhRFzD6f.j.kyKlwFeLE2UFIRFoMojgqo9JfcFclA."
   }
 ]

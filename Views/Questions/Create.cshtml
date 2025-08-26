@@ -1,9 +1,15 @@
 ﻿@model Employee_Survey.Domain.Question
 <h2>Create Question</h2>
-<form method="post" enctype="multipart/form-data" onsubmit="normalize()">
+@* <form method="post" enctype="multipart/form-data" onsubmit="normalize()">
     @Html.Partial("_Form", Model)
     <button class="btn btn-primary">Save</button>
-</form>
+</form> *@
+<form method="post" enctype="multipart/form-data">
+    <partial name="_Form" model="Model" />
+    <button class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary ms-2">Back</a>
+</form>-action="Index" class="btn btn-secondary ms-2">Back</a>
+
 <a asp-action="Index" class="btn btn-secondary">Back</a>
 <script>
     function normalize(){

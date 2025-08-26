@@ -11,11 +11,17 @@ public class QuestionsController : Controller
 {
     private readonly Application.IQuestionService _svc;
     private readonly IQuestionExcelService _xlsx;
-    private readonly IRepository<Question> _qRepo; // for export all quick
+    private readonly IRepository<Question> _qRepo;
     private readonly IWebHostEnvironment _env;
+    private readonly IConfiguration _cfg;
 
-    public QuestionsController(Application.IQuestionService svc, IQuestionExcelService xlsx, IRepository<Question> qRepo, IWebHostEnvironment env)
-    { _svc = svc; _xlsx = xlsx; _qRepo = qRepo; _env = env; }
+    public QuestionsController(
+        Application.IQuestionService svc,
+        IQuestionExcelService xlsx,
+        IRepository<Question> qRepo,
+        IWebHostEnvironment env,
+        IConfiguration cfg)
+    { _svc = svc; _xlsx = xlsx; _qRepo = qRepo; _env = env; _cfg = cfg; }
 
     // LIST + FILTER + PAGING
     public async Task<IActionResult> Index([FromQuery] QuestionFilter f)
@@ -33,7 +39,6 @@ public class QuestionsController : Controller
     public async Task<IActionResult> Create(
         Question q,
         List<IFormFile>? mediaFiles,
-        // các field từ form partial (_Form.cshtml)
         string? CorrectKeys,
         string? MatchingPairsRaw,
         string? DragTokens,
@@ -42,10 +47,8 @@ public class QuestionsController : Controller
     {
         try
         {
-            // Chuẩn hoá field theo Type
             NormalizeQuestionFieldsFromForm(q, CorrectKeys, MatchingPairsRaw, DragTokens, DragSlotsRaw, TagsCsv);
 
-            // upload media (optional)
             if (mediaFiles?.Any() == true)
                 q.Media = await SaveMediaAsync(mediaFiles);
 
@@ -59,8 +62,9 @@ public class QuestionsController : Controller
         }
     }
 
-    // EDIT
-    [HttpGet]
+    // ===== EDIT (ROUTES RÕ RÀNG) =====
+    // GET: /Questions/Edit/{id}
+    [HttpGet("/Questions/Edit/{id}")]
     public async Task<IActionResult> Edit(string id)
     {
         var q = await _svc.GetAsync(id);
@@ -68,9 +72,12 @@ public class QuestionsController : Controller
         return View(q);
     }
 
-    [HttpPost]
+    // POST: /Questions/Edit/{id}
+    [HttpPost("/Questions/Edit/{id}")]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(
-        Question q,
+        string id,                     // id từ route
+        Question q,                    // dữ liệu post từ form
         List<IFormFile>? mediaFiles,
         string? CorrectKeys,
         string? MatchingPairsRaw,
@@ -83,11 +90,31 @@ public class QuestionsController : Controller
 
         try
         {
+            // đảm bảo q.Id có giá trị (từ hidden hoặc route)
+            if (string.IsNullOrWhiteSpace(q.Id)) q.Id = id;
+
+            var original = await _svc.GetAsync(q.Id);
+            if (original == null)
+            {
+                ModelState.AddModelError("", "Not found");
+                return View(q);
+            }
+
             NormalizeQuestionFieldsFromForm(q, CorrectKeys, MatchingPairsRaw, DragTokens, DragSlotsRaw, TagsCsv);
 
-            // Nếu có file media mới, upload và cập nhật
+            // giữ audit cũ
+            q.CreatedAt = original.CreatedAt;
+            q.CreatedBy = original.CreatedBy;
+
+            // merge media cũ + mới
+            var mergedMedia = (original.Media ?? new List<MediaFile>()).ToList();
             if (mediaFiles?.Any() == true)
-                q.Media = await SaveMediaAsync(mediaFiles);
+            {
+                var newly = await SaveMediaAsync(mediaFiles);
+                var exists = new HashSet<string>(mergedMedia.Select(m => m.Url), StringComparer.OrdinalIgnoreCase);
+                foreach (var m in newly) if (exists.Add(m.Url)) mergedMedia.Add(m);
+            }
+            q.Media = mergedMedia;
 
             var (success, reason) = await _svc.UpdateAsync(q, User.Identity?.Name ?? "hr");
             if (!success)
@@ -104,6 +131,7 @@ public class QuestionsController : Controller
             return View(q);
         }
     }
+    // ===== END EDIT =====
 
     public IActionResult DetailsBlocked(string id, string reason) { ViewBag.Reason = reason; ViewBag.Id = id; return View(); }
 
@@ -127,12 +155,9 @@ public class QuestionsController : Controller
         using var s = file.OpenReadStream();
         var res = await _xlsx.ImportAsync(s, User.Identity?.Name ?? "hr");
 
-        // cập nhật thông báo có Skipped
         TempData["Msg"] = $"Imported {res.Success}/{res.Total}. Skipped: {res.Skipped}. Errors: {res.Errors.Count}";
-
         if (res.Errors.Any() || res.SkippedReasons.Any())
             TempData["ErrDetail"] = string.Join("\n", res.Errors.Concat(res.SkippedReasons));
-
         return RedirectToAction(nameof(Index));
     }
 
@@ -145,7 +170,7 @@ public class QuestionsController : Controller
         return File(bytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "QuestionBank.xlsx");
     }
 
-    // DELETE
+    // DELETE QUESTION
     [HttpPost]
     public async Task<IActionResult> Delete(string id)
     {
@@ -159,6 +184,31 @@ public class QuestionsController : Controller
         return RedirectToAction(nameof(Index));
     }
 
+    // DELETE 1 MEDIA
+    [HttpPost]
+    public async Task<IActionResult> DeleteMedia(string questionId, string mediaId)
+    {
+        var q = await _svc.GetAsync(questionId);
+        if (q == null) return NotFound();
+
+        var m = q.Media.FirstOrDefault(x => x.Id == mediaId);
+        if (m == null) return RedirectToAction(nameof(Edit), new { id = questionId });
+
+        try
+        {
+            var physical = Path.Combine(_env.WebRootPath, m.Url.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
+            if (System.IO.File.Exists(physical))
+                System.IO.File.Delete(physical);
+        }
+        catch { /* ignore */ }
+
+        q.Media.RemoveAll(x => x.Id == mediaId);
+        var (ok, reason) = await _svc.UpdateAsync(q, User.Identity?.Name ?? "hr");
+        if (!ok) TempData["Err"] = reason ?? "Không thể xóa file";
+
+        return RedirectToAction(nameof(Edit), new { id = questionId });
+    }
+
     // Helpers
     private static void NormalizeQuestionFieldsFromForm(
         Question q,
@@ -168,10 +218,8 @@ public class QuestionsController : Controller
         string? dragSlotsRaw,
         string? tagsCsv)
     {
-        // Options: textarea mỗi dòng 1 option -> đã bind vào q.Options nếu name="Options"
         if (q.Options != null)
         {
-            // làm sạch khoảng trắng/thừa dòng
             q.Options = q.Options
                 .SelectMany(line => (line ?? "").Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries))
                 .Select(s => s.Trim())
@@ -179,15 +227,12 @@ public class QuestionsController : Controller
                 .ToList();
         }
 
-        // CorrectKeys: input kiểu "A|C" hoặc "True"
         if (!string.IsNullOrWhiteSpace(correctKeys))
             q.CorrectKeys = correctKeys.Split('|', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList();
 
-        // Tags
         if (!string.IsNullOrWhiteSpace(tagsCsv))
             q.Tags = tagsCsv.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList();
 
-        // Matching
         if (q.Type == QType.Matching)
         {
             q.MatchingPairs = new();
@@ -200,7 +245,6 @@ public class QuestionsController : Controller
             }
         }
 
-        // DragDrop
         if (q.Type == QType.DragDrop)
         {
             var tokens = string.IsNullOrWhiteSpace(dragTokens)
@@ -218,7 +262,6 @@ public class QuestionsController : Controller
             q.DragDrop = new DragDropConfig { Tokens = tokens, Slots = slots };
         }
 
-        // Chuẩn hoá True/False (đảm bảo Options đúng)
         if (q.Type == QType.TrueFalse)
         {
             q.Options = new() { "True", "False" };
@@ -230,19 +273,49 @@ public class QuestionsController : Controller
         var result = new List<MediaFile>();
         var root = Path.Combine(_env.WebRootPath, "uploads");
         Directory.CreateDirectory(root);
+
+        var allowed = _cfg.GetSection("AllowedUploadContentTypes").Get<string[]>() ?? new[]
+        {
+            "image/jpeg","image/png","image/gif","image/webp",
+            "audio/mpeg","audio/wav","audio/ogg",
+            "video/mp4",
+            "application/pdf"
+        };
+        var maxBytes = _cfg.GetValue<long?>("MaxUploadFileSizeBytes") ?? 10L * 1024 * 1024;
+
         foreach (var f in files)
         {
-            var safe = Path.GetFileNameWithoutExtension(f.FileName);
-            safe = string.Join("_", safe.Split(Path.GetInvalidFileNameChars()));
-            var ext = Path.GetExtension(f.FileName);
+            if (f.Length == 0) continue;
+            if (f.Length > maxBytes)
+                throw new InvalidOperationException($"File {f.FileName} vượt quá {(maxBytes / (1024 * 1024))}MB.");
+
+            var contentType = string.IsNullOrWhiteSpace(f.ContentType) ? "application/octet-stream" : f.ContentType;
+            var ext = Path.GetExtension(f.FileName).ToLowerInvariant();
+
+            bool okType =
+                allowed.Contains(contentType)
+                || (allowed.Any(a => a.StartsWith("image/")) && (ext is ".png" or ".jpg" or ".jpeg" or ".gif" or ".webp"))
+                || (allowed.Contains("application/pdf") && ext == ".pdf")
+                || (allowed.Any(a => a.StartsWith("audio/")) && (ext is ".mp3" or ".wav" or ".ogg"))
+                || (allowed.Any(a => a.StartsWith("video/")) && (ext is ".mp4"));
+
+            if (!okType)
+                throw new InvalidOperationException($"Loại file {f.FileName} ({contentType}) không được phép.");
+
             var name = $"{Guid.NewGuid():N}{ext}";
             var path = Path.Combine(root, name);
+
             using var fs = System.IO.File.Create(path);
             await f.CopyToAsync(fs);
-            result.Add(new MediaFile { FileName = f.FileName, Url = $"/uploads/{name}", ContentType = f.ContentType, Size = f.Length });
+
+            result.Add(new MediaFile
+            {
+                FileName = f.FileName,
+                Url = $"/uploads/{name}",
+                ContentType = contentType,
+                Size = f.Length
+            });
         }
         return result;
     }
-
-
 }

@@ -11,12 +11,17 @@
     "RandomEssay": 0,
     "IsPublished": true,
     "QuestionIds": [],
-    "FrozenRandom": null,
+    "FrozenRandom": {
+      "SkillFilter": "ASP.NET",
+      "RandomMCQ": 2,
+      "RandomTF": 1,
+      "RandomEssay": 0
+    },
     "CreatedBy": null,
     "CreatedAt": "2025-01-01T08:41:38.8234756Z",
     "UpdatedBy": null,
     "UpdatedAt": "2025-08-22T06:41:32.4050383Z",
-    "PublishedAt": "2025-01-01T08:41:38.8234756Z"
+    "PublishedAt": "2025-08-26T02:05:38.32186Z"
   },
   {
     "Id": "d8d6343a88e24a24b40374e92c3989a1",
@@ -30,12 +35,17 @@
     "RandomEssay": 0,
     "IsPublished": true,
     "QuestionIds": [],
-    "FrozenRandom": null,
+    "FrozenRandom": {
+      "SkillFilter": "IQ Skill",
+      "RandomMCQ": 2,
+      "RandomTF": 1,
+      "RandomEssay": 0
+    },
     "CreatedBy": null,
     "CreatedAt": "2025-01-01T08:41:38.8184246Z",
     "UpdatedBy": null,
     "UpdatedAt": null,
-    "PublishedAt": "2025-01-01T08:41:38.8184246Z"
+    "PublishedAt": "2025-08-26T02:05:39.6438124Z"
   },
   {
     "Id": "ef114d25aa904ede8d8e3ce495bb685d",
@@ -59,7 +69,7 @@
     "CreatedAt": "2025-08-22T02:20:57.0990457Z",
     "UpdatedBy": null,
     "UpdatedAt": null,
-    "PublishedAt": "2025-08-22T06:46:24.9007963Z"
+    "PublishedAt": "2025-08-26T02:05:40.2612634Z"
   },
   {
     "Id": "e320255560fb42a5936747d6be783624",
@@ -95,13 +105,13 @@
     "CreatedAt": "2025-08-22T07:58:22.8428854Z",
     "UpdatedBy": null,
     "UpdatedAt": null,
-    "PublishedAt": "2025-08-22T07:58:22.8428857Z"
+    "PublishedAt": "2025-08-26T02:05:40.9270125Z"
   },
   {
-    "Id": "84334582f3534537a0867aadefcf455d",
-    "Title": "TestCuong",
-    "DurationMinutes": 1,
-    "PassScore": 1,
+    "Id": "67b3386a18954bec96711477eb02768f",
+    "Title": "TestTime",
+    "DurationMinutes": 2,
+    "PassScore": 3,
     "ShuffleQuestions": true,
     "SkillFilter": "ASP.NET",
     "RandomMCQ": 0,
@@ -109,17 +119,19 @@
     "RandomEssay": 0,
     "IsPublished": true,
     "QuestionIds": [
+      "142941272ffa4a549a062214f15e1b90",
+      "5ffa5453c4674b1abdab3e2b2db23f45",
       "a14f146c70e64a7c96dde4676a5a2cba",
       "0a72d3b1d68743b18734afca55320135",
-      "9f51d9a31c974ec1bc33668ff15fbcca",
-      "c310d9688146426c8ca5f2d5ae2dbf01",
-      "33091ece1f2349f5ba64e5ef8b70fc93",
-      "ca1ca26e74ae487499341db94749dcc1",
-      "c3e0816cdb5e4076a07e8fc44170d73a",
-      "55a55cd48ba64c13928a56bc9f17e376",
-      "bc760c59974b4b61aa0bf541cba114da",
+      "1b486c13c1154adc8382ea5ea320b922",
+      "822d82e6c51747ac92646c39cebc4996",
       "263dc52224b1469f9ef3dba6fe34aae5",
-      "5856761aa77446ffa92a27d93fc862d7"
+      "5856761aa77446ffa92a27d93fc862d7",
+      "d207654258db4983b81df4dc56afd51e",
+      "54d190c8c52d4113aba534fe604f58d2",
+      "56bc787656bf458e9c0376241103a997",
+      "b82281438dde41f8aa3da93819aff5dc",
+      "6f6e78383e724da39b9939af4592ccf9"
     ],
     "FrozenRandom": {
       "SkillFilter": "ASP.NET",
@@ -128,9 +140,9 @@
       "RandomEssay": 0
     },
     "CreatedBy": null,
-    "CreatedAt": "2025-08-22T08:36:25.4053746Z",
+    "CreatedAt": "2025-08-26T03:21:02.5572882Z",
     "UpdatedBy": null,
     "UpdatedAt": null,
-    "PublishedAt": "2025-08-22T08:36:25.4053748Z"
+    "PublishedAt": "2025-08-26T03:21:02.5572885Z"
   }
 ]

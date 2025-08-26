@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Manager Dashboard";
+    Layout = "_Layout";
+}
+
+<h2>Manager Dashboard</h2>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="fw-bold">Số bài Test</div>
+                <div class="display-6">@ViewBag.TotalTests</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="fw-bold">Số nhân viên</div>
+                <div class="display-6">@ViewBag.TotalEmployees</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p class="mt-4 text-muted">
+    Đây là trang tổng quan cho Quản lý (Manager). Bạn có thể bổ sung các report/biểu đồ tùy ý.
+</p>
