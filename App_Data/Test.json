@@ -1,55 +1,7 @@
 [
   {
     "Id": "t-basic",
-    "Title": "Basic .NET 1",
-    "DurationMinutes": 30,
-    "PassScore": 3,
-    "ShuffleQuestions": true,
-    "SkillFilter": "ASP.NET",
-    "RandomMCQ": 2,
-    "RandomTF": 1,
-    "RandomEssay": 0,
-    "IsPublished": true,
-    "QuestionIds": [],
-    "FrozenRandom": {
-      "SkillFilter": "ASP.NET",
-      "RandomMCQ": 2,
-      "RandomTF": 1,
-      "RandomEssay": 0
-    },
-    "CreatedBy": null,
-    "CreatedAt": "2025-01-01T08:41:38.8234756Z",
-    "UpdatedBy": null,
-    "UpdatedAt": "2025-08-22T06:41:32.4050383Z",
-    "PublishedAt": "2025-08-26T02:05:38.32186Z"
-  },
-  {
-    "Id": "d8d6343a88e24a24b40374e92c3989a1",
-    "Title": "TestIQ",
-    "DurationMinutes": 10,
-    "PassScore": 3,
-    "ShuffleQuestions": true,
-    "SkillFilter": "IQ Skill",
-    "RandomMCQ": 2,
-    "RandomTF": 1,
-    "RandomEssay": 0,
-    "IsPublished": true,
-    "QuestionIds": [],
-    "FrozenRandom": {
-      "SkillFilter": "IQ Skill",
-      "RandomMCQ": 2,
-      "RandomTF": 1,
-      "RandomEssay": 0
-    },
-    "CreatedBy": null,
-    "CreatedAt": "2025-01-01T08:41:38.8184246Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null,
-    "PublishedAt": "2025-08-26T02:05:39.6438124Z"
-  },
-  {
-    "Id": "ef114d25aa904ede8d8e3ce495bb685d",
-    "Title": "Test Math",
+    "Title": "Basic .NET",
     "DurationMinutes": 10,
     "PassScore": 3,
     "ShuffleQuestions": true,
@@ -57,59 +9,20 @@
     "RandomMCQ": 2,
     "RandomTF": 1,
     "RandomEssay": 0,
+    "TotalMaxScore": 10,
+    "Items": [],
     "IsPublished": true,
     "QuestionIds": [],
-    "FrozenRandom": {
-      "SkillFilter": "ASP.NET",
-      "RandomMCQ": 2,
-      "RandomTF": 1,
-      "RandomEssay": 0
-    },
+    "FrozenRandom": null,
     "CreatedBy": null,
-    "CreatedAt": "2025-08-22T02:20:57.0990457Z",
+    "CreatedAt": "2025-08-29T02:04:41.3177961Z",
     "UpdatedBy": null,
     "UpdatedAt": null,
-    "PublishedAt": "2025-08-26T02:05:40.2612634Z"
+    "PublishedAt": "2025-08-29T02:04:41.3177962Z"
   },
   {
-    "Id": "e320255560fb42a5936747d6be783624",
-    "Title": "TestOk",
-    "DurationMinutes": 2,
-    "PassScore": 2,
-    "ShuffleQuestions": true,
-    "SkillFilter": "ASP.NET",
-    "RandomMCQ": 0,
-    "RandomTF": 0,
-    "RandomEssay": 0,
-    "IsPublished": true,
-    "QuestionIds": [
-      "a14f146c70e64a7c96dde4676a5a2cba",
-      "0a72d3b1d68743b18734afca55320135",
-      "1b486c13c1154adc8382ea5ea320b922",
-      "822d82e6c51747ac92646c39cebc4996",
-      "bc8112663406439fb607316ca0863ea8",
-      "9f51d9a31c974ec1bc33668ff15fbcca",
-      "c310d9688146426c8ca5f2d5ae2dbf01",
-      "33091ece1f2349f5ba64e5ef8b70fc93",
-      "aa0e27bdb17148feb46c879855ba8686",
-      "263dc52224b1469f9ef3dba6fe34aae5",
-      "5856761aa77446ffa92a27d93fc862d7"
-    ],
-    "FrozenRandom": {
-      "SkillFilter": "ASP.NET",
-      "RandomMCQ": 0,
-      "RandomTF": 0,
-      "RandomEssay": 0
-    },
-    "CreatedBy": null,
-    "CreatedAt": "2025-08-22T07:58:22.8428854Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null,
-    "PublishedAt": "2025-08-26T02:05:40.9270125Z"
-  },
-  {
-    "Id": "e794d83b19084a2ba2d1e5e0283a54f2",
-    "Title": "TestMail1",
+    "Id": "a2c676c801244d94b95498acc1471f7e",
+    "Title": "Test",
     "DurationMinutes": 3,
     "PassScore": 3,
     "ShuffleQuestions": true,
@@ -117,18 +30,70 @@
     "RandomMCQ": 0,
     "RandomTF": 0,
     "RandomEssay": 0,
+    "TotalMaxScore": 10,
+    "Items": [],
     "IsPublished": true,
     "QuestionIds": [
-      "142941272ffa4a549a062214f15e1b90",
-      "5ffa5453c4674b1abdab3e2b2db23f45",
-      "a14f146c70e64a7c96dde4676a5a2cba",
-      "0a72d3b1d68743b18734afca55320135",
-      "1b486c13c1154adc8382ea5ea320b922",
-      "822d82e6c51747ac92646c39cebc4996",
-      "bc8112663406439fb607316ca0863ea8",
-      "9f51d9a31c974ec1bc33668ff15fbcca",
-      "263dc52224b1469f9ef3dba6fe34aae5",
-      "5856761aa77446ffa92a27d93fc862d7"
+      "9fe652e75e59453c86f01f1667a52b5d",
+      "b0d727e8642642abb204788675d7fb3d",
+      "e523011b856a471f922726746d9d1c85",
+      "ddd38a3acd48423c8c0e0b04dc283549",
+      "a5064e4e2d39462983622b0051b44927",
+      "6e47c17ce52f4b81a00654556ef83e4e",
+      "a30935ef505b4a01b9c8b87dfb0a5738",
+      "54fda5bb9d1640999338c75312ecb2d1",
+      "676095ef93134b60a78dc586b7fae3e6",
+      "767679248fb74485803dbf49d85853d0",
+      "1fa6e16426a94b41a1dec6b235d8666b",
+      "59b78ba7a5bd478f82f715c1c5ec6124",
+      "91dd916bbe694b02b37c1f866b1662c6",
+      "783e2f12d7fb4fa399f7d2f8780dcf62",
+      "4c127f1bef6542a3a990a302031ae2a4",
+      "87c39b123c8347e0adafcbcb1237343c",
+      "551b60eaa352403ab388e5c65164e07f",
+      "6015f2522a87436b8380d3b1d14798a5",
+      "6fd7ebabd3b54b86bf3dfc28701e6951",
+      "e7f38ac2b2514cd2b23eb1f1988b50d4",
+      "7af9b6af40fa4ae2bfeb474bb496321f",
+      "ad65bb0a7f4e45bf83876b3445fe201a",
+      "ceb67f51c1c34d999ba7528661161261",
+      "9d908dc67b554ed9a85c00776c4592c5",
+      "c9e6931cbfcf4b2eb4916f6272e11548",
+      "239bf7a411cf4cc8a2c401a7a70dca1d",
+      "936a1789295b49f7b5e86bc4e484b5d7",
+      "c6a5155ddc054d6d833c48446236cabc",
+      "9ae0772a16a446a18fbdc35e8f3694c6",
+      "23f419c715a14082b45c7ef9a00724a8",
+      "d7c839e795f940b5b1b6e1affb53b817",
+      "b97402bb513146dd982ef4958c2d47c7",
+      "301456ca7cec4e1bbf5d588481846c98",
+      "c88ddb1ea8044264975bf435a250f7ce",
+      "62028e4332084cccac6f223da94d441d",
+      "0ffbc8b4d2fe4554b49ad93bd878002d",
+      "0d63e6c276f845c0a305f9009909eb51",
+      "c45f76968e5f4311b0b7bcd7b1af2b60",
+      "fed2078715074d3fa08e9c27fba59e70",
+      "2e0b7401d6e34018856ceb76756906f9",
+      "45e0faf524704983a067784db49bd21c",
+      "851e9396235c4aa286e2e43bd31489d1",
+      "05068aae81c34b1585197941576f5b3a",
+      "8bbf2b049f7e4919afba31404c35e2d4",
+      "e3e1bc2282c44fea89b9079ae29b7782",
+      "ef2e44c877054ca2b7da63acf7c6a31c",
+      "1bac85e8d3a7472180147fba97ad7cfb",
+      "08a1763e1e82467aa6b48105723726f3",
+      "957349cb2e044566b151ef4089eb70a7",
+      "4bdc5ddda80d48e89cf42dcf7c0c3805",
+      "5092fe6385c048ac9b969b0e568491c0",
+      "fed6910da4d54042878d5e8e0df3fcc7",
+      "d533725f3440455f9a3b8b87a95efc21",
+      "16df837c1d1b4655806693e4363eba13",
+      "2cd166f718b24b5bbd52180f112571d1",
+      "64e2f7bd0aad44e48a98294dd9d1ba7a",
+      "7b615a81e41c4388aff421c97b1f9a99",
+      "ae4d696b319046f5b488fd1fb7c1d6f5",
+      "3d766d37b40149cab542b090311c0f60",
+      "773b514cceff4842abe6e83b24aee396"
     ],
     "FrozenRandom": {
       "SkillFilter": "ASP.NET",
@@ -137,45 +102,321 @@
       "RandomEssay": 0
     },
     "CreatedBy": null,
-    "CreatedAt": "2025-08-26T09:04:33.9030572Z",
+    "CreatedAt": "2025-08-29T02:08:31.2390359Z",
     "UpdatedBy": null,
     "UpdatedAt": null,
-    "PublishedAt": "2025-08-26T09:04:33.9030575Z"
+    "PublishedAt": "2025-08-29T02:08:31.239036Z"
   },
   {
-    "Id": "0dd966242f4c4a45bcf48c831115164c",
-    "Title": "TestMail2",
-    "DurationMinutes": 3,
-    "PassScore": 3,
+    "Id": "2bd22f45f5e640358daa317915412e04",
+    "Title": "Auto - Alice - C# - Junior",
+    "DurationMinutes": 22,
+    "PassScore": 5,
     "ShuffleQuestions": true,
-    "SkillFilter": "ASP.NET",
-    "RandomMCQ": 0,
-    "RandomTF": 0,
+    "SkillFilter": "C#",
+    "RandomMCQ": 5,
+    "RandomTF": 5,
     "RandomEssay": 0,
+    "TotalMaxScore": 10,
+    "Items": [
+      {
+        "QuestionId": "f652b0da3c5e4feebb5f4cbfe1ecd797",
+        "Points": 0.8
+      },
+      {
+        "QuestionId": "cc65532b433c4e008e091a08ec1bcb40",
+        "Points": 0.8
+      },
+      {
+        "QuestionId": "b90b66f6a9304c77b89a4dc9e8ee916e",
+        "Points": 0.8
+      },
+      {
+        "QuestionId": "9eaabfa8b4e64932ae24ada5282905fd",
+        "Points": 0.8
+      },
+      {
+        "QuestionId": "143de9611d6146f38b60b7ecd35ddf6d",
+        "Points": 0.8
+      },
+      {
+        "QuestionId": "697d47fefe964d6ba774a6c28812122a",
+        "Points": 0.8
+      },
+      {
+        "QuestionId": "4c9695fb54ea43c1aacafbfe3d570c9d",
+        "Points": 0.8
+      },
+      {
+        "QuestionId": "5638fc1815ce45f28fa1e6ff272b8a24",
+        "Points": 0.8
+      },
+      {
+        "QuestionId": "8e70f624551e49b8bfa99205ea4edbd4",
+        "Points": 2
+      },
+      {
+        "QuestionId": "f23af949c22246eaaa6fd0b24e7a26e6",
+        "Points": 0.8
+      },
+      {
+        "QuestionId": "16df837c1d1b4655806693e4363eba13",
+        "Points": 0.8
+      }
+    ],
     "IsPublished": true,
     "QuestionIds": [
-      "142941272ffa4a549a062214f15e1b90",
-      "5ffa5453c4674b1abdab3e2b2db23f45",
-      "a14f146c70e64a7c96dde4676a5a2cba",
-      "0a72d3b1d68743b18734afca55320135",
-      "1b486c13c1154adc8382ea5ea320b922",
-      "822d82e6c51747ac92646c39cebc4996",
-      "bc8112663406439fb607316ca0863ea8",
-      "9f51d9a31c974ec1bc33668ff15fbcca",
-      "c310d9688146426c8ca5f2d5ae2dbf01",
-      "263dc52224b1469f9ef3dba6fe34aae5",
-      "5856761aa77446ffa92a27d93fc862d7"
+      "f652b0da3c5e4feebb5f4cbfe1ecd797",
+      "cc65532b433c4e008e091a08ec1bcb40",
+      "b90b66f6a9304c77b89a4dc9e8ee916e",
+      "9eaabfa8b4e64932ae24ada5282905fd",
+      "143de9611d6146f38b60b7ecd35ddf6d",
+      "697d47fefe964d6ba774a6c28812122a",
+      "4c9695fb54ea43c1aacafbfe3d570c9d",
+      "5638fc1815ce45f28fa1e6ff272b8a24",
+      "8e70f624551e49b8bfa99205ea4edbd4",
+      "f23af949c22246eaaa6fd0b24e7a26e6",
+      "16df837c1d1b4655806693e4363eba13"
     ],
-    "FrozenRandom": {
-      "SkillFilter": "ASP.NET",
-      "RandomMCQ": 0,
-      "RandomTF": 0,
-      "RandomEssay": 0
-    },
-    "CreatedBy": null,
-    "CreatedAt": "2025-08-26T10:12:54.4039183Z",
+    "FrozenRandom": null,
+    "CreatedBy": "HR",
+    "CreatedAt": "2025-08-29T02:21:51.7900752Z",
     "UpdatedBy": null,
     "UpdatedAt": null,
-    "PublishedAt": "2025-08-26T10:12:54.4039185Z"
+    "PublishedAt": "2025-08-29T02:21:56.2017915Z"
+  },
+  {
+    "Id": "c2b24c28046041879a9ceaa74e83c7b6",
+    "Title": "Auto - Manager - C# - Senior",
+    "DurationMinutes": 22,
+    "PassScore": 5,
+    "ShuffleQuestions": true,
+    "SkillFilter": "C#",
+    "RandomMCQ": 5,
+    "RandomTF": 5,
+    "RandomEssay": 0,
+    "TotalMaxScore": 10,
+    "Items": [
+      {
+        "QuestionId": "15cf44a80f1742de8b1267309c178f53",
+        "Points": 0.85
+      },
+      {
+        "QuestionId": "b90b66f6a9304c77b89a4dc9e8ee916e",
+        "Points": 0.84
+      },
+      {
+        "QuestionId": "bc558291282f41e987e2bb5c0f7352f6",
+        "Points": 1.27
+      },
+      {
+        "QuestionId": "143de9611d6146f38b60b7ecd35ddf6d",
+        "Points": 0.84
+      },
+      {
+        "QuestionId": "697d47fefe964d6ba774a6c28812122a",
+        "Points": 0.84
+      },
+      {
+        "QuestionId": "4c9695fb54ea43c1aacafbfe3d570c9d",
+        "Points": 0.84
+      },
+      {
+        "QuestionId": "8e70f624551e49b8bfa99205ea4edbd4",
+        "Points": 1
+      },
+      {
+        "QuestionId": "7d6297117ad04ddf94ab67b640a7ecbf",
+        "Points": 1
+      },
+      {
+        "QuestionId": "f652b0da3c5e4feebb5f4cbfe1ecd797",
+        "Points": 0.84
+      },
+      {
+        "QuestionId": "ad0bb7293b95488a9d6aa7a2fce21edc",
+        "Points": 0.84
+      },
+      {
+        "QuestionId": "f23af949c22246eaaa6fd0b24e7a26e6",
+        "Points": 0.84
+      }
+    ],
+    "IsPublished": true,
+    "QuestionIds": [
+      "15cf44a80f1742de8b1267309c178f53",
+      "b90b66f6a9304c77b89a4dc9e8ee916e",
+      "bc558291282f41e987e2bb5c0f7352f6",
+      "143de9611d6146f38b60b7ecd35ddf6d",
+      "697d47fefe964d6ba774a6c28812122a",
+      "4c9695fb54ea43c1aacafbfe3d570c9d",
+      "8e70f624551e49b8bfa99205ea4edbd4",
+      "7d6297117ad04ddf94ab67b640a7ecbf",
+      "f652b0da3c5e4feebb5f4cbfe1ecd797",
+      "ad0bb7293b95488a9d6aa7a2fce21edc",
+      "f23af949c22246eaaa6fd0b24e7a26e6"
+    ],
+    "FrozenRandom": null,
+    "CreatedBy": "HR",
+    "CreatedAt": "2025-08-29T02:21:51.8048195Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null,
+    "PublishedAt": "2025-08-29T02:21:56.2174522Z"
+  },
+  {
+    "Id": "fae7174f32814c11b326bc2ef642493a",
+    "Title": "Auto - Nguy\u1EC5n Qu\u1ED1c Huy - C# - Junior",
+    "DurationMinutes": 22,
+    "PassScore": 5,
+    "ShuffleQuestions": true,
+    "SkillFilter": "C#",
+    "RandomMCQ": 5,
+    "RandomTF": 5,
+    "RandomEssay": 0,
+    "TotalMaxScore": 10,
+    "Items": [
+      {
+        "QuestionId": "f652b0da3c5e4feebb5f4cbfe1ecd797",
+        "Points": 0.8
+      },
+      {
+        "QuestionId": "15cf44a80f1742de8b1267309c178f53",
+        "Points": 0.8
+      },
+      {
+        "QuestionId": "b90b66f6a9304c77b89a4dc9e8ee916e",
+        "Points": 0.8
+      },
+      {
+        "QuestionId": "16df837c1d1b4655806693e4363eba13",
+        "Points": 0.8
+      },
+      {
+        "QuestionId": "697d47fefe964d6ba774a6c28812122a",
+        "Points": 0.8
+      },
+      {
+        "QuestionId": "143de9611d6146f38b60b7ecd35ddf6d",
+        "Points": 0.8
+      },
+      {
+        "QuestionId": "f23af949c22246eaaa6fd0b24e7a26e6",
+        "Points": 0.8
+      },
+      {
+        "QuestionId": "5638fc1815ce45f28fa1e6ff272b8a24",
+        "Points": 0.8
+      },
+      {
+        "QuestionId": "9eaabfa8b4e64932ae24ada5282905fd",
+        "Points": 0.8
+      },
+      {
+        "QuestionId": "5af613faaed946cd8934419d7a037180",
+        "Points": 0.8
+      },
+      {
+        "QuestionId": "8e70f624551e49b8bfa99205ea4edbd4",
+        "Points": 2
+      }
+    ],
+    "IsPublished": true,
+    "QuestionIds": [
+      "f652b0da3c5e4feebb5f4cbfe1ecd797",
+      "15cf44a80f1742de8b1267309c178f53",
+      "b90b66f6a9304c77b89a4dc9e8ee916e",
+      "16df837c1d1b4655806693e4363eba13",
+      "697d47fefe964d6ba774a6c28812122a",
+      "143de9611d6146f38b60b7ecd35ddf6d",
+      "f23af949c22246eaaa6fd0b24e7a26e6",
+      "5638fc1815ce45f28fa1e6ff272b8a24",
+      "9eaabfa8b4e64932ae24ada5282905fd",
+      "5af613faaed946cd8934419d7a037180",
+      "8e70f624551e49b8bfa99205ea4edbd4"
+    ],
+    "FrozenRandom": null,
+    "CreatedBy": "HR",
+    "CreatedAt": "2025-08-29T02:21:51.8125274Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null,
+    "PublishedAt": "2025-08-29T02:21:56.2324817Z"
+  },
+  {
+    "Id": "6d55c31b13fb4ae59afb450b28c2ca20",
+    "Title": "Auto - Ph\u1EA1m Minh C\u01B0\u1EDDng - C# - Senior",
+    "DurationMinutes": 22,
+    "PassScore": 5,
+    "ShuffleQuestions": true,
+    "SkillFilter": "C#",
+    "RandomMCQ": 5,
+    "RandomTF": 5,
+    "RandomEssay": 0,
+    "TotalMaxScore": 10,
+    "Items": [
+      {
+        "QuestionId": "15cf44a80f1742de8b1267309c178f53",
+        "Points": 0.85
+      },
+      {
+        "QuestionId": "b90b66f6a9304c77b89a4dc9e8ee916e",
+        "Points": 0.84
+      },
+      {
+        "QuestionId": "bc558291282f41e987e2bb5c0f7352f6",
+        "Points": 1.27
+      },
+      {
+        "QuestionId": "697d47fefe964d6ba774a6c28812122a",
+        "Points": 0.84
+      },
+      {
+        "QuestionId": "143de9611d6146f38b60b7ecd35ddf6d",
+        "Points": 0.84
+      },
+      {
+        "QuestionId": "4c9695fb54ea43c1aacafbfe3d570c9d",
+        "Points": 0.84
+      },
+      {
+        "QuestionId": "7d6297117ad04ddf94ab67b640a7ecbf",
+        "Points": 1
+      },
+      {
+        "QuestionId": "8e70f624551e49b8bfa99205ea4edbd4",
+        "Points": 1
+      },
+      {
+        "QuestionId": "5af613faaed946cd8934419d7a037180",
+        "Points": 0.84
+      },
+      {
+        "QuestionId": "5638fc1815ce45f28fa1e6ff272b8a24",
+        "Points": 0.84
+      },
+      {
+        "QuestionId": "f652b0da3c5e4feebb5f4cbfe1ecd797",
+        "Points": 0.84
+      }
+    ],
+    "IsPublished": true,
+    "QuestionIds": [
+      "15cf44a80f1742de8b1267309c178f53",
+      "b90b66f6a9304c77b89a4dc9e8ee916e",
+      "bc558291282f41e987e2bb5c0f7352f6",
+      "697d47fefe964d6ba774a6c28812122a",
+      "143de9611d6146f38b60b7ecd35ddf6d",
+      "4c9695fb54ea43c1aacafbfe3d570c9d",
+      "7d6297117ad04ddf94ab67b640a7ecbf",
+      "8e70f624551e49b8bfa99205ea4edbd4",
+      "5af613faaed946cd8934419d7a037180",
+      "5638fc1815ce45f28fa1e6ff272b8a24",
+      "f652b0da3c5e4feebb5f4cbfe1ecd797"
+    ],
+    "FrozenRandom": null,
+    "CreatedBy": "HR",
+    "CreatedAt": "2025-08-29T02:21:51.822615Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null,
+    "PublishedAt": "2025-08-29T02:21:56.2448695Z"
   }
 ]

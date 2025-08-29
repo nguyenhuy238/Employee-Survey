@@ -1,0 +1,178 @@
+﻿@model Employee_Survey.Application.AutoTestOptions
+@{
+    ViewData["Title"] = "Auto Generate Test";
+    var departments = (IEnumerable<string>)(ViewBag.Departments ?? new List<string>());
+}
+<partial name="~/Views/Shared/_Flash.cshtml" />
+
+<h2 class="mb-3">Auto Generate Test</h2>
+
+<div class="alert alert-info">
+    <div><strong>Ghi chú:</strong> Khi bấm Generate, hệ thống sẽ <u>cá nhân hoá</u> đề thi cho từng người:</div>
+    <ul class="mb-0">
+        <li>Tự động ưu tiên <b>Skill</b> theo <code>User.Skill</code> (nếu bạn không nhập Skill tay).</li>
+        <li>Tự động lọc <b>Difficulty</b> phù hợp với <code>User.Level</code> (Junior/Middle/Senior).</li>
+        <li>Các user có thể nhận các <b>đề khác nhau</b> để phù hợp với năng lực.</li>
+        <li>Kết quả tạo ra là <b>Test ở trạng thái Draft</b> để xem trước; bạn có thể Assign từng đề hoặc Assign All ở trang kết quả.</li>
+    </ul>
+</div>
+
+<form asp-action="Generate" asp-controller="AutoTests" method="post" class="row g-3" id="autoGenForm">
+    @Html.AntiForgeryToken()
+
+    <div class="col-md-3">
+        <label class="form-label">Mode</label>
+        <select class="form-select" asp-for="Mode" id="modeSelect">
+            <option value="Department">Department</option>
+            <option value="Users">Users (ids)</option>
+        </select>
+    </div>
+
+    <div class="col-md-3" id="deptBlock">
+        <label class="form-label">Department</label>
+        <select class="form-select" asp-for="Department">
+            <option value="">-- chọn Department --</option>
+            @foreach (var d in departments)
+            {
+                <option value="@d">@d</option>
+            }
+        </select>
+        <div class="form-text">Dùng khi Mode = Department</div>
+    </div>
+
+    <div class="col-md-6" id="usersBlock" style="display:none;">
+        <label class="form-label">UserIds</label>
+        <textarea class="form-control" id="userIdsTextarea" rows="4"
+                  placeholder="Nhập nhiều UserId, mỗi dòng 1 id"></textarea>
+        <div class="form-text">Dùng khi Mode = Users. Mỗi dòng 1 UserId.</div>
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label">Skills (comma)</label>
+        <input class="form-control" id="skillsCsv" placeholder="C#,SQL" />
+        <small class="text-muted">Để trống = tự động lấy theo Skill của từng user.</small>
+    </div>
+
+    <div class="col-md-3">
+        <label class="form-label">Difficulty Policy</label>
+        <select class="form-select" asp-for="DifficultyPolicy">
+            <option value="ByLevel">ByLevel (phù hợp level user)</option>
+            <option value="Any">Any</option>
+        </select>
+    </div>
+
+    <div class="col-12"><hr /></div>
+
+    <div class="col-md-2">
+        <label class="form-label">MCQ</label>
+        <input type="number" class="form-control" asp-for="McqCount" min="0" />
+    </div>
+    <div class="col-md-2">
+        <label class="form-label">True/False</label>
+        <input type="number" class="form-control" asp-for="TfCount" min="0" />
+    </div>
+    <div class="col-md-2">
+        <label class="form-label">Matching</label>
+        <input type="number" class="form-control" asp-for="MatchingCount" min="0" />
+    </div>
+    <div class="col-md-2">
+        <label class="form-label">DragDrop</label>
+        <input type="number" class="form-control" asp-for="DragDropCount" min="0" />
+    </div>
+    <div class="col-md-2">
+        <label class="form-label">Essay</label>
+        <input type="number" class="form-control" asp-for="EssayCount" min="0" />
+    </div>
+
+    <div class="col-md-2">
+        <label class="form-label">Total Score</label>
+        <input type="number" class="form-control" asp-for="TotalScore" min="1" step="0.01" />
+    </div>
+    <div class="col-md-2">
+        <label class="form-label">Essay Reserved</label>
+        <input type="number" class="form-control" asp-for="EssayReserved" min="0" step="0.01" />
+        <div class="form-text">Để 0: auto mặc định 2.0 khi có Essay</div>
+    </div>
+
+    <div class="col-md-3">
+        <label class="form-label">Start (UTC)</label>
+        <input type="datetime-local" class="form-control" asp-for="StartAtUtc" />
+    </div>
+    <div class="col-md-3">
+        <label class="form-label">End (UTC)</label>
+        <input type="datetime-local" class="form-control" asp-for="EndAtUtc" />
+    </div>
+
+    <div class="col-12">
+        <button class="btn btn-primary">Generate (Preview)</button>
+        <a class="btn btn-secondary" href="/Tests">Back</a>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        // Toggle Department / Users theo Mode
+        const modeSel = document.getElementById('modeSelect');
+        const deptBlock = document.getElementById('deptBlock');
+        const usersBlock = document.getElementById('usersBlock');
+
+        function toggleBlocks(){
+          const mode = modeSel ? modeSel.value : 'Department';
+          if(mode === 'Users'){
+            usersBlock.style.display = '';
+            deptBlock.style.display = 'none';
+          } else {
+            usersBlock.style.display = 'none';
+            deptBlock.style.display = '';
+          }
+        }
+        if(modeSel){ modeSel.addEventListener('change', toggleBlocks); toggleBlocks(); }
+
+        // Chuyển Skills CSV -> nhiều input hidden name="Skills"
+        const skillsCsv = document.getElementById('skillsCsv');
+        function syncSkills(){
+          document.querySelectorAll('input[name="Skills"]').forEach(el => el.remove());
+          if(!skillsCsv || !skillsCsv.value) return;
+          const arr = skillsCsv.value.split(',')
+                       .map(s => s.trim())
+                       .filter(Boolean);
+          const form = document.getElementById('autoGenForm');
+          arr.forEach(v => {
+            const i = document.createElement('input');
+            i.type = 'hidden'; i.name = 'Skills'; i.value = v;
+            form.appendChild(i);
+          });
+        }
+
+        // Chuyển UserIds (mỗi dòng) -> nhiều input hidden name="UserIds"
+        const userIdsTextarea = document.getElementById('userIdsTextarea');
+        function syncUserIds(){
+          document.querySelectorAll('input[name="UserIds"]').forEach(el => el.remove());
+          if(!userIdsTextarea || !userIdsTextarea.value) return;
+          const arr = userIdsTextarea.value.split(/\r?\n/)
+                       .map(s => s.trim())
+                       .filter(Boolean);
+          const form = document.getElementById('autoGenForm');
+          arr.forEach(v => {
+            const i = document.createElement('input');
+            i.type = 'hidden'; i.name = 'UserIds'; i.value = v;
+            form.appendChild(i);
+          });
+        }
+
+        // Trước khi submit: sync cả Skills & UserIds
+        const formEl = document.getElementById('autoGenForm');
+        if(formEl){
+          formEl.addEventListener('submit', function(){
+            syncSkills();
+            syncUserIds();
+          });
+        }
+
+        // Đồng bộ theo thao tác người dùng (không bắt buộc)
+        if(skillsCsv){
+          skillsCsv.addEventListener('change', syncSkills);
+          skillsCsv.addEventListener('keyup', syncSkills);
+        }
+    </script>
+}

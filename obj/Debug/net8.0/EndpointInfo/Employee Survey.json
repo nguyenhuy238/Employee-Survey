@@ -215,6 +215,251 @@
         }
       }
     },
+    "/autotests/generate": {
+      "get": {
+        "tags": [
+          "AutoTests"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "AutoTests"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Mode": {
+                    "type": "string"
+                  },
+                  "Department": {
+                    "type": "string"
+                  },
+                  "UserIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "Skills": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "DifficultyPolicy": {
+                    "type": "string"
+                  },
+                  "McqCount": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "TfCount": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "MatchingCount": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "DragDropCount": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "EssayCount": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "TotalScore": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "EssayReserved": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "FailWhenInsufficient": {
+                    "type": "boolean"
+                  },
+                  "StartAtUtc": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "EndAtUtc": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                }
+              },
+              "encoding": {
+                "Mode": {
+                  "style": "form"
+                },
+                "Department": {
+                  "style": "form"
+                },
+                "UserIds": {
+                  "style": "form"
+                },
+                "Skills": {
+                  "style": "form"
+                },
+                "DifficultyPolicy": {
+                  "style": "form"
+                },
+                "McqCount": {
+                  "style": "form"
+                },
+                "TfCount": {
+                  "style": "form"
+                },
+                "MatchingCount": {
+                  "style": "form"
+                },
+                "DragDropCount": {
+                  "style": "form"
+                },
+                "EssayCount": {
+                  "style": "form"
+                },
+                "TotalScore": {
+                  "style": "form"
+                },
+                "EssayReserved": {
+                  "style": "form"
+                },
+                "FailWhenInsufficient": {
+                  "style": "form"
+                },
+                "StartAtUtc": {
+                  "style": "form"
+                },
+                "EndAtUtc": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/autotests/assign-one": {
+      "post": {
+        "tags": [
+          "AutoTests"
+        ],
+        "parameters": [
+          {
+            "name": "testId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startAt",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endAt",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/autotests/assign-all": {
+      "post": {
+        "tags": [
+          "AutoTests"
+        ],
+        "parameters": [
+          {
+            "name": "startAt",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endAt",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "testIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "userIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "encoding": {
+                "testIds": {
+                  "style": "form"
+                },
+                "userIds": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/Feedback/Edit/{id}": {
       "get": {
         "tags": [
@@ -285,6 +530,83 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/grading/pending": {
+      "get": {
+        "tags": [
+          "Grading"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/grading/{id}": {
+      "get": {
+        "tags": [
+          "Grading"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Grading"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "scores": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "number",
+                      "format": "double"
+                    }
+                  }
+                }
+              },
+              "encoding": {
+                "scores": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -893,6 +1215,68 @@
             "description": "OK"
           }
         }
+      },
+      "post": {
+        "tags": [
+          "Tests"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "testId": {
+                    "type": "string"
+                  },
+                  "userIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "startAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "endAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                }
+              },
+              "encoding": {
+                "testId": {
+                  "style": "form"
+                },
+                "userIds": {
+                  "style": "form"
+                },
+                "startAt": {
+                  "style": "form"
+                },
+                "endAt": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/Tests/Assign": {
@@ -928,39 +1312,56 @@
         ],
         "parameters": [
           {
-            "name": "testId",
-            "in": "query",
+            "name": "id",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "userIds",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          {
-            "name": "startAt",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "endAt",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
           }
         ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "testId": {
+                    "type": "string"
+                  },
+                  "userIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "startAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "endAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                }
+              },
+              "encoding": {
+                "testId": {
+                  "style": "form"
+                },
+                "userIds": {
+                  "style": "form"
+                },
+                "startAt": {
+                  "style": "form"
+                },
+                "endAt": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -1005,6 +1406,117 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Tests/BulkAssign": {
+      "post": {
+        "tags": [
+          "Tests"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startAt",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endAt",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "testIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "encoding": {
+                "testIds": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Tests/BulkAssignAuto": {
+      "post": {
+        "tags": [
+          "Tests"
+        ],
+        "parameters": [
+          {
+            "name": "startAt",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endAt",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "testIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "encoding": {
+                "testIds": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -1068,6 +1580,50 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tests/sessions/{sid}/pause": {
+      "post": {
+        "tags": [
+          "TestsApi"
+        ],
+        "parameters": [
+          {
+            "name": "sid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tests/sessions/{sid}/resume": {
+      "post": {
+        "tags": [
+          "TestsApi"
+        ],
+        "parameters": [
+          {
+            "name": "sid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"

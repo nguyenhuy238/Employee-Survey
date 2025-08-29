@@ -18,16 +18,18 @@ namespace Employee_Survey.Models
         public int RandomEssay { get; set; }
         public bool IsPublished { get; set; }
 
-        // ==== Paging + Filter (giống Create) ====
+        // ==== Paging + Filter ====
         public PagedResult<Question> Page { get; set; } = new();
         public QuestionFilter Filter { get; set; } = new();
 
-        // ==== Lựa chọn thủ công ====
+        // ==== Manual selection ====
         public List<string> SelectedQuestionIds { get; set; } = new();
 
-        // ==== Convenience props cho 3 tab trên *trang hiện tại* ====
+        // ==== 5 groups on current page ====
         public List<Question> MCQQuestions => Page.Items?.FindAll(q => q.Type == QType.MCQ) ?? new();
-        public List<Question> TFQuestions  => Page.Items?.FindAll(q => q.Type == QType.TrueFalse) ?? new();
+        public List<Question> TFQuestions => Page.Items?.FindAll(q => q.Type == QType.TrueFalse) ?? new();
         public List<Question> EssayQuestions => Page.Items?.FindAll(q => q.Type == QType.Essay) ?? new();
+        public List<Question> MatchingQuestions => Page.Items?.FindAll(q => q.Type == QType.Matching) ?? new();
+        public List<Question> DragDropQuestions => Page.Items?.FindAll(q => q.Type == QType.DragDrop) ?? new();
     }
 }

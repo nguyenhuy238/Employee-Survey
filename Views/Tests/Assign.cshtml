@@ -76,7 +76,7 @@
     </form>
 
     <!-- Assign theo tick từng user (POST) -->
-    <form method="post" asp-action="Assign" asp-controller="Tests">
+    <form method="post" action="/Tests/Assign">
         @Html.AntiForgeryToken()
         <input type="hidden" name="testId" value="@Model.TestId" />
 
@@ -113,7 +113,7 @@
                     var isChecked = Model.AssignedUserIds.Contains(u.Id);
                     <tr>
                         <td>
-                            <input type="checkbox" name="userIds" value="@u.Id" checked="@(isChecked ? "checked" : null)" />
+                            <input type="checkbox" name="userIds[]" value="@u.Id" checked="@(isChecked ? "checked" : null)" />
                         </td>
                         <td>@u.Name</td>
                         <td>@u.Email</td>

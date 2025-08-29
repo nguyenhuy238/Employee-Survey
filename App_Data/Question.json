@@ -1,6 +1,6 @@
 [
   {
-    "Id": "68688650acad4113b0703ca45db0d07a",
+    "Id": "f652b0da3c5e4feebb5f4cbfe1ecd797",
     "Content": "C# l\u00E0 ng\u00F4n ng\u1EEF g\u00EC?",
     "Type": 0,
     "Options": [
@@ -9,9 +9,7 @@
       "CSDL",
       "Tr\u00ECnh duy\u1EC7t"
     ],
-    "CorrectKeys": [
-      "B"
-    ],
+    "CorrectKeys": [],
     "EssayMinWords": null,
     "MatchingPairs": [],
     "DragDrop": null,
@@ -20,21 +18,16 @@
     "Tags": [],
     "Media": [],
     "CreatedBy": null,
-    "CreatedAt": "2025-08-22T07:10:15.7655429Z",
-    "UpdatedBy": "HR",
-    "UpdatedAt": "2025-08-22T07:10:15.7690535Z"
+    "CreatedAt": "2025-08-29T02:04:41.2729653Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
   },
   {
-    "Id": "8c144c1f4a4346d197278b59f8cbf320",
+    "Id": "38e7a7f91e334ad589c35958eeac3100",
     "Content": ".NET l\u00E0 framework? (\u0110/S)",
-    "Type": 1,
-    "Options": [
-      "True",
-      "False"
-    ],
-    "CorrectKeys": [
-      "False"
-    ],
+    "Type": 0,
+    "Options": [],
+    "CorrectKeys": [],
     "EssayMinWords": null,
     "MatchingPairs": [],
     "DragDrop": null,
@@ -43,12 +36,12 @@
     "Tags": [],
     "Media": [],
     "CreatedBy": null,
-    "CreatedAt": "2025-08-22T07:14:32.4582711Z",
-    "UpdatedBy": "HR",
-    "UpdatedAt": "2025-08-22T07:14:32.4619394Z"
+    "CreatedAt": "2025-08-29T02:04:41.2821672Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
   },
   {
-    "Id": "46b8d11a1a2d4873805c7291b0d8b198",
+    "Id": "74820fccabc54f53ad5b124b035ca531",
     "Content": "ASP.NET MVC l\u00E0 g\u00EC?",
     "Type": 0,
     "Options": [
@@ -57,9 +50,7 @@
       "IDE",
       "OS"
     ],
-    "CorrectKeys": [
-      "B"
-    ],
+    "CorrectKeys": [],
     "EssayMinWords": null,
     "MatchingPairs": [],
     "DragDrop": null,
@@ -68,13 +59,81 @@
     "Tags": [],
     "Media": [],
     "CreatedBy": null,
-    "CreatedAt": "2025-08-22T07:09:56.7544833Z",
-    "UpdatedBy": "HR",
-    "UpdatedAt": "2025-08-22T07:09:56.7588721Z"
+    "CreatedAt": "2025-08-29T02:04:41.2901682Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
   },
   {
-    "Id": "67026135ad3f42a592ee53e12ab08aae",
+    "Id": "920d991ed17e492db9b7f08cf6171ce9",
     "Content": "HTTP l\u00E0 giao th\u1EE9c web? (\u0110/S)",
+    "Type": 0,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": null,
+    "MatchingPairs": [],
+    "DragDrop": null,
+    "Skill": "Web",
+    "Difficulty": "Junior",
+    "Tags": [],
+    "Media": [],
+    "CreatedBy": null,
+    "CreatedAt": "2025-08-29T02:04:41.2989334Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "1a2aaef6e48f43a8942474d8ba67c72d",
+    "Content": "Razor l\u00E0...",
+    "Type": 0,
+    "Options": [
+      "Template engine",
+      "DB",
+      "OS",
+      "Shell"
+    ],
+    "CorrectKeys": [],
+    "EssayMinWords": null,
+    "MatchingPairs": [],
+    "DragDrop": null,
+    "Skill": "ASP.NET",
+    "Difficulty": "Junior",
+    "Tags": [],
+    "Media": [],
+    "CreatedBy": null,
+    "CreatedAt": "2025-08-29T02:04:41.3076684Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "cc65532b433c4e008e091a08ec1bcb40",
+    "Content": "What is the output of Console.WriteLine(1 \u002B 2 * 3)?",
+    "Type": 0,
+    "Options": [
+      "7",
+      "9",
+      "6"
+    ],
+    "CorrectKeys": [
+      "7"
+    ],
+    "EssayMinWords": null,
+    "MatchingPairs": [],
+    "DragDrop": null,
+    "Skill": "C#",
+    "Difficulty": "Junior",
+    "Tags": [
+      "operators",
+      "basics"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.5674223Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "9eaabfa8b4e64932ae24ada5282905fd",
+    "Content": "In C#, string is immutable.",
     "Type": 1,
     "Options": [
       "True",
@@ -86,475 +145,161 @@
     "EssayMinWords": null,
     "MatchingPairs": [],
     "DragDrop": null,
-    "Skill": "Web",
-    "Difficulty": "Junior",
-    "Tags": [],
-    "Media": [],
-    "CreatedBy": null,
-    "CreatedAt": "2025-08-22T07:14:12.5132089Z",
-    "UpdatedBy": "HR",
-    "UpdatedAt": "2025-08-22T07:14:12.5165532Z"
-  },
-  {
-    "Id": "0643b53f6922412f928f0bd23c43c813",
-    "Content": "Razor l\u00E0...",
-    "Type": 0,
-    "Options": [
-      "Template engine",
-      "DB",
-      "OS",
-      "Shell"
-    ],
-    "CorrectKeys": [
-      "A"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "ASP.NET",
-    "Difficulty": "Junior",
-    "Tags": [
-      "sql",
-      "select"
-    ],
-    "Media": [],
-    "CreatedBy": null,
-    "CreatedAt": "2025-08-22T07:09:18.1894873Z",
-    "UpdatedBy": "HR1",
-    "UpdatedAt": "2025-08-25T10:35:39.667343Z"
-  },
-  {
-    "Id": "27cb592ecc3b4bafaa8be850a589a738",
-    "Content": "Hello There",
-    "Type": 2,
-    "Options": [
-      "A",
-      "B",
-      "C",
-      "D"
-    ],
-    "CorrectKeys": [
-      "A"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "C#",
-    "Difficulty": "Junior",
-    "Tags": [],
-    "Media": [],
-    "CreatedBy": null,
-    "CreatedAt": "2025-08-22T07:27:32.8379354Z",
-    "UpdatedBy": "HR",
-    "UpdatedAt": "2025-08-22T07:27:32.854038Z"
-  },
-  {
-    "Id": "559d0b8639114bf2a210e01042f58921",
-    "Content": "C# l\u00E0 ng\u00F4n ng\u1EEF g\u00EC?",
-    "Type": 0,
-    "Options": [
-      "Ng\u00F4n ng\u1EEF l\u1EADp tr\u00ECnh",
-      "H\u1EC7 \u0111i\u1EC1u h\u00E0nh",
-      "CSDL",
-      "Tr\u00ECnh duy\u1EC7t"
-    ],
-    "CorrectKeys": [
-      "B"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "C#",
-    "Difficulty": "Junior",
-    "Tags": [],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:33.7013508Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "0ed8de95c9014bc59af5e4938225bdcc",
-    "Content": ".NET l\u00E0 framework? (\u0110/S)",
-    "Type": 1,
-    "Options": [
-      "True",
-      "False"
-    ],
-    "CorrectKeys": [
-      "False"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": ".NET",
-    "Difficulty": "Junior",
-    "Tags": [],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:33.7206518Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "8ce95844e9b34d6bba03512b012271a8",
-    "Content": "ASP.NET MVC l\u00E0 g\u00EC?",
-    "Type": 0,
-    "Options": [
-      "DB",
-      "Web framework",
-      "IDE",
-      "OS"
-    ],
-    "CorrectKeys": [
-      "B"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "ASP.NET",
-    "Difficulty": "Junior",
-    "Tags": [],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:33.7322261Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "10c6bf7b26b3450e893c2222ac0e5e24",
-    "Content": "HTTP l\u00E0 giao th\u1EE9c web? (\u0110/S)",
-    "Type": 1,
-    "Options": [
-      "True",
-      "False"
-    ],
-    "CorrectKeys": [
-      "True"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "Web",
-    "Difficulty": "Junior",
-    "Tags": [],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:33.7440763Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "ced336775db14274bcde51e48a3b442c",
-    "Content": "Razor l\u00E0...",
-    "Type": 0,
-    "Options": [
-      "Template engine",
-      "DB",
-      "OS",
-      "Shell"
-    ],
-    "CorrectKeys": [
-      "A"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "ASP.NET",
-    "Difficulty": "Junior",
-    "Tags": [],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:33.7562305Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "6f6e78383e724da39b9939af4592ccf9",
-    "Content": "Hello There",
-    "Type": 2,
-    "Options": [
-      "A\r\nB\r\nC\r\nD"
-    ],
-    "CorrectKeys": [
-      "A"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "C#",
-    "Difficulty": "Junior",
-    "Tags": [],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:33.7675905Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "4ef100cddd604b038ea063451430304f",
-    "Content": "C# l\u00E0 ng\u00F4n ng\u1EEF thu\u1ED9c nh\u00F3m n\u00E0o?",
-    "Type": 0,
-    "Options": [
-      "Ng\u00F4n ng\u1EEF l\u1EADp tr\u00ECnh h\u01B0\u1EDBng \u0111\u1ED1i t\u01B0\u1EE3ng",
-      "H\u1EC7 \u0111i\u1EC1u h\u00E0nh",
-      "Tr\u00ECnh duy\u1EC7t",
-      "H\u1EC7 qu\u1EA3n tr\u1ECB CSDL"
-    ],
-    "CorrectKeys": [
-      "A"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
     "Skill": "C#",
     "Difficulty": "Junior",
     "Tags": [
-      "language",
-      "basic"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:33.7792556Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "ad41db8a3b4b42daaa33f377f6e8ec97",
-    "Content": "T\u1EEB kh\u00F3a \u0111\u1EC3 khai b\u00E1o h\u1EB1ng s\u1ED1 trong C# l\u00E0 g\u00EC?",
-    "Type": 0,
-    "Options": [
-      "final",
-      "const",
-      "let",
-      "static"
-    ],
-    "CorrectKeys": [
-      "B"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "C#",
-    "Difficulty": "Junior",
-    "Tags": [
-      "csharp",
-      "syntax"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:33.7905872Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "7042c59b7be84243b353899b403e5018",
-    "Content": "CLR trong .NET vi\u1EBFt t\u1EAFt c\u1EE7a?",
-    "Type": 0,
-    "Options": [
-      "Common Language Runtime",
-      "Central Logic Runtime",
-      "Core Language Resolver",
-      "Common Linker Runtime"
-    ],
-    "CorrectKeys": [
-      "A"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": ".NET",
-    "Difficulty": "Junior",
-    "Tags": [
-      "dotnet",
-      "clr"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:33.8026357Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "13b2369206b54b6a8dd607d542fa31ff",
-    "Content": "T\u1EEB kh\u00F3a \u0111\u1ECBnh ngh\u0129a giao di\u1EC7n trong C#?",
-    "Type": 0,
-    "Options": [
-      "abstract",
-      "interface",
-      "struct",
-      "record"
-    ],
-    "CorrectKeys": [
-      "B"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "C#",
-    "Difficulty": "Junior",
-    "Tags": [
-      "csharp",
-      "oop"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:33.8154124Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "2496ff4193ed480bbb2407bb157be7b3",
-    "Content": "Ki\u1EC3u tham chi\u1EBFu n\u00E0o sau \u0111\u00E2y?",
-    "Type": 0,
-    "Options": [
-      "int",
-      "double",
       "string",
-      "bool"
-    ],
-    "CorrectKeys": [
-      "C"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "C#",
-    "Difficulty": "Junior",
-    "Tags": [
-      "csharp",
       "types"
     ],
     "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:33.8272949Z",
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.5751835Z",
     "UpdatedBy": null,
     "UpdatedAt": null
   },
   {
-    "Id": "983b5c3c4de64a92ae570c5471177292",
-    "Content": "T\u1EEB kh\u00F3a \u0027var\u0027 trong C# d\u00F9ng \u0111\u1EC3?",
-    "Type": 0,
-    "Options": [
-      "Khai b\u00E1o ki\u1EC3u \u1EA9n danh (suy lu\u1EADn ki\u1EC3u)",
-      "Khai b\u00E1o bi\u1EBFn to\u00E0n c\u1EE5c",
-      "\u00C9p ki\u1EC3u t\u01B0\u1EDDng minh",
-      "T\u1EA1o h\u1EB1ng s\u1ED1"
-    ],
-    "CorrectKeys": [
-      "A"
-    ],
+    "Id": "697d47fefe964d6ba774a6c28812122a",
+    "Content": "Match the collection to its typical characteristics.",
+    "Type": 3,
+    "Options": [],
+    "CorrectKeys": [],
     "EssayMinWords": null,
-    "MatchingPairs": [],
+    "MatchingPairs": [
+      {
+        "L": "List",
+        "R": "Ordered"
+      },
+      {
+        "L": "HashSet",
+        "R": "No duplicates"
+      },
+      {
+        "L": "Dictionary",
+        "R": "Key-value"
+      }
+    ],
     "DragDrop": null,
     "Skill": "C#",
-    "Difficulty": "Junior",
+    "Difficulty": "Mid",
     "Tags": [
-      "csharp",
-      "syntax"
+      "collections",
+      "algorithms"
     ],
     "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:33.8392274Z",
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.5863656Z",
     "UpdatedBy": null,
     "UpdatedAt": null
   },
   {
-    "Id": "69d617623a3c46b495333f027e410f1d",
-    "Content": "\u0027async/await\u0027 d\u00F9ng cho m\u1EE5c \u0111\u00EDch g\u00EC?",
-    "Type": 0,
-    "Options": [
-      "\u0110a lu\u1ED3ng UI",
-      "X\u1EED l\u00FD b\u1EA5t \u0111\u1ED3ng b\u1ED9",
-      "T\u1ED1i \u01B0u b\u1ED9 nh\u1EDB",
-      "T\u1ED1i \u01B0u GC"
-    ],
-    "CorrectKeys": [
-      "B"
-    ],
+    "Id": "4c9695fb54ea43c1aacafbfe3d570c9d",
+    "Content": "Fill in the missing keywords about async/await.",
+    "Type": 4,
+    "Options": [],
+    "CorrectKeys": [],
     "EssayMinWords": null,
     "MatchingPairs": [],
-    "DragDrop": null,
+    "DragDrop": {
+      "Tokens": [
+        "async",
+        "await",
+        "Task",
+        "return"
+      ],
+      "Slots": [
+        {
+          "Name": "Keyword1",
+          "Answer": "async"
+        },
+        {
+          "Name": "Keyword2",
+          "Answer": "await"
+        }
+      ]
+    },
     "Skill": "C#",
-    "Difficulty": "Junior",
+    "Difficulty": "Mid",
     "Tags": [
       "async",
+      "await",
       "task"
     ],
     "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:33.8506609Z",
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.5973866Z",
     "UpdatedBy": null,
     "UpdatedAt": null
   },
   {
-    "Id": "ac3c0befa5074d0a8631b2fdfbeedc83",
-    "Content": "Thu\u1ED9c t\u00EDnh m\u1EB7c \u0111\u1ECBnh \u0111\u01B0\u1EE3c d\u00F9ng l\u00E0m kh\u00F3a ch\u00EDnh theo convention c\u1EE7a EF Core?",
-    "Type": 0,
-    "Options": [
-      "Key",
-      "Id ho\u1EB7c \u003CTypeName\u003EId",
-      "PrimaryKey",
-      "GuidKey"
-    ],
-    "CorrectKeys": [
-      "B"
-    ],
-    "EssayMinWords": null,
+    "Id": "8e70f624551e49b8bfa99205ea4edbd4",
+    "Content": "Explain boxing and unboxing in C# with examples.",
+    "Type": 2,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": 120,
     "MatchingPairs": [],
     "DragDrop": null,
-    "Skill": "EF Core",
-    "Difficulty": "Junior",
+    "Skill": "C#",
+    "Difficulty": "Senior",
     "Tags": [
-      "efcore",
-      "convention"
+      "boxing",
+      "unboxing",
+      "types"
     ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:33.861618Z",
+    "Media": [
+      {
+        "Id": "a121735fa67d42a8b10fdf9f07054f05",
+        "FileName": "diagram.png",
+        "Url": "https://example.com/diagram.png",
+        "ContentType": "",
+        "Size": 0,
+        "Caption": "Boxing vs Unboxing"
+      }
+    ],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.6086694Z",
     "UpdatedBy": null,
     "UpdatedAt": null
   },
   {
-    "Id": "9b879ef258534b6fbe535647d28aaa35",
-    "Content": "C\u1EA5u tr\u00FAc d\u1EF1 \u00E1n .NET n\u00E0o cho ph\u00E9p ch\u1EA1y \u0111a n\u1EC1n t\u1EA3ng?",
-    "Type": 0,
-    "Options": [
-      ".NET Framework",
-      ".NET Core/.NET",
-      "ASP.NET WebForms",
-      "UWP"
-    ],
-    "CorrectKeys": [
-      "B"
-    ],
-    "EssayMinWords": null,
+    "Id": "43441740b6c94da0a0d7fa0baf28bf47",
+    "Content": "Sample Essay Question 1 about SQL (Junior)",
+    "Type": 2,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": 100,
     "MatchingPairs": [],
     "DragDrop": null,
-    "Skill": ".NET",
+    "Skill": "SQL",
     "Difficulty": "Junior",
     "Tags": [
-      "dotnet",
-      "core"
+      "basics"
     ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:33.8737952Z",
+    "Media": [
+      {
+        "Id": "6c5c1dbca6b6458ca376514b4a40bdf0",
+        "FileName": "file1.png",
+        "Url": "https://example.com/file1.png",
+        "ContentType": "",
+        "Size": 0,
+        "Caption": "Caption 1"
+      }
+    ],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.6210148Z",
     "UpdatedBy": null,
     "UpdatedAt": null
   },
   {
-    "Id": "d90602b6a7d64022b58f0bab8b1aacdf",
-    "Content": "Nullable reference types gi\u00FAp ph\u00E1t hi\u1EC7n v\u1EA5n \u0111\u1EC1 g\u00EC?",
-    "Type": 0,
+    "Id": "5af613faaed946cd8934419d7a037180",
+    "Content": "Sample TrueFalse Question 2 about C# (Mid)",
+    "Type": 1,
     "Options": [
-      "Tr\u00E0n b\u1ED9 \u0111\u1EC7m",
-      "Race condition",
-      "Tham chi\u1EBFu null",
-      "Deadlock"
+      "True",
+      "False"
     ],
     "CorrectKeys": [
-      "C"
+      "True"
     ],
     "EssayMinWords": null,
     "MatchingPairs": [],
@@ -562,387 +307,58 @@
     "Skill": "C#",
     "Difficulty": "Mid",
     "Tags": [
-      "csharp",
-      "nullability"
+      "oop",
+      "inheritance"
     ],
     "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:33.8861904Z",
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.631821Z",
     "UpdatedBy": null,
     "UpdatedAt": null
   },
   {
-    "Id": "65e28bbbcad64e73b430d325c43ea9b3",
-    "Content": "Kestrel l\u00E0 g\u00EC trong ASP.NET Core?",
-    "Type": 0,
-    "Options": [
-      "Database engine",
-      "Web server",
-      "Reverse proxy",
-      "Message broker"
-    ],
-    "CorrectKeys": [
-      "B"
-    ],
+    "Id": "b9aa1df149464a77ba11c13260d243b7",
+    "Content": "Sample Matching Question 3 about JavaScript (Mid)",
+    "Type": 3,
+    "Options": [],
+    "CorrectKeys": [],
     "EssayMinWords": null,
-    "MatchingPairs": [],
+    "MatchingPairs": [
+      {
+        "L": "One",
+        "R": "1"
+      },
+      {
+        "L": "Two",
+        "R": "2"
+      },
+      {
+        "L": "Three",
+        "R": "3"
+      }
+    ],
     "DragDrop": null,
-    "Skill": "ASP.NET",
-    "Difficulty": "Junior",
-    "Tags": [
-      "web",
-      "server"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:33.898404Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "28565c1fd4fd4664af31621f3dfd080d",
-    "Content": "Middleware l\u00E0?",
-    "Type": 0,
-    "Options": [
-      "Th\u00E0nh ph\u1EA7n x\u1EED l\u00FD theo pipeline",
-      "ORM \u0111\u1EC3 truy v\u1EA5n DB",
-      "Template Razor",
-      "C\u00F4ng c\u1EE5 build"
-    ],
-    "CorrectKeys": [
-      "A"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "ASP.NET",
-    "Difficulty": "Junior",
-    "Tags": [
-      "middleware",
-      "pipeline"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:33.9117228Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "178d8487b15347b1af13b07677420f68",
-    "Content": "IActionResult th\u01B0\u1EDDng \u0111\u01B0\u1EE3c tr\u1EA3 v\u1EC1 t\u1EEB \u0111\u00E2u?",
-    "Type": 0,
-    "Options": [
-      "Service",
-      "Controller action",
-      "Repository",
-      "View"
-    ],
-    "CorrectKeys": [
-      "B"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "ASP.NET",
-    "Difficulty": "Junior",
-    "Tags": [
-      "mvc",
-      "controller"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:33.9246276Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "3f923f09ef1d42b9aa01af44d7f1fef9",
-    "Content": "appsettings.json d\u00F9ng \u0111\u1EC3?",
-    "Type": 0,
-    "Options": [
-      "Khai b\u00E1o routing",
-      "C\u1EA5u h\u00ECnh \u1EE9ng d\u1EE5ng",
-      "Ch\u1EE9a m\u00E3 ngu\u1ED3n Razor",
-      "Qu\u1EA3n l\u00FD users"
-    ],
-    "CorrectKeys": [
-      "B"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "ASP.NET",
-    "Difficulty": "Junior",
-    "Tags": [
-      "config"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:33.9379733Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "dffac51dd0f24277b6e4d72c89a3e325",
-    "Content": "DI (Dependency Injection) trong ASP.NET Core l\u00E0?",
-    "Type": 0,
-    "Options": [
-      "M\u1EABu \u0111\u1EC3 n\u00E9n file",
-      "K\u1EF9 thu\u1EADt ti\u00EAm ph\u1EE5 thu\u1ED9c qua container",
-      "C\u00F4ng c\u1EE5 ki\u1EC3m th\u1EED",
-      "Tr\u00ECnh t\u1ED1i \u01B0u JIT"
-    ],
-    "CorrectKeys": [
-      "B"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "ASP.NET",
-    "Difficulty": "Junior",
-    "Tags": [
-      "di",
-      "ioc"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:33.9509877Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "b57cf197fab944ed847996fe6c082873",
-    "Content": "Razor l\u00E0 g\u00EC?",
-    "Type": 0,
-    "Options": [
-      "Template engine",
-      "Web server",
-      "DBMS",
-      "Caching engine"
-    ],
-    "CorrectKeys": [
-      "A"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "ASP.NET",
-    "Difficulty": "Junior",
-    "Tags": [
-      "razor",
-      "view"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:33.963869Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "7eebd67c13314e46bc97a370bfbb58bd",
-    "Content": "IFormFile d\u00F9ng \u0111\u1EC3 x\u1EED l\u00FD?",
-    "Type": 0,
-    "Options": [
-      "Upload t\u1EC7p",
-      "Socket TCP",
-      "JWT",
-      "SignalR Hub"
-    ],
-    "CorrectKeys": [
-      "A"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "ASP.NET",
-    "Difficulty": "Junior",
-    "Tags": [
-      "upload",
-      "file"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:33.9760335Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "6b126f243e7e4538abb086194cb69b11",
-    "Content": "Endpoint trong ASP.NET Core l\u00E0 g\u00EC?",
-    "Type": 0,
-    "Options": [
-      "Lu\u1ED3ng GC",
-      "\u0110i\u1EC3m k\u1EBFt th\u00FAc pipeline \u0111\u1EC3 \u0111\u1ECBnh tuy\u1EBFn request",
-      "Ti\u1EBFn tr\u00ECnh h\u1EC7 \u0111i\u1EC1u h\u00E0nh",
-      "B\u1ED9 nh\u1EDB t\u1EA1m"
-    ],
-    "CorrectKeys": [
-      "B"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "ASP.NET",
-    "Difficulty": "Junior",
-    "Tags": [
-      "routing",
-      "endpoints"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:33.9891926Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "0b176b1ec40d497690aefebb641db261",
-    "Content": "Ch\u1EBF \u0111\u1ED9 Development \u1EA3nh h\u01B0\u1EDFng \u0111\u1EBFn?",
-    "Type": 0,
-    "Options": [
-      "K\u00EDch ho\u1EA1t logging \u0026 trang l\u1ED7i chi ti\u1EBFt",
-      "Kho\u00E1 Swagger",
-      "T\u1EAFt routing",
-      "V\u00F4 hi\u1EC7u h\u00F3a DI"
-    ],
-    "CorrectKeys": [
-      "A"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "ASP.NET",
-    "Difficulty": "Junior",
-    "Tags": [
-      "env",
-      "development"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.0013955Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "e0df55d23a6b4a55b1b385bdce2478dc",
-    "Content": "Attribute [Authorize] d\u00F9ng \u0111\u1EC3?",
-    "Type": 0,
-    "Options": [
-      "B\u1EADt CORS",
-      "Y\u00EAu c\u1EA7u x\u00E1c th\u1EF1c/\u1EE7y quy\u1EC1n",
-      "B\u1EADt static file",
-      "Ghi log request"
-    ],
-    "CorrectKeys": [
-      "B"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "ASP.NET",
-    "Difficulty": "Junior",
-    "Tags": [
-      "authz",
-      "security"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.0137976Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "b60759190bf843c4a7a744d7cfb9ee69",
-    "Content": "M\u00E3 tr\u1EA1ng th\u00E1i 200 bi\u1EC3u th\u1ECB g\u00EC?",
-    "Type": 0,
-    "Options": [
-      "Created",
-      "OK",
-      "Bad Request",
-      "Unauthorized"
-    ],
-    "CorrectKeys": [
-      "B"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "Web",
-    "Difficulty": "Junior",
-    "Tags": [
-      "http",
-      "status"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.0262527Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "732bc81d2b8d4216b237ee5a63b65a61",
-    "Content": "Ph\u01B0\u01A1ng th\u1EE9c HTTP n\u00E0o idempotent?",
-    "Type": 0,
-    "Options": [
-      "POST",
-      "PATCH",
-      "GET",
-      "CONNECT"
-    ],
-    "CorrectKeys": [
-      "C"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "Web",
+    "Skill": "JavaScript",
     "Difficulty": "Mid",
     "Tags": [
-      "http",
-      "methods"
+      "oop",
+      "inheritance"
     ],
     "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.0395503Z",
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.6436324Z",
     "UpdatedBy": null,
     "UpdatedAt": null
   },
   {
-    "Id": "ca04f83778d546638ca8718aafd8faa2",
-    "Content": "Header n\u00E0o mang token JWT theo chu\u1EA9n ph\u1ED5 bi\u1EBFn?",
+    "Id": "0e62e9ffd3f240e29418201efeb108eb",
+    "Content": "Sample MCQ Question 4 about JavaScript (Mid)",
     "Type": 0,
     "Options": [
-      "X-Api-Key",
-      "Cookie",
-      "Authorization: Bearer",
-      "Authentication: JWT"
-    ],
-    "CorrectKeys": [
-      "C"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "Web",
-    "Difficulty": "Mid",
-    "Tags": [
-      "auth",
-      "http"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.0525317Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "6ca89c48f6ff4f54b61c96513be6c49c",
-    "Content": "REST nh\u1EA5n m\u1EA1nh \u0111i\u1EC1u g\u00EC?",
-    "Type": 0,
-    "Options": [
-      "RPC theo th\u1EE7 t\u1EE5c",
-      "T\u00E0i nguy\u00EAn \u002B HTTP methods",
-      "Socket thu\u1EA7n",
-      "SOAP envelopes"
+      "A",
+      "B",
+      "C",
+      "D"
     ],
     "CorrectKeys": [
       "B"
@@ -950,468 +366,29 @@
     "EssayMinWords": null,
     "MatchingPairs": [],
     "DragDrop": null,
-    "Skill": "Web",
-    "Difficulty": "Junior",
-    "Tags": [
-      "rest",
-      "api"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.0663866Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "4c85120da23e46d9aacdb6043adbcd61",
-    "Content": "Status 404 ngh\u0129a l\u00E0?",
-    "Type": 0,
-    "Options": [
-      "Kh\u00F4ng t\u00ECm th\u1EA5y",
-      "Kh\u00F4ng \u0111\u01B0\u1EE3c ph\u00E9p",
-      "Xung \u0111\u1ED9t",
-      "Qu\u00E1 nhi\u1EC1u y\u00EAu c\u1EA7u"
-    ],
-    "CorrectKeys": [
-      "A"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "Web",
-    "Difficulty": "Junior",
-    "Tags": [
-      "http",
-      "status"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.0804474Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "87763182f5b545efbbecc8b32b034370",
-    "Content": "HTTPS m\u00E3 h\u00F3a d\u1EEF li\u1EC7u truy\u1EC1n qua m\u1EA1ng.",
-    "Type": 1,
-    "Options": [
-      "True",
-      "False"
-    ],
-    "CorrectKeys": [
-      "True"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "Web",
-    "Difficulty": "Junior",
-    "Tags": [
-      "https",
-      "tls"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.09412Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "b82281438dde41f8aa3da93819aff5dc",
-    "Content": "GET th\u01B0\u1EDDng d\u00F9ng \u0111\u1EC3 thay \u0111\u1ED5i tr\u1EA1ng th\u00E1i server.",
-    "Type": 1,
-    "Options": [
-      "True",
-      "False"
-    ],
-    "CorrectKeys": [
-      "False"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "Web",
-    "Difficulty": "Junior",
-    "Tags": [
-      "http",
-      "get"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.1074185Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "56bc787656bf458e9c0376241103a997",
-    "Content": "PUT c\u00F3 t\u00EDnh idempotent.",
-    "Type": 1,
-    "Options": [
-      "True",
-      "False"
-    ],
-    "CorrectKeys": [
-      "True"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "Web",
+    "Skill": "JavaScript",
     "Difficulty": "Mid",
     "Tags": [
-      "http",
-      "put"
+      "collections"
     ],
     "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.1212166Z",
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.6544895Z",
     "UpdatedBy": null,
     "UpdatedAt": null
   },
   {
-    "Id": "54d190c8c52d4113aba534fe604f58d2",
-    "Content": "HTTP/2 b\u1EAFt bu\u1ED9c d\u00F9ng TLS.",
-    "Type": 1,
-    "Options": [
-      "True",
-      "False"
-    ],
-    "CorrectKeys": [
-      "False"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "Web",
-    "Difficulty": "Mid",
-    "Tags": [
-      "http",
-      "h2"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.1369555Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "d207654258db4983b81df4dc56afd51e",
-    "Content": "CORS cho ph\u00E9p tr\u00ECnh duy\u1EC7t ki\u1EC3m so\u00E1t truy c\u1EADp cross-origin.",
-    "Type": 1,
-    "Options": [
-      "True",
-      "False"
-    ],
-    "CorrectKeys": [
-      "True"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "Web",
-    "Difficulty": "Junior",
-    "Tags": [
-      "cors",
-      "security"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.1502067Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "c822ef9f30a54437ab7c16fce9c2e3cb",
-    "Content": "DbContext d\u00F9ng \u0111\u1EC3?",
+    "Id": "28b685aa705546efa5cfe9c16a3f2bfb",
+    "Content": "Sample MCQ Question 5 about SQL (Junior)",
     "Type": 0,
     "Options": [
-      "Qu\u1EA3n l\u00FD k\u1EBFt n\u1ED1i \u0026 unit of work",
-      "Render View",
-      "X\u1EED l\u00FD HTTP",
-      "Bi\u00EAn d\u1ECBch IL"
+      "A",
+      "B",
+      "C",
+      "D"
     ],
     "CorrectKeys": [
-      "A"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "EF Core",
-    "Difficulty": "Junior",
-    "Tags": [
-      "efcore",
-      "context"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.1638024Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "a2a17753a0f140948cb9810172b3fe56",
-    "Content": "Migration d\u00F9ng \u0111\u1EC3?",
-    "Type": 0,
-    "Options": [
-      "Sinh \u0026 \u00E1p d\u1EE5ng thay \u0111\u1ED5i schema",
-      "B\u1EA3o m\u1EADt API",
-      "N\u00E9n \u1EA3nh",
-      "T\u1EA1o cache"
-    ],
-    "CorrectKeys": [
-      "A"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "EF Core",
-    "Difficulty": "Junior",
-    "Tags": [
-      "efcore",
-      "migration"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.1780429Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "e12e74cde54a4417b1a56723d4303aad",
-    "Content": "LINQ Where d\u00F9ng \u0111\u1EC3?",
-    "Type": 0,
-    "Options": [
-      "S\u1EAFp x\u1EBFp",
-      "L\u1ECDc",
-      "Nh\u00F3m",
-      "Join"
-    ],
-    "CorrectKeys": [
-      "B"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "LINQ",
-    "Difficulty": "Junior",
-    "Tags": [
-      "linq",
-      "query"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.192291Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "0d52877379ed4380a640767bd071e246",
-    "Content": "Include trong EF Core gi\u00FAp?",
-    "Type": 0,
-    "Options": [
-      "Lazy loading",
-      "Eager loading quan h\u1EC7",
-      "X\u00F3a d\u1EEF li\u1EC7u",
-      "Kh\u00F3a b\u1EA3ng"
-    ],
-    "CorrectKeys": [
-      "B"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "EF Core",
-    "Difficulty": "Mid",
-    "Tags": [
-      "efcore",
-      "include"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.2065244Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "43e3cc73ba064962b208f298149c11ce",
-    "Content": "AsNoTracking d\u00F9ng khi?",
-    "Type": 0,
-    "Options": [
-      "Kh\u00F4ng c\u1EA7n theo d\u00F5i thay \u0111\u1ED5i \u0111\u1EC3 t\u1ED1i \u01B0u \u0111\u1ECDc",
-      "Mu\u1ED1n c\u1EADp nh\u1EADt entity",
-      "Mu\u1ED1n lock b\u1EA3n ghi",
-      "Mu\u1ED1n transaction"
-    ],
-    "CorrectKeys": [
-      "A"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "EF Core",
-    "Difficulty": "Mid",
-    "Tags": [
-      "efcore",
-      "tracking"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.27084Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "bc760c59974b4b61aa0bf541cba114da",
-    "Content": "Kh\u00F3a ch\u00EDnh theo convention l\u00E0 g\u00EC?",
-    "Type": 0,
-    "Options": [
-      "[PrimaryKey]",
-      "Id ho\u1EB7c \u003CTypeName\u003EId",
-      "ObjectId",
-      "UUID"
-    ],
-    "CorrectKeys": [
-      "B"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "EF Core",
-    "Difficulty": "Junior",
-    "Tags": [
-      "efcore",
-      "key"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.2800201Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "55a55cd48ba64c13928a56bc9f17e376",
-    "Content": "Provider n\u00E0o sau \u0111\u00E2y l\u00E0 c\u1EE7a EF Core?",
-    "Type": 0,
-    "Options": [
-      "SQL Server",
-      "MongoDB",
-      "Redis",
-      "Elastic"
-    ],
-    "CorrectKeys": [
-      "A"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "EF Core",
-    "Difficulty": "Junior",
-    "Tags": [
-      "efcore",
-      "provider"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.2934349Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "c3e0816cdb5e4076a07e8fc44170d73a",
-    "Content": "L\u1EC7nh CLI t\u1EA1o migration?",
-    "Type": 0,
-    "Options": [
-      "dotnet ef migrations add",
-      "dotnet ef dbupdate",
-      "dotnet new mvc",
-      "dotnet tool install"
-    ],
-    "CorrectKeys": [
-      "A"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "EF Core",
-    "Difficulty": "Mid",
-    "Tags": [
-      "efcore",
-      "cli"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.3077631Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "944b3470c793435d8f9569e064a7b44d",
-    "Content": "ChangeTracker theo d\u00F5i \u0111i\u1EC1u g\u00EC?",
-    "Type": 0,
-    "Options": [
-      "S\u1EF1 thay \u0111\u1ED5i entity",
-      "L\u01B0u cache HTTP",
-      "Lu\u1ED3ng n\u1EC1n",
-      "Deadlock"
-    ],
-    "CorrectKeys": [
-      "A"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "EF Core",
-    "Difficulty": "Mid",
-    "Tags": [
-      "efcore",
-      "tracking"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.321169Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "ca1ca26e74ae487499341db94749dcc1",
-    "Content": "Foreign key th\u1EC3 hi\u1EC7n?",
-    "Type": 0,
-    "Options": [
-      "R\u00E0ng bu\u1ED9c quan h\u1EC7 gi\u1EEFa b\u1EA3ng",
-      "C\u1EA5p ph\u00E1t b\u1ED9 nh\u1EDB",
-      "T\u1EA1o thread",
-      "N\u00E9n file"
-    ],
-    "CorrectKeys": [
-      "A"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "EF Core",
-    "Difficulty": "Junior",
-    "Tags": [
-      "efcore",
-      "relations"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.3356894Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "aa0e27bdb17148feb46c879855ba8686",
-    "Content": "PRIMARY KEY \u0111\u1EA3m b\u1EA3o?",
-    "Type": 0,
-    "Options": [
-      "Duy nh\u1EA5t \u0026 NOT NULL",
-      "M\u00E3 h\u00F3a d\u1EEF li\u1EC7u",
-      "T\u1ED1c \u0111\u1ED9 ghi cao",
-      "To\u00E0n v\u1EB9n tham chi\u1EBFu"
-    ],
-    "CorrectKeys": [
-      "A"
+      "D"
     ],
     "EssayMinWords": null,
     "MatchingPairs": [],
@@ -1419,303 +396,635 @@
     "Skill": "SQL",
     "Difficulty": "Junior",
     "Tags": [
-      "sql",
-      "key"
+      "collections"
     ],
     "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.3510381Z",
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.6656061Z",
     "UpdatedBy": null,
     "UpdatedAt": null
   },
   {
-    "Id": "33091ece1f2349f5ba64e5ef8b70fc93",
-    "Content": "C\u00E2u l\u1EC7nh ch\u1ECDn to\u00E0n b\u1ED9 c\u1ED9t?",
-    "Type": 0,
-    "Options": [
-      "SELECT ALL",
-      "SELECT *",
-      "SELECT %",
-      "SELECT #"
-    ],
-    "CorrectKeys": [
-      "B"
-    ],
+    "Id": "04667ad3404142acaf06195286cdb0f6",
+    "Content": "Sample DragDrop Question 6 about Java (Senior)",
+    "Type": 4,
+    "Options": [],
+    "CorrectKeys": [],
     "EssayMinWords": null,
     "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "SQL",
-    "Difficulty": "Junior",
+    "DragDrop": {
+      "Tokens": [
+        "foo",
+        "bar",
+        "baz",
+        "qux"
+      ],
+      "Slots": [
+        {
+          "Name": "Slot1",
+          "Answer": "foo"
+        },
+        {
+          "Name": "Slot2",
+          "Answer": "bar"
+        }
+      ]
+    },
+    "Skill": "Java",
+    "Difficulty": "Senior",
     "Tags": [
-      "sql",
-      "select"
+      "async",
+      "await"
     ],
     "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.366484Z",
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.6768207Z",
     "UpdatedBy": null,
     "UpdatedAt": null
   },
   {
-    "Id": "c310d9688146426c8ca5f2d5ae2dbf01",
-    "Content": "INNER JOIN tr\u1EA3 v\u1EC1?",
-    "Type": 0,
-    "Options": [
-      "T\u1EA5t c\u1EA3 b\u1EA3n ghi",
-      "Ch\u1EC9 c\u00E1c b\u1EA3n ghi kh\u1EDBp \u1EDF c\u1EA3 hai b\u1EA3ng",
-      "B\u1EA3n ghi tr\u00E1i",
-      "B\u1EA3n ghi ph\u1EA3i"
-    ],
-    "CorrectKeys": [
-      "B"
-    ],
+    "Id": "6e8c7d82f4514abcbfd86423d075812d",
+    "Content": "Sample DragDrop Question 7 about Python (Mid)",
+    "Type": 4,
+    "Options": [],
+    "CorrectKeys": [],
     "EssayMinWords": null,
     "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "SQL",
-    "Difficulty": "Junior",
-    "Tags": [
-      "sql",
-      "join"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.3815945Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "9f51d9a31c974ec1bc33668ff15fbcca",
-    "Content": "INDEX ch\u1EE7 y\u1EBFu gi\u00FAp?",
-    "Type": 0,
-    "Options": [
-      "T\u0103ng t\u1ED1c truy v\u1EA5n \u0111\u1ECDc",
-      "T\u0103ng t\u1ED1c ghi",
-      "M\u00E3 h\u00F3a",
-      "Backup"
-    ],
-    "CorrectKeys": [
-      "A"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "SQL",
-    "Difficulty": "Junior",
-    "Tags": [
-      "sql",
-      "index"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.3966284Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "bc8112663406439fb607316ca0863ea8",
-    "Content": "ACID thu\u1ED9c v\u1EC1?",
-    "Type": 0,
-    "Options": [
-      "Thu\u1ED9c t\u00EDnh giao d\u1ECBch",
-      "Ki\u1EC3u d\u1EEF li\u1EC7u",
-      "C\u00FA ph\u00E1p SQL",
-      "Chu\u1EA9n m\u00E3 h\u00F3a"
-    ],
-    "CorrectKeys": [
-      "A"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "SQL",
-    "Difficulty": "Junior",
-    "Tags": [
-      "sql",
-      "transaction"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.4109009Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "822d82e6c51747ac92646c39cebc4996",
-    "Content": "L\u1EC7nh t\u1EA1o b\u1EA3n ghi commit?",
-    "Type": 0,
-    "Options": [
-      "git save",
-      "git commit -m",
-      "git push",
-      "git stage"
-    ],
-    "CorrectKeys": [
-      "B"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "Git",
-    "Difficulty": "Junior",
-    "Tags": [
-      "git",
-      "commit"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.4244516Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "1b486c13c1154adc8382ea5ea320b922",
-    "Content": "\u0110\u1EA9y nh\u00E1nh main l\u00EAn remote origin?",
-    "Type": 0,
-    "Options": [
-      "git push origin main",
-      "git upload main",
-      "git send main",
-      "git remote main"
-    ],
-    "CorrectKeys": [
-      "A"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "Git",
-    "Difficulty": "Junior",
-    "Tags": [
-      "git",
-      "push"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.4404831Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "0a72d3b1d68743b18734afca55320135",
-    "Content": ".gitignore d\u00F9ng \u0111\u1EC3?",
-    "Type": 0,
-    "Options": [
-      "B\u1ECF qua file/th\u01B0 m\u1EE5c kh\u00F4ng theo d\u00F5i",
-      "M\u00E3 h\u00F3a repo",
-      "\u0110\u1ED5i t\u00EAn repo",
-      "T\u1EA1o nh\u00E1nh"
-    ],
-    "CorrectKeys": [
-      "A"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "Git",
-    "Difficulty": "Junior",
-    "Tags": [
-      "git",
-      "ignore"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.45718Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "a14f146c70e64a7c96dde4676a5a2cba",
-    "Content": "L\u1EA5y m\u00E3 ngu\u1ED3n v\u1EC1 l\u1EA7n \u0111\u1EA7u?",
-    "Type": 0,
-    "Options": [
-      "git pull",
-      "git clone",
-      "git fetch",
-      "git fork"
-    ],
-    "CorrectKeys": [
-      "B"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "Git",
-    "Difficulty": "Junior",
-    "Tags": [
-      "git",
-      "clone"
-    ],
-    "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.4718464Z",
-    "UpdatedBy": null,
-    "UpdatedAt": null
-  },
-  {
-    "Id": "5856761aa77446ffa92a27d93fc862d7",
-    "Content": "Rebase v\u00E0 merge l\u00E0 ho\u00E0n to\u00E0n gi\u1ED1ng nhau v\u1EC1 l\u1ECBch s\u1EED commit.",
-    "Type": 1,
-    "Options": [
-      "True",
-      "False"
-    ],
-    "CorrectKeys": [
-      "False"
-    ],
-    "EssayMinWords": null,
-    "MatchingPairs": [],
-    "DragDrop": null,
-    "Skill": "Git",
+    "DragDrop": {
+      "Tokens": [
+        "foo",
+        "bar",
+        "baz",
+        "qux"
+      ],
+      "Slots": [
+        {
+          "Name": "Slot1",
+          "Answer": "foo"
+        },
+        {
+          "Name": "Slot2",
+          "Answer": "bar"
+        }
+      ]
+    },
+    "Skill": "Python",
     "Difficulty": "Mid",
     "Tags": [
-      "git",
-      "rebase"
+      "databases",
+      "sql"
     ],
     "Media": [],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:31:34.4878311Z",
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.6884087Z",
     "UpdatedBy": null,
     "UpdatedAt": null
   },
   {
-    "Id": "263dc52224b1469f9ef3dba6fe34aae5",
-    "Content": "Hello There",
-    "Type": 1,
+    "Id": "fb9c89c31536489384a3f16a68b19e6e",
+    "Content": "Sample MCQ Question 8 about SQL (Junior)",
+    "Type": 0,
     "Options": [
-      "True",
-      "False"
+      "A",
+      "B",
+      "C",
+      "D"
     ],
     "CorrectKeys": [
-      "False"
+      "D"
     ],
     "EssayMinWords": null,
     "MatchingPairs": [],
     "DragDrop": null,
-    "Skill": "ASP.NET",
+    "Skill": "SQL",
+    "Difficulty": "Junior",
+    "Tags": [
+      "oop",
+      "inheritance"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.6996962Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "ff7a80142ce14b20802bb477a21d61b6",
+    "Content": "Sample Essay Question 9 about Java (Mid)",
+    "Type": 2,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": 80,
+    "MatchingPairs": [],
+    "DragDrop": null,
+    "Skill": "Java",
     "Difficulty": "Mid",
     "Tags": [
-      "git",
-      "rebase"
+      "algorithms",
+      "sorting"
     ],
     "Media": [
       {
-        "Id": "e76776880be34e2dbd65a2e80669e72d",
-        "FileName": "R.jpg",
-        "Url": "/uploads/52c400563ef84f83b512335ea6433552.jpg",
-        "ContentType": "image/jpeg",
-        "Size": 190915,
-        "Caption": null
+        "Id": "c2bb74d6c2484f02a4eefa01e166ed34",
+        "FileName": "file9.png",
+        "Url": "https://example.com/file9.png",
+        "ContentType": "",
+        "Size": 0,
+        "Caption": "Caption 9"
       }
     ],
-    "CreatedBy": "HR",
-    "CreatedAt": "2025-08-22T07:49:26.4083301Z",
-    "UpdatedBy": "HR1",
-    "UpdatedAt": "2025-08-26T02:04:58.3725176Z"
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.7113943Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
   },
   {
-    "Id": "5ffa5453c4674b1abdab3e2b2db23f45",
-    "Content": "fdsfsdfasf",
+    "Id": "b8a0231f5d574c1daa92bfbd8106b7d5",
+    "Content": "Sample Essay Question 10 about SQL (Junior)",
+    "Type": 2,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": 80,
+    "MatchingPairs": [],
+    "DragDrop": null,
+    "Skill": "SQL",
+    "Difficulty": "Junior",
+    "Tags": [
+      "basics"
+    ],
+    "Media": [
+      {
+        "Id": "f65b159fb90c4b33bcff89dc6ca75d83",
+        "FileName": "file10.png",
+        "Url": "https://example.com/file10.png",
+        "ContentType": "",
+        "Size": 0,
+        "Caption": "Caption 10"
+      }
+    ],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.7241151Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "755e642dbb244530a88e2093ee6dc180",
+    "Content": "Sample DragDrop Question 11 about Java (Senior)",
+    "Type": 4,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": null,
+    "MatchingPairs": [],
+    "DragDrop": {
+      "Tokens": [
+        "foo",
+        "bar",
+        "baz",
+        "qux"
+      ],
+      "Slots": [
+        {
+          "Name": "Slot1",
+          "Answer": "foo"
+        },
+        {
+          "Name": "Slot2",
+          "Answer": "bar"
+        }
+      ]
+    },
+    "Skill": "Java",
+    "Difficulty": "Senior",
+    "Tags": [
+      "algorithms",
+      "sorting"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.7354778Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "ab4a88565d144e988a31c2276fae052c",
+    "Content": "Sample DragDrop Question 12 about SQL (Junior)",
+    "Type": 4,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": null,
+    "MatchingPairs": [],
+    "DragDrop": {
+      "Tokens": [
+        "foo",
+        "bar",
+        "baz",
+        "qux"
+      ],
+      "Slots": [
+        {
+          "Name": "Slot1",
+          "Answer": "foo"
+        },
+        {
+          "Name": "Slot2",
+          "Answer": "bar"
+        }
+      ]
+    },
+    "Skill": "SQL",
+    "Difficulty": "Junior",
+    "Tags": [
+      "basics"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.7469226Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "e877d3888c77471b8d4a8b7b8c0a79a2",
+    "Content": "Sample TrueFalse Question 13 about Java (Junior)",
+    "Type": 1,
+    "Options": [
+      "True",
+      "False"
+    ],
+    "CorrectKeys": [
+      "True"
+    ],
+    "EssayMinWords": null,
+    "MatchingPairs": [],
+    "DragDrop": null,
+    "Skill": "Java",
+    "Difficulty": "Junior",
+    "Tags": [
+      "oop",
+      "inheritance"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.7590024Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "aa4265eb1854451d8feb20b899facacd",
+    "Content": "Sample MCQ Question 14 about Java (Junior)",
+    "Type": 0,
+    "Options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "CorrectKeys": [
+      "C"
+    ],
+    "EssayMinWords": null,
+    "MatchingPairs": [],
+    "DragDrop": null,
+    "Skill": "Java",
+    "Difficulty": "Junior",
+    "Tags": [
+      "dom",
+      "events"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.7706057Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "31332cf0d9a345d0a497f85c4b2bad62",
+    "Content": "Sample Essay Question 15 about SQL (Senior)",
+    "Type": 2,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": 80,
+    "MatchingPairs": [],
+    "DragDrop": null,
+    "Skill": "SQL",
+    "Difficulty": "Senior",
+    "Tags": [
+      "basics"
+    ],
+    "Media": [
+      {
+        "Id": "d547f7d47c804d5183ad64ac3da39887",
+        "FileName": "file15.png",
+        "Url": "https://example.com/file15.png",
+        "ContentType": "",
+        "Size": 0,
+        "Caption": "Caption 15"
+      }
+    ],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.7821919Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "2d2837f0b258451f877ea0ddb05a8582",
+    "Content": "Sample Matching Question 16 about Java (Senior)",
+    "Type": 3,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": null,
+    "MatchingPairs": [
+      {
+        "L": "One",
+        "R": "1"
+      },
+      {
+        "L": "Two",
+        "R": "2"
+      },
+      {
+        "L": "Three",
+        "R": "3"
+      }
+    ],
+    "DragDrop": null,
+    "Skill": "Java",
+    "Difficulty": "Senior",
+    "Tags": [
+      "oop",
+      "inheritance"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.7934414Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "70d38712ced248e39abbf73abcfe614f",
+    "Content": "Sample Essay Question 17 about Python (Mid)",
+    "Type": 2,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": 100,
+    "MatchingPairs": [],
+    "DragDrop": null,
+    "Skill": "Python",
+    "Difficulty": "Mid",
+    "Tags": [
+      "async",
+      "await"
+    ],
+    "Media": [
+      {
+        "Id": "63764926d8174f2bacfc381645706641",
+        "FileName": "file17.png",
+        "Url": "https://example.com/file17.png",
+        "ContentType": "",
+        "Size": 0,
+        "Caption": "Caption 17"
+      }
+    ],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.8048156Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "5638fc1815ce45f28fa1e6ff272b8a24",
+    "Content": "Sample DragDrop Question 18 about C# (Junior)",
+    "Type": 4,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": null,
+    "MatchingPairs": [],
+    "DragDrop": {
+      "Tokens": [
+        "foo",
+        "bar",
+        "baz",
+        "qux"
+      ],
+      "Slots": [
+        {
+          "Name": "Slot1",
+          "Answer": "foo"
+        },
+        {
+          "Name": "Slot2",
+          "Answer": "bar"
+        }
+      ]
+    },
+    "Skill": "C#",
+    "Difficulty": "Junior",
+    "Tags": [
+      "oop",
+      "inheritance"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.8169075Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "4044e34cdc2d466c8c84fb8b6c190e9c",
+    "Content": "Sample DragDrop Question 19 about Java (Junior)",
+    "Type": 4,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": null,
+    "MatchingPairs": [],
+    "DragDrop": {
+      "Tokens": [
+        "foo",
+        "bar",
+        "baz",
+        "qux"
+      ],
+      "Slots": [
+        {
+          "Name": "Slot1",
+          "Answer": "foo"
+        },
+        {
+          "Name": "Slot2",
+          "Answer": "bar"
+        }
+      ]
+    },
+    "Skill": "Java",
+    "Difficulty": "Junior",
+    "Tags": [
+      "async",
+      "await"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.8289946Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "ad0bb7293b95488a9d6aa7a2fce21edc",
+    "Content": "Sample DragDrop Question 20 about C# (Junior)",
+    "Type": 4,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": null,
+    "MatchingPairs": [],
+    "DragDrop": {
+      "Tokens": [
+        "foo",
+        "bar",
+        "baz",
+        "qux"
+      ],
+      "Slots": [
+        {
+          "Name": "Slot1",
+          "Answer": "foo"
+        },
+        {
+          "Name": "Slot2",
+          "Answer": "bar"
+        }
+      ]
+    },
+    "Skill": "C#",
+    "Difficulty": "Junior",
+    "Tags": [
+      "databases",
+      "sql"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.8425299Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "143de9611d6146f38b60b7ecd35ddf6d",
+    "Content": "Sample Matching Question 21 about C# (Mid)",
+    "Type": 3,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": null,
+    "MatchingPairs": [
+      {
+        "L": "One",
+        "R": "1"
+      },
+      {
+        "L": "Two",
+        "R": "2"
+      },
+      {
+        "L": "Three",
+        "R": "3"
+      }
+    ],
+    "DragDrop": null,
+    "Skill": "C#",
+    "Difficulty": "Mid",
+    "Tags": [
+      "basics"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.8545965Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "bf4bf1c59ae149eaa31f9cb92fd1d6e0",
+    "Content": "Sample Essay Question 22 about Java (Junior)",
+    "Type": 2,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": 150,
+    "MatchingPairs": [],
+    "DragDrop": null,
+    "Skill": "Java",
+    "Difficulty": "Junior",
+    "Tags": [
+      "dom",
+      "events"
+    ],
+    "Media": [
+      {
+        "Id": "95c838b91288401a967b046e48f65ec0",
+        "FileName": "file22.png",
+        "Url": "https://example.com/file22.png",
+        "ContentType": "",
+        "Size": 0,
+        "Caption": "Caption 22"
+      }
+    ],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.86775Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "1777b7cbae7f4459a9f8e292bc7a42f4",
+    "Content": "Sample TrueFalse Question 23 about JavaScript (Senior)",
+    "Type": 1,
+    "Options": [
+      "True",
+      "False"
+    ],
+    "CorrectKeys": [
+      "False"
+    ],
+    "EssayMinWords": null,
+    "MatchingPairs": [],
+    "DragDrop": null,
+    "Skill": "JavaScript",
+    "Difficulty": "Senior",
+    "Tags": [
+      "algorithms",
+      "sorting"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.8860691Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "723853feb5a241c3b955e8159edcea01",
+    "Content": "Sample Essay Question 24 about JavaScript (Senior)",
+    "Type": 2,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": 80,
+    "MatchingPairs": [],
+    "DragDrop": null,
+    "Skill": "JavaScript",
+    "Difficulty": "Senior",
+    "Tags": [
+      "async",
+      "await"
+    ],
+    "Media": [
+      {
+        "Id": "14d866f62f3c434e8560fcd34d083bb4",
+        "FileName": "file24.png",
+        "Url": "https://example.com/file24.png",
+        "ContentType": "",
+        "Size": 0,
+        "Caption": "Caption 24"
+      }
+    ],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.8991313Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "928fbed0cd194e578a22ce5cdf2b79ce",
+    "Content": "Sample MCQ Question 25 about SQL (Senior)",
     "Type": 0,
     "Options": [
       "A",
@@ -1729,30 +1038,614 @@
     "EssayMinWords": null,
     "MatchingPairs": [],
     "DragDrop": null,
-    "Skill": "C#",
-    "Difficulty": "Junior",
+    "Skill": "SQL",
+    "Difficulty": "Senior",
     "Tags": [
-      "git",
-      "clone"
+      "networking"
     ],
-    "Media": [
-      {
-        "Id": "a1bf8833e37643d0afecaa73ced3b292",
-        "FileName": "z6924797103210_1a60916cd980f05726b8515105fdfb46.jpg",
-        "Url": "/uploads/e950553df63946328faeb4bc279775f5.jpg",
-        "ContentType": "image/jpeg",
-        "Size": 453878,
-        "Caption": null
-      }
-    ],
-    "CreatedBy": "HR1",
-    "CreatedAt": "2025-08-25T08:50:58.3410495Z",
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.9114934Z",
     "UpdatedBy": null,
     "UpdatedAt": null
   },
   {
-    "Id": "142941272ffa4a549a062214f15e1b90",
-    "Content": "TestMP3",
+    "Id": "bc558291282f41e987e2bb5c0f7352f6",
+    "Content": "Sample TrueFalse Question 26 about C# (Senior)",
+    "Type": 1,
+    "Options": [
+      "True",
+      "False"
+    ],
+    "CorrectKeys": [
+      "True"
+    ],
+    "EssayMinWords": null,
+    "MatchingPairs": [],
+    "DragDrop": null,
+    "Skill": "C#",
+    "Difficulty": "Senior",
+    "Tags": [
+      "databases",
+      "sql"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.9257483Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "f23af949c22246eaaa6fd0b24e7a26e6",
+    "Content": "Sample DragDrop Question 27 about C# (Junior)",
+    "Type": 4,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": null,
+    "MatchingPairs": [],
+    "DragDrop": {
+      "Tokens": [
+        "foo",
+        "bar",
+        "baz",
+        "qux"
+      ],
+      "Slots": [
+        {
+          "Name": "Slot1",
+          "Answer": "foo"
+        },
+        {
+          "Name": "Slot2",
+          "Answer": "bar"
+        }
+      ]
+    },
+    "Skill": "C#",
+    "Difficulty": "Junior",
+    "Tags": [
+      "networking"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.9410585Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "82ee4c97d30b4c718dc5937840453c6e",
+    "Content": "Sample DragDrop Question 28 about SQL (Senior)",
+    "Type": 4,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": null,
+    "MatchingPairs": [],
+    "DragDrop": {
+      "Tokens": [
+        "foo",
+        "bar",
+        "baz",
+        "qux"
+      ],
+      "Slots": [
+        {
+          "Name": "Slot1",
+          "Answer": "foo"
+        },
+        {
+          "Name": "Slot2",
+          "Answer": "bar"
+        }
+      ]
+    },
+    "Skill": "SQL",
+    "Difficulty": "Senior",
+    "Tags": [
+      "algorithms",
+      "sorting"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.9588604Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "d1343356fb444c4ebac0b413a0643761",
+    "Content": "Sample Matching Question 29 about Java (Mid)",
+    "Type": 3,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": null,
+    "MatchingPairs": [
+      {
+        "L": "One",
+        "R": "1"
+      },
+      {
+        "L": "Two",
+        "R": "2"
+      },
+      {
+        "L": "Three",
+        "R": "3"
+      }
+    ],
+    "DragDrop": null,
+    "Skill": "Java",
+    "Difficulty": "Mid",
+    "Tags": [
+      "networking"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.9742862Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "bbf4e6b3ed1f435fb3c599baaa9cbd86",
+    "Content": "Sample DragDrop Question 30 about JavaScript (Mid)",
+    "Type": 4,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": null,
+    "MatchingPairs": [],
+    "DragDrop": {
+      "Tokens": [
+        "foo",
+        "bar",
+        "baz",
+        "qux"
+      ],
+      "Slots": [
+        {
+          "Name": "Slot1",
+          "Answer": "foo"
+        },
+        {
+          "Name": "Slot2",
+          "Answer": "bar"
+        }
+      ]
+    },
+    "Skill": "JavaScript",
+    "Difficulty": "Mid",
+    "Tags": [
+      "basics"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:46.9887839Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "8e62228217c14408b6309fcd01346d2e",
+    "Content": "Sample TrueFalse Question 31 about JavaScript (Mid)",
+    "Type": 1,
+    "Options": [
+      "True",
+      "False"
+    ],
+    "CorrectKeys": [
+      "False"
+    ],
+    "EssayMinWords": null,
+    "MatchingPairs": [],
+    "DragDrop": null,
+    "Skill": "JavaScript",
+    "Difficulty": "Mid",
+    "Tags": [
+      "oop",
+      "inheritance"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:47.0021896Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "25a3737e69df432bb2fec4dae526ed6f",
+    "Content": "Sample MCQ Question 32 about SQL (Mid)",
+    "Type": 0,
+    "Options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "CorrectKeys": [
+      "B"
+    ],
+    "EssayMinWords": null,
+    "MatchingPairs": [],
+    "DragDrop": null,
+    "Skill": "SQL",
+    "Difficulty": "Mid",
+    "Tags": [
+      "dom",
+      "events"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:47.0142178Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "7d6297117ad04ddf94ab67b640a7ecbf",
+    "Content": "Sample Essay Question 33 about C# (Senior)",
+    "Type": 2,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": 80,
+    "MatchingPairs": [],
+    "DragDrop": null,
+    "Skill": "C#",
+    "Difficulty": "Senior",
+    "Tags": [
+      "algorithms",
+      "sorting"
+    ],
+    "Media": [
+      {
+        "Id": "128d5594573848669a3a3a61e52e096a",
+        "FileName": "file33.png",
+        "Url": "https://example.com/file33.png",
+        "ContentType": "",
+        "Size": 0,
+        "Caption": "Caption 33"
+      }
+    ],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:47.0296315Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "15cf44a80f1742de8b1267309c178f53",
+    "Content": "Sample MCQ Question 34 about C# (Mid)",
+    "Type": 0,
+    "Options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "CorrectKeys": [
+      "D"
+    ],
+    "EssayMinWords": null,
+    "MatchingPairs": [],
+    "DragDrop": null,
+    "Skill": "C#",
+    "Difficulty": "Mid",
+    "Tags": [
+      "oop",
+      "inheritance"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:47.043084Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "6238c4232e8340f5b9e5f9854b345835",
+    "Content": "Sample TrueFalse Question 35 about SQL (Mid)",
+    "Type": 1,
+    "Options": [
+      "True",
+      "False"
+    ],
+    "CorrectKeys": [
+      "False"
+    ],
+    "EssayMinWords": null,
+    "MatchingPairs": [],
+    "DragDrop": null,
+    "Skill": "SQL",
+    "Difficulty": "Mid",
+    "Tags": [
+      "algorithms",
+      "sorting"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:47.0567308Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "64e2f7bd0aad44e48a98294dd9d1ba7a",
+    "Content": "Sample Essay Question 36 about Python (Junior)",
+    "Type": 2,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": 100,
+    "MatchingPairs": [],
+    "DragDrop": null,
+    "Skill": "Python",
+    "Difficulty": "Junior",
+    "Tags": [
+      "algorithms",
+      "sorting"
+    ],
+    "Media": [
+      {
+        "Id": "202f17fd256a43fdb5de4b04a6f26142",
+        "FileName": "file36.png",
+        "Url": "https://example.com/file36.png",
+        "ContentType": "",
+        "Size": 0,
+        "Caption": "Caption 36"
+      }
+    ],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:47.0704959Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "b90b66f6a9304c77b89a4dc9e8ee916e",
+    "Content": "Sample TrueFalse Question 37 about C# (Mid)",
+    "Type": 1,
+    "Options": [
+      "True",
+      "False"
+    ],
+    "CorrectKeys": [
+      "True"
+    ],
+    "EssayMinWords": null,
+    "MatchingPairs": [],
+    "DragDrop": null,
+    "Skill": "C#",
+    "Difficulty": "Mid",
+    "Tags": [
+      "oop",
+      "inheritance"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:47.0863721Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "773b514cceff4842abe6e83b24aee396",
+    "Content": "Sample DragDrop Question 38 about Python (Junior)",
+    "Type": 4,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": null,
+    "MatchingPairs": [],
+    "DragDrop": {
+      "Tokens": [
+        "foo",
+        "bar",
+        "baz",
+        "qux"
+      ],
+      "Slots": [
+        {
+          "Name": "Slot1",
+          "Answer": "foo"
+        },
+        {
+          "Name": "Slot2",
+          "Answer": "bar"
+        }
+      ]
+    },
+    "Skill": "Python",
+    "Difficulty": "Junior",
+    "Tags": [
+      "dom",
+      "events"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:47.103217Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "4f54580551394f39a482d37c7ec98b2d",
+    "Content": "Sample Matching Question 39 about Python (Junior)",
+    "Type": 3,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": null,
+    "MatchingPairs": [
+      {
+        "L": "One",
+        "R": "1"
+      },
+      {
+        "L": "Two",
+        "R": "2"
+      },
+      {
+        "L": "Three",
+        "R": "3"
+      }
+    ],
+    "DragDrop": null,
+    "Skill": "Python",
+    "Difficulty": "Junior",
+    "Tags": [
+      "oop",
+      "inheritance"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:47.1178394Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "d82f6b5583e841f68934eab9e5fde9d2",
+    "Content": "Sample Matching Question 40 about Python (Junior)",
+    "Type": 3,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": null,
+    "MatchingPairs": [
+      {
+        "L": "One",
+        "R": "1"
+      },
+      {
+        "L": "Two",
+        "R": "2"
+      },
+      {
+        "L": "Three",
+        "R": "3"
+      }
+    ],
+    "DragDrop": null,
+    "Skill": "Python",
+    "Difficulty": "Junior",
+    "Tags": [
+      "databases",
+      "sql"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:47.133295Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "18e2c1f732fa4b21b8521c86ee173dcf",
+    "Content": "Sample TrueFalse Question 41 about JavaScript (Senior)",
+    "Type": 1,
+    "Options": [
+      "True",
+      "False"
+    ],
+    "CorrectKeys": [
+      "False"
+    ],
+    "EssayMinWords": null,
+    "MatchingPairs": [],
+    "DragDrop": null,
+    "Skill": "JavaScript",
+    "Difficulty": "Senior",
+    "Tags": [
+      "collections"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:47.150492Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "dda28329bb2d45aab12cbb2b01785126",
+    "Content": "Sample Matching Question 42 about SQL (Junior)",
+    "Type": 3,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": null,
+    "MatchingPairs": [
+      {
+        "L": "One",
+        "R": "1"
+      },
+      {
+        "L": "Two",
+        "R": "2"
+      },
+      {
+        "L": "Three",
+        "R": "3"
+      }
+    ],
+    "DragDrop": null,
+    "Skill": "SQL",
+    "Difficulty": "Junior",
+    "Tags": [
+      "dom",
+      "events"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:47.165368Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "3d766d37b40149cab542b090311c0f60",
+    "Content": "Sample DragDrop Question 43 about JavaScript (Junior)",
+    "Type": 4,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": null,
+    "MatchingPairs": [],
+    "DragDrop": {
+      "Tokens": [
+        "foo",
+        "bar",
+        "baz",
+        "qux"
+      ],
+      "Slots": [
+        {
+          "Name": "Slot1",
+          "Answer": "foo"
+        },
+        {
+          "Name": "Slot2",
+          "Answer": "bar"
+        }
+      ]
+    },
+    "Skill": "JavaScript",
+    "Difficulty": "Junior",
+    "Tags": [
+      "algorithms",
+      "sorting"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:47.1807045Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "16df837c1d1b4655806693e4363eba13",
+    "Content": "Sample TrueFalse Question 44 about C# (Junior)",
+    "Type": 1,
+    "Options": [
+      "True",
+      "False"
+    ],
+    "CorrectKeys": [
+      "True"
+    ],
+    "EssayMinWords": null,
+    "MatchingPairs": [],
+    "DragDrop": null,
+    "Skill": "C#",
+    "Difficulty": "Junior",
+    "Tags": [
+      "dom",
+      "events"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:47.1966923Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "fed6910da4d54042878d5e8e0df3fcc7",
+    "Content": "Sample MCQ Question 45 about Python (Senior)",
     "Type": 0,
     "Options": [
       "A",
@@ -1766,25 +1659,167 @@
     "EssayMinWords": null,
     "MatchingPairs": [],
     "DragDrop": null,
-    "Skill": "C#",
-    "Difficulty": "Junior",
+    "Skill": "Python",
+    "Difficulty": "Senior",
     "Tags": [
-      "sql",
-      "select"
+      "databases",
+      "sql"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:47.2105587Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "2cd166f718b24b5bbd52180f112571d1",
+    "Content": "Sample Essay Question 46 about Java (Senior)",
+    "Type": 2,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": 100,
+    "MatchingPairs": [],
+    "DragDrop": null,
+    "Skill": "Java",
+    "Difficulty": "Senior",
+    "Tags": [
+      "async",
+      "await"
     ],
     "Media": [
       {
-        "Id": "2c112034dbdc4ef1a939e28caca3f351",
-        "FileName": "informational-quiz-381667.mp3",
-        "Url": "/uploads/423733cbfb9c4df5a19158dbdcaf9604.mp3",
-        "ContentType": "audio/mpeg",
-        "Size": 1360039,
-        "Caption": null
+        "Id": "16f32874a1e548caa564fb0d1fcbfb39",
+        "FileName": "file46.png",
+        "Url": "https://example.com/file46.png",
+        "ContentType": "",
+        "Size": 0,
+        "Caption": "Caption 46"
       }
     ],
-    "CreatedBy": "HR1",
-    "CreatedAt": "2025-08-25T09:50:45.945837Z",
-    "UpdatedBy": "HR1",
-    "UpdatedAt": "2025-08-26T02:04:15.8565117Z"
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:47.2244262Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "ae4d696b319046f5b488fd1fb7c1d6f5",
+    "Content": "Sample Matching Question 47 about SQL (Senior)",
+    "Type": 3,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": null,
+    "MatchingPairs": [
+      {
+        "L": "One",
+        "R": "1"
+      },
+      {
+        "L": "Two",
+        "R": "2"
+      },
+      {
+        "L": "Three",
+        "R": "3"
+      }
+    ],
+    "DragDrop": null,
+    "Skill": "SQL",
+    "Difficulty": "Senior",
+    "Tags": [
+      "collections"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:47.238219Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "7b615a81e41c4388aff421c97b1f9a99",
+    "Content": "Sample Matching Question 48 about JavaScript (Senior)",
+    "Type": 3,
+    "Options": [],
+    "CorrectKeys": [],
+    "EssayMinWords": null,
+    "MatchingPairs": [
+      {
+        "L": "One",
+        "R": "1"
+      },
+      {
+        "L": "Two",
+        "R": "2"
+      },
+      {
+        "L": "Three",
+        "R": "3"
+      }
+    ],
+    "DragDrop": null,
+    "Skill": "JavaScript",
+    "Difficulty": "Senior",
+    "Tags": [
+      "async",
+      "await"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:47.2526891Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "d533725f3440455f9a3b8b87a95efc21",
+    "Content": "Sample TrueFalse Question 49 about Java (Junior)",
+    "Type": 1,
+    "Options": [
+      "True",
+      "False"
+    ],
+    "CorrectKeys": [
+      "False"
+    ],
+    "EssayMinWords": null,
+    "MatchingPairs": [],
+    "DragDrop": null,
+    "Skill": "Java",
+    "Difficulty": "Junior",
+    "Tags": [
+      "async",
+      "await"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:47.268437Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
+  },
+  {
+    "Id": "5092fe6385c048ac9b969b0e568491c0",
+    "Content": "Sample MCQ Question 50 about Python (Junior)",
+    "Type": 0,
+    "Options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "CorrectKeys": [
+      "B"
+    ],
+    "EssayMinWords": null,
+    "MatchingPairs": [],
+    "DragDrop": null,
+    "Skill": "Python",
+    "Difficulty": "Junior",
+    "Tags": [
+      "oop",
+      "inheritance"
+    ],
+    "Media": [],
+    "CreatedBy": "Admin",
+    "CreatedAt": "2025-08-29T02:07:47.2834737Z",
+    "UpdatedBy": null,
+    "UpdatedAt": null
   }
 ]

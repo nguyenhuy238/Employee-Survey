@@ -1,16 +1,9 @@
 [
   {
-    "Id": "fd48faea82fb48c3b42392c4ed8b72b2",
-    "SessionId": "0dbc2d0a74a44832a25b709a80cd6873",
-    "Content": "B\u00E0i Test qu\u00E1 ok",
+    "Id": "9904c105365243a5b4cd24dff3af18a2",
+    "SessionId": "eb75a83654944220933ec9f2e95bae55",
+    "Content": "C\u1EA7n c\u1EA3i thi\u1EC7n .....",
     "Rating": 5,
-    "CreatedAt": "2025-08-22T09:56:47.6046053Z"
-  },
-  {
-    "Id": "bbed0e56d57640c1a48eece41ec68edc",
-    "SessionId": "fe06bc6c11b5460aa81e5bf8fafa9691",
-    "Content": "N\u1ED9i dung ch\u01B0a s\u00E1t",
-    "Rating": 5,
-    "CreatedAt": "2025-08-26T07:32:30.3492577Z"
+    "CreatedAt": "2025-08-29T02:12:16.8256358Z"
   }
 ]

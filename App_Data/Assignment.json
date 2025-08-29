@@ -1,82 +1,50 @@
 [
   {
-    "Id": "4a2b492bf33740a789bff5ee8991f383",
-    "TestId": "d8d6343a88e24a24b40374e92c3989a1",
-    "TargetType": "User",
-    "TargetValue": "u-emp",
-    "StartAt": "2025-01-01T00:00:00",
-    "EndAt": "2025-12-31T23:59:59"
-  },
-  {
-    "Id": "2ad87fd19ed644149cd646222cc2edce",
+    "Id": "c8ac3cd39d2d448298c51c2d2faba9eb",
     "TestId": "t-basic",
     "TargetType": "User",
     "TargetValue": "u-emp",
-    "StartAt": "2025-01-01T00:00:00",
-    "EndAt": "2025-12-31T23:59:59"
+    "StartAt": "2025-08-28T02:04:41.325656Z",
+    "EndAt": "2025-09-28T02:04:41.3256561Z"
   },
   {
-    "Id": "ae54aa98cef94b2dbc0daba16e5e474d",
-    "TestId": "ef114d25aa904ede8d8e3ce495bb685d",
+    "Id": "bbb5549ef9f740f6aae9c8e3c30bb71e",
+    "TestId": "a2c676c801244d94b95498acc1471f7e",
+    "TargetType": "User",
+    "TargetValue": "2c44dd4fc3d94eb7b78c639220df15d1",
+    "StartAt": "2025-08-28T02:08:00",
+    "EndAt": "2025-09-28T02:08:00"
+  },
+  {
+    "Id": "c8787ee24055463682b954c2a23ef9ed",
+    "TestId": "2bd22f45f5e640358daa317915412e04",
     "TargetType": "User",
     "TargetValue": "u-emp",
-    "StartAt": "2025-08-21T02:22:00",
-    "EndAt": "2025-09-21T02:22:00"
+    "StartAt": "2025-08-29T09:21:00",
+    "EndAt": "2025-08-30T09:21:00"
   },
   {
-    "Id": "aa0005e1a3084a74bf7be72276d8b9fb",
-    "TestId": "t-basic",
+    "Id": "958c5e096a9b400abc9b7ddb4138e571",
+    "TestId": "c2b24c28046041879a9ceaa74e83c7b6",
     "TargetType": "User",
-    "TargetValue": "u-emp",
-    "StartAt": "2025-08-21T02:32:00.2241009Z",
-    "EndAt": "2025-09-21T02:32:00.224101Z"
+    "TargetValue": "u-manager",
+    "StartAt": "2025-08-29T09:21:00",
+    "EndAt": "2025-08-30T09:21:00"
   },
   {
-    "Id": "94024a68664e4cd7b20e9153584f8ef3",
-    "TestId": "ef114d25aa904ede8d8e3ce495bb685d",
+    "Id": "f64131e551d34888864a624e5aebce28",
+    "TestId": "fae7174f32814c11b326bc2ef642493a",
     "TargetType": "User",
-    "TargetValue": null,
-    "StartAt": "2025-08-21T06:37:20.9492549Z",
-    "EndAt": "2025-09-21T06:37:20.9492551Z"
+    "TargetValue": "2c44dd4fc3d94eb7b78c639220df15d1",
+    "StartAt": "2025-08-29T09:21:00",
+    "EndAt": "2025-08-30T09:21:00"
   },
   {
-    "Id": "756a80d092384424ae58916a8304e3f7",
-    "TestId": "e320255560fb42a5936747d6be783624",
+    "Id": "aab0e3651ec84fa0b418ad50aba916eb",
+    "TestId": "6d55c31b13fb4ae59afb450b28c2ca20",
     "TargetType": "User",
-    "TargetValue": "u-emp",
-    "StartAt": "2025-08-21T07:58:00",
-    "EndAt": "2025-09-22T15:02:00"
-  },
-  {
-    "Id": "85fa2cecfd6f4ba280ae2e57251a0c97",
-    "TestId": "e794d83b19084a2ba2d1e5e0283a54f2",
-    "TargetType": "User",
-    "TargetValue": "b835484b8d2a4a8e94573b7d503d8727",
-    "StartAt": "2025-08-25T09:56:00",
-    "EndAt": "2025-09-25T09:56:00"
-  },
-  {
-    "Id": "29ec8a64b8ec493eb8327a371405b1ba",
-    "TestId": "e794d83b19084a2ba2d1e5e0283a54f2",
-    "TargetType": "User",
-    "TargetValue": "842d2b560fe24408b2ce49202ea18b7e",
-    "StartAt": "2025-08-25T09:56:00",
-    "EndAt": "2025-09-25T09:56:00"
-  },
-  {
-    "Id": "246d20570e504094b610f2c4180b191a",
-    "TestId": "0dd966242f4c4a45bcf48c831115164c",
-    "TargetType": "User",
-    "TargetValue": "b835484b8d2a4a8e94573b7d503d8727",
-    "StartAt": "2025-08-25T10:12:00",
-    "EndAt": "2025-09-25T10:12:00"
-  },
-  {
-    "Id": "a7bed57e20844665beaf1522922066da",
-    "TestId": "0dd966242f4c4a45bcf48c831115164c",
-    "TargetType": "User",
-    "TargetValue": "842d2b560fe24408b2ce49202ea18b7e",
-    "StartAt": "2025-08-25T10:12:00",
-    "EndAt": "2025-09-25T10:12:00"
+    "TargetValue": "3f9a102813ab44ce81a3eb18c8a223c0",
+    "StartAt": "2025-08-29T09:21:00",
+    "EndAt": "2025-08-30T09:21:00"
   }
 ]

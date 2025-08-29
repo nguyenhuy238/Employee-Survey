@@ -11,19 +11,29 @@
 
         public DateTime LastActivityAt { get; set; } = DateTime.UtcNow;
 
-        // ====== NEW: tính giờ chủ động (pause/resume) ======
-        // Tổng số giây đã tiêu thụ (khi đã "pause" xong mới chốt vào đây)
+        // Timer (pause/resume)
         public int ConsumedSeconds { get; set; } = 0;
-        // Nếu khác null => đang chạy; thời điểm bắt đầu phiên chạy hiện tại
-        public DateTime? TimerStartedAt { get; set; }
+        public DateTime? TimerStartedAt { get; set; }  // ✅ chỉ set ở /resume
 
-        // Điểm & snapshot
+        // Scoring
+        public double AutoScore { get; set; } = 0;
+        public double ManualScore { get; set; } = 0;
         public double TotalScore { get; set; } = 0;
         public double MaxScore { get; set; } = 0;
         public double Percent { get; set; } = 0;
         public bool IsPassed { get; set; } = false;
 
+        // Payload
         public List<Answer> Answers { get; set; } = new();
         public List<Question> Snapshot { get; set; } = new();
+
+        // Points per question (frozen)
+        public List<SessionItem> Items { get; set; } = new();
+    }
+
+    public class SessionItem
+    {
+        public string QuestionId { get; set; } = "";
+        public decimal Points { get; set; } = 1m;
     }
 }

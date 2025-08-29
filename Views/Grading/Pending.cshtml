@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Employee_Survey.Domain.Session>
+@{
+    ViewData["Title"] = "Pending Essay Grading";
+}
+<partial name="~/Views/Shared/_Flash.cshtml" />
+
+<h2>Essay Grading Queue</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">Không có bài cần chấm.</div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Session</th>
+                <th>User</th>
+                <th>Test</th>
+                <th>Status</th>
+                <th>Auto</th>
+                <th>Manual</th>
+                <th>Total</th>
+                <th>Ended</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var s in Model)
+            {
+                <tr>
+                    <td>@s.Id</td>
+                    <td>@s.UserId</td>
+                    <td>@s.TestId</td>
+                    <td>@s.Status</td>
+                    <td>@s.AutoScore</td>
+                    <td>@s.ManualScore</td>
+                    <td>@s.TotalScore</td>
+                    <td>@(s.EndAt?.ToString("u"))</td>
+                    <td><a class="btn btn-sm btn-primary" href="/grading/@s.Id">Grade</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Employee_Survey.Application.PersonalizedTestResult>
+@{
+    ViewData["Title"] = "Generated Tests (Preview)";
+    var startAt = (DateTime)(ViewBag.StartAtUtc ?? DateTime.UtcNow.AddDays(-1));
+    var endAt = (DateTime)(ViewBag.EndAtUtc ?? DateTime.UtcNow.AddDays(30));
+}
+<partial name="~/Views/Shared/_Flash.cshtml" />
+
+<h2 class="mb-3">Generated Tests — Preview & Assign</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-warning">Không có test nào được tạo.</div>
+}
+else
+{
+    <form asp-action="AssignAll" asp-controller="AutoTests" method="post" class="card shadow-sm mb-3">
+        @Html.AntiForgeryToken()
+        <div class="card-body">
+            <div class="row g-2">
+                <div class="col-md-3">
+                    <label class="form-label">Start (UTC)</label>
+                    <input class="form-control" type="datetime-local" name="startAt"
+                           value="@startAt.ToString("yyyy-MM-ddTHH\\:mm")" />
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">End (UTC)</label>
+                    <input class="form-control" type="datetime-local" name="endAt"
+                           value="@endAt.ToString("yyyy-MM-ddTHH\\:mm")" />
+                </div>
+                <div class="col-md-6 d-flex align-items-end">
+                    <button class="btn btn-primary me-2">Assign All</button>
+                    <a class="btn btn-secondary" href="/Tests">Back to Tests</a>
+                </div>
+            </div>
+
+            @* hidden arrays: testIds[] & userIds[] *@
+            @foreach (var r in Model)
+            {
+                <input type="hidden" name="testIds" value="@r.Test.Id" />
+                <input type="hidden" name="userIds" value="@r.User.Id" />
+            }
+        </div>
+    </form>
+
+    <table class="table table-sm table-striped align-middle">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Test</th>
+                <th>Questions</th>
+                <th>Total Score</th>
+                <th>Status</th>
+                <th style="width:220px;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var r in Model)
+            {
+                <tr>
+                    <td>
+                        <div><b>@r.User.Name</b> (@r.User.Email)</div>
+                        <div class="text-muted small">Dept: @r.User.Department — Skill: @r.User.Skill — Level: @r.User.Level</div>
+                    </td>
+                    <td>@r.Test.Title</td>
+                    <td>@(r.Items?.Count ?? 0)</td>
+                    <td>@r.Test.TotalMaxScore</td>
+                    <td>
+                        @if (r.Test.IsPublished)
+                        {
+                            <span class="badge bg-success">Published</span>
+                        }
+                        else
+                        {
+
+                            <span class="badge bg-warning text-dark">Draft</span>
+                        }
+                    </td>
+                    <td class="text-nowrap">
+                        <a class="btn btn-outline-primary btn-sm" asp-controller="Tests" asp-action="Edit" asp-route-id="@r.Test.Id">
+                            View/Edit
+                        </a>
+
+                        <form class="d-inline" asp-controller="AutoTests" asp-action="AssignOne" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="testId" value="@r.Test.Id" />
+                            <input type="hidden" name="userId" value="@r.User.Id" />
+                            <input type="hidden" name="startAt" value="@startAt.ToString("o")" />
+                            <input type="hidden" name="endAt" value="@endAt.ToString("o")" />
+                            <button class="btn btn-warning btn-sm">Assign</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

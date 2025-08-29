@@ -1,5 +1,10 @@
-﻿using Employee_Survey.Domain;
-using BCrypt.Net;
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Employee_Survey.Domain;
 
 namespace Employee_Survey.Infrastructure
 {
@@ -18,7 +23,6 @@ namespace Employee_Survey.Infrastructure
                 await users.InsertAsync(new User { Id = "u-admin", Name = "Admin", Email = "admin@local", Role = Role.Admin, Department = "Operations", PasswordHash = BCrypt.Net.BCrypt.HashPassword("admin123") });
                 await users.InsertAsync(new User { Id = "u-hr", Name = "HR", Email = "hr@local", Role = Role.HR, Department = "HR", PasswordHash = BCrypt.Net.BCrypt.HashPassword("hr123") });
                 await users.InsertAsync(new User { Id = "u-emp", Name = "Alice", Email = "alice@local", Role = Role.Employee, Level = "Junior", TeamId = "t-a", Department = "Engineering", PasswordHash = BCrypt.Net.BCrypt.HashPassword("alice123") });
-                // Thêm MANAGER mẫu
                 await users.InsertAsync(new User { Id = "u-manager", Name = "Manager", Email = "manager@local", Role = Role.Manager, Level = "Senior", TeamId = "t-a", Department = "Engineering", PasswordHash = BCrypt.Net.BCrypt.HashPassword("manager123") });
             }
 
@@ -65,6 +69,28 @@ namespace Employee_Survey.Infrastructure
                     StartAt = DateTime.UtcNow.AddDays(-1),
                     EndAt = DateTime.UtcNow.AddDays(30)
                 });
+            }
+        }
+
+        /// <summary>
+        /// Reset toàn bộ dữ liệu: ghi đè mọi file *.json trong DataFolder thành [] rồi seed lại.
+        /// KHÔNG xóa file để tránh lỗi Read khi repo đang tồn tại.
+        /// </summary>
+        public static async Task ResetAllJsonFilesAsync(IServiceProvider sp, bool reseed = true)
+        {
+            var cfg = sp.GetRequiredService<IConfiguration>();
+            var folder = cfg["DataFolder"] ?? "App_Data";
+            Directory.CreateDirectory(folder);
+
+            foreach (var file in Directory.EnumerateFiles(folder, "*.json", SearchOption.TopDirectoryOnly))
+            {
+                // Ghi rỗng kiểu mảng
+                await File.WriteAllTextAsync(file, "[]");
+            }
+
+            if (reseed)
+            {
+                await RunAsync(sp);
             }
         }
     }

@@ -8,6 +8,8 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Employee_Survey.Controllers
 {
@@ -34,14 +36,34 @@ namespace Employee_Survey.Controllers
             _notiService = notiService;
         }
 
-        public async Task<IActionResult> Index() => View(await _repo.GetAllAsync());
+        // ---------- Index ----------
+        public async Task<IActionResult> Index(string? status = null)
+        {
+            var list = await _repo.GetAllAsync();
+
+            if (!string.IsNullOrWhiteSpace(status))
+            {
+                if (string.Equals(status, "Draft", StringComparison.OrdinalIgnoreCase))
+                    list = list.Where(t => !t.IsPublished).ToList();
+                else if (string.Equals(status, "Published", StringComparison.OrdinalIgnoreCase))
+                    list = list.Where(t => t.IsPublished).ToList();
+            }
+
+            return View(list);
+        }
 
         // ---------- Create (GET) ----------
         [HttpGet]
         public async Task<IActionResult> Create([FromQuery] QuestionFilter f)
         {
             if (f.Page <= 0) f.Page = 1;
-            if (f.PageSize <= 0) f.PageSize = 20;
+
+            // Hỗ trợ ?PageSize=all
+            var psRawQS = HttpContext.Request.Query["PageSize"].ToString();
+            if (string.Equals(psRawQS, "all", StringComparison.OrdinalIgnoreCase))
+                f.PageSize = int.MaxValue;
+            else if (f.PageSize <= 0)
+                f.PageSize = 20;
 
             var paged = await _questionService.SearchAsync(f);
             var model = new CreateTestViewModel
@@ -56,6 +78,17 @@ namespace Employee_Survey.Controllers
                 RandomTF = 1,
                 RandomEssay = 0
             };
+
+            // NEW: giữ giá trị form khi paging (đọc từ query)
+            string q(string key) => HttpContext.Request.Query[key].ToString();
+            if (!string.IsNullOrWhiteSpace(q("Title"))) model.Title = q("Title");
+            if (int.TryParse(q("DurationMinutes"), out var dur)) model.DurationMinutes = dur;
+            if (int.TryParse(q("PassScore"), out var pass)) model.PassScore = pass;
+            if (!string.IsNullOrWhiteSpace(q("SkillFilter"))) model.SkillFilter = q("SkillFilter");
+            if (int.TryParse(q("RandomMCQ"), out var r1)) model.RandomMCQ = r1;
+            if (int.TryParse(q("RandomTF"), out var r2)) model.RandomTF = r2;
+            if (int.TryParse(q("RandomEssay"), out var r3)) model.RandomEssay = r3;
+
             return View(model);
         }
 
@@ -87,6 +120,9 @@ namespace Employee_Survey.Controllers
                     TagsCsv = HttpContext.Request.Query["TagsCsv"],
                     Sort = HttpContext.Request.Query["Sort"]
                 };
+                var psRaw = HttpContext.Request.Query["PageSize"].ToString();
+                if (string.Equals(psRaw, "all", StringComparison.OrdinalIgnoreCase))
+                    f.PageSize = int.MaxValue;
 
                 var paged = await _questionService.SearchAsync(f);
 
@@ -122,7 +158,7 @@ namespace Employee_Survey.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // ---------- Edit ----------
+        // ---------- Edit (GET) ----------
         [HttpGet]
         public async Task<IActionResult> Edit(string id, [FromQuery] QuestionFilter f)
         {
@@ -130,7 +166,13 @@ namespace Employee_Survey.Controllers
             if (t == null) return NotFound();
 
             if (f.Page <= 0) f.Page = 1;
-            if (f.PageSize <= 0) f.PageSize = 20;
+
+            // Hỗ trợ ?PageSize=all
+            var psRawQS = HttpContext.Request.Query["PageSize"].ToString();
+            if (string.Equals(psRawQS, "all", StringComparison.OrdinalIgnoreCase))
+                f.PageSize = int.MaxValue;
+            else if (f.PageSize <= 0)
+                f.PageSize = 20;
 
             var paged = await _questionService.SearchAsync(f);
 
@@ -151,9 +193,21 @@ namespace Employee_Survey.Controllers
                 SelectedQuestionIds = (t.QuestionIds ?? new()).ToList()
             };
 
+            // NEW: giữ giá trị form khi paging
+            string q(string key) => HttpContext.Request.Query[key].ToString();
+            if (!string.IsNullOrWhiteSpace(q("Title"))) vm.Title = q("Title");
+            if (int.TryParse(q("DurationMinutes"), out var dur)) vm.DurationMinutes = dur;
+            if (int.TryParse(q("PassScore"), out var pass)) vm.PassScore = pass;
+            if (bool.TryParse(q("ShuffleQuestions"), out var sh)) vm.ShuffleQuestions = sh;
+            if (!string.IsNullOrWhiteSpace(q("SkillFilter"))) vm.SkillFilter = q("SkillFilter");
+            if (int.TryParse(q("RandomMCQ"), out var r1)) vm.RandomMCQ = r1;
+            if (int.TryParse(q("RandomTF"), out var r2)) vm.RandomTF = r2;
+            if (int.TryParse(q("RandomEssay"), out var r3)) vm.RandomEssay = r3;
+
             return View(vm);
         }
 
+        // ---------- Edit (POST) ----------
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(EditTestViewModel vm, [FromForm] List<string>? SelectedQuestionIds)
@@ -179,6 +233,9 @@ namespace Employee_Survey.Controllers
                     TagsCsv = HttpContext.Request.Query["TagsCsv"],
                     Sort = HttpContext.Request.Query["Sort"]
                 };
+                var psRaw = HttpContext.Request.Query["PageSize"].ToString();
+                if (string.Equals(psRaw, "all", StringComparison.OrdinalIgnoreCase))
+                    f.PageSize = int.MaxValue;
 
                 vm.Filter = f;
                 vm.Page = await _questionService.SearchAsync(f);
@@ -293,7 +350,7 @@ namespace Employee_Survey.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // ---------- Assign (GET) + lọc Department ----------
+        // ---------- Assign (GET) ----------
         [HttpGet("Tests/Assign/{id}")]
         [HttpGet("/Tests/Assign")]
         public async Task<IActionResult> Assign(string id, [FromQuery] string? department = null)
@@ -342,8 +399,14 @@ namespace Employee_Survey.Controllers
 
         // ---------- Assign (POST) ----------
         [HttpPost("/Tests/Assign")]
+        [HttpPost("Tests/Assign/{id?}")] // chấp nhận cả dạng có {id} để tránh 405
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Assign(string testId, List<string> userIds, DateTime? startAt, DateTime? endAt)
+        public async Task<IActionResult> Assign(
+            [FromRoute] string? id,                 // không dùng, chỉ để match route nếu có
+            [FromForm] string testId,
+            [FromForm] List<string>? userIds,
+            [FromForm] DateTime? startAt,
+            [FromForm] DateTime? endAt)
         {
             var test = await _repo.FirstOrDefaultAsync(t => t.Id == testId);
             if (test == null) return NotFound();
@@ -364,9 +427,18 @@ namespace Employee_Survey.Controllers
                 .Where(x => !string.IsNullOrWhiteSpace(x))
                 .ToHashSet(StringComparer.Ordinal);
 
+            // clear cũ
             await _aRepo.DeleteAsync(a => a.TestId == testId && a.TargetType == "User");
 
-            var newAssigned = (userIds ?? new()).Distinct().ToList();
+            var newAssigned = (userIds ?? new List<string>()).Distinct().ToList();
+
+            // nếu không tick ai: coi như lưu rỗng và thoát
+            if (newAssigned.Count == 0)
+            {
+                TempData["Msg"] = "Đã lưu: không có user nào được assign.";
+                return RedirectToAction(nameof(Assign), new { id = testId });
+            }
+
             foreach (var uid in newAssigned)
             {
                 await _aRepo.InsertAsync(new Assignment
@@ -379,17 +451,14 @@ namespace Employee_Survey.Controllers
                 });
             }
 
+            // notify user mới
             var newlyAdded = newAssigned.Where(uid => !oldAssigned.Contains(uid)).ToList();
             if (newlyAdded.Count > 0)
             {
                 var allUsers = await _uRepo.GetAllAsync();
                 var targets = allUsers
                     .Where(u => newlyAdded.Contains(u.Id))
-                    .Select(u => new AssignmentNotifyTarget
-                    {
-                        User = u,
-                        SessionId = string.Empty
-                    })
+                    .Select(u => new AssignmentNotifyTarget { User = u, SessionId = string.Empty })
                     .ToList();
 
                 if (targets.Count > 0)
@@ -401,7 +470,7 @@ namespace Employee_Survey.Controllers
             return RedirectToAction(nameof(Assign), new { id = testId });
         }
 
-        // ---------- Assign toàn bộ Department ----------
+        // ---------- AssignByDepartment ----------
         [HttpPost("/Tests/AssignByDepartment")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AssignByDepartment(string testId, string department, DateTime? startAt, DateTime? endAt)
@@ -481,7 +550,112 @@ namespace Employee_Survey.Controllers
             return RedirectToAction(nameof(Assign), new { id = testId, department });
         }
 
-        // ---------- Helper ----------
+        // ---------- BulkAssign ----------
+        [HttpPost("/Tests/BulkAssign")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> BulkAssign([FromForm] List<string> testIds, string userId, DateTime? startAt, DateTime? endAt)
+        {
+            if (string.IsNullOrWhiteSpace(userId))
+            {
+                TempData["Err"] = "Thiếu UserId.";
+                return RedirectToAction(nameof(Index));
+            }
+            if (testIds == null || testIds.Count == 0)
+            {
+                TempData["Err"] = "Bạn chưa chọn Test nào.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            var s = startAt ?? DateTime.UtcNow.AddDays(-1);
+            var e = endAt ?? DateTime.UtcNow.AddDays(30);
+
+            int assigned = 0;
+            foreach (var tid in testIds.Distinct())
+            {
+                var t = await _repo.FirstOrDefaultAsync(x => x.Id == tid);
+                if (t == null) continue;
+
+                if (!t.IsPublished)
+                {
+                    t.IsPublished = true;
+                    t.PublishedAt = DateTime.UtcNow;
+                    await _repo.UpsertAsync(x => x.Id == t.Id, t);
+                }
+
+                await _aRepo.DeleteAsync(a => a.TestId == tid && a.TargetType == "User" && a.TargetValue == userId);
+
+                await _aRepo.InsertAsync(new Assignment
+                {
+                    TestId = tid,
+                    TargetType = "User",
+                    TargetValue = userId,
+                    StartAt = s,
+                    EndAt = e
+                });
+                assigned++;
+            }
+
+            TempData["Msg"] = $"Đã assign {assigned} test cho user '{userId}'.";
+            return RedirectToAction(nameof(Index), new { status = "Draft" });
+        }
+
+        // ---------- BulkAssignAuto ----------
+        [HttpPost("/Tests/BulkAssignAuto")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> BulkAssignAuto([FromForm] List<string> testIds, DateTime? startAt, DateTime? endAt)
+        {
+            if (testIds == null || testIds.Count == 0)
+            {
+                TempData["Err"] = "Bạn chưa chọn Test nào.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            var users = await _uRepo.GetAllAsync();
+            var tests = await _repo.GetAllAsync();
+
+            var testMap = tests.ToDictionary(t => t.Id, t => t);
+            var s = startAt ?? DateTime.UtcNow.AddDays(-1);
+            var e = endAt ?? DateTime.UtcNow.AddDays(30);
+
+            int assigned = 0;
+            var skipped = new List<string>();
+
+            foreach (var tid in testIds.Distinct())
+            {
+                if (!testMap.TryGetValue(tid, out var t)) { skipped.Add($"{tid} (not found)"); continue; }
+
+                var owner = ResolveOwnerUser(users, t);
+                if (owner == null) { skipped.Add(t.Title); continue; }
+
+                if (!t.IsPublished)
+                {
+                    t.IsPublished = true;
+                    t.PublishedAt = DateTime.UtcNow;
+                    await _repo.UpsertAsync(x => x.Id == t.Id, t);
+                }
+
+                await _aRepo.DeleteAsync(a => a.TestId == tid && a.TargetType == "User" && a.TargetValue == owner.Id);
+
+                await _aRepo.InsertAsync(new Assignment
+                {
+                    TestId = tid,
+                    TargetType = "User",
+                    TargetValue = owner.Id,
+                    StartAt = s,
+                    EndAt = e
+                });
+                assigned++;
+            }
+
+            var msg = $"Đã assign {assigned} test (auto by owner).";
+            if (skipped.Count > 0)
+                msg += $" Bỏ qua {skipped.Count}: {string.Join("; ", skipped.Take(5))}{(skipped.Count > 5 ? "..." : "")}";
+            TempData["Msg"] = msg;
+
+            return RedirectToAction(nameof(Index), new { status = "Draft" });
+        }
+
+        // ---------- Helpers ----------
         private async Task NotifySafe(
             Test test,
             IEnumerable<AssignmentNotifyTarget> targets,
@@ -493,10 +667,56 @@ namespace Employee_Survey.Controllers
             {
                 await _notiService.NotifyAssignmentsAsync(test, targets, startAtUtc, endAtUtc);
             }
-            catch
+            catch { /* log nếu có */ }
+        }
+
+        private static string RemoveDiacritics(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text)) return string.Empty;
+            var normalized = text.Normalize(NormalizationForm.FormD);
+            var sb = new StringBuilder();
+            foreach (var ch in normalized)
             {
-                // TODO: log nếu có IAuditService/ILogger
+                var uc = System.Globalization.CharUnicodeInfo.GetUnicodeCategory(ch);
+                if (uc != System.Globalization.UnicodeCategory.NonSpacingMark)
+                    sb.Append(ch);
             }
+            return sb.ToString().Normalize(NormalizationForm.FormC);
+        }
+
+        private User? ResolveOwnerUser(List<User> users, Test t)
+        {
+            var title = t.Title ?? "";
+
+            // 1) uid: <id>
+            var mUid = Regex.Match(title, @"uid\s*:\s*(?<id>[A-Za-z0-9\-_]+)", RegexOptions.IgnoreCase);
+            if (mUid.Success)
+            {
+                var id = mUid.Groups["id"].Value.Trim();
+                var byId = users.FirstOrDefault(u => string.Equals(u.Id, id, StringComparison.Ordinal));
+                if (byId != null) return byId;
+            }
+
+            // 2) Auto - <FullName> - ...
+            var mName = Regex.Match(title, @"^Auto\s*-\s*(?<name>[^-]+?)\s*-", RegexOptions.IgnoreCase);
+            if (mName.Success)
+            {
+                var nameInTitle = mName.Groups["name"].Value.Trim();
+                var normTitleName = RemoveDiacritics(nameInTitle).ToLowerInvariant();
+
+                var byName = users.FirstOrDefault(u =>
+                    RemoveDiacritics(u.Name ?? "").ToLowerInvariant() == normTitleName);
+                if (byName != null) return byName;
+
+                var byEmailLocal = users.FirstOrDefault(u =>
+                {
+                    var local = (u.Email ?? "").Split('@')[0];
+                    return RemoveDiacritics(local).ToLowerInvariant() == normTitleName.Replace(" ", "");
+                });
+                if (byEmailLocal != null) return byEmailLocal;
+            }
+
+            return null;
         }
     }
 }

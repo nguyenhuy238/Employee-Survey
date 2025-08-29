@@ -1,30 +1,94 @@
-﻿@model List<Employee_Survey.Domain.Test>
+﻿@using Employee_Survey.Domain
+@model IEnumerable<Test>
 
-<h2>Tests</h2>
-
-@if (TempData["Msg"] != null)
-{
-    <div class="alert alert-success">@TempData["Msg"]</div>
+@{
+    ViewData["Title"] = "Tests";
+    var tests = Model?.ToList() ?? new List<Test>();
 }
 
-<a class="btn btn-success" href="/Tests/Create">Create</a>
+<h2 class="mb-3">Tests</h2>
 
-<table class="table mt-3">
+<div class="d-flex align-items-center gap-2 mb-3">
+    <a class="btn btn-success btn-sm" href="/Tests/Create">Create</a>
+
+    <!-- ===== Bulk toolbar (2 chế độ) =================================== -->
+    <!-- 1) Assign tất cả đã chọn CHO MỘT USER (nhập userId) -->
+    <form id="bulkAssignForm" method="post" action="/Tests/BulkAssign" class="d-flex flex-wrap align-items-end gap-2 ms-auto">
+        @Html.AntiForgeryToken()
+        <div>
+            <label class="form-label mb-1 small">UserId</label>
+            <input name="userId" id="manualUserId" class="form-control form-control-sm" placeholder="vd: u-emp" required />
+        </div>
+        <div>
+            <label class="form-label mb-1 small">Start (UTC)</label>
+            <input type="datetime-local" name="startAt" id="bulkStart" class="form-control form-control-sm" />
+        </div>
+        <div>
+            <label class="form-label mb-1 small">End (UTC)</label>
+            <input type="datetime-local" name="endAt" id="bulkEnd" class="form-control form-control-sm" />
+        </div>
+
+        <!-- Hidden bucket: selectedIds[] sẽ được JS đổ vào trước khi submit -->
+        <div id="selectedBucket"></div>
+
+        <div class="d-flex align-items-center gap-2">
+            <button type="button" class="btn btn-outline-secondary btn-sm" id="btnSelectAll">Select all</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" id="btnClearAll">Clear</button>
+
+            <button type="button" class="btn btn-primary btn-sm" id="btnAssignSelected">
+                Assign selected (one user)
+            </button>
+
+            <button type="button" class="btn btn-warning btn-sm" id="btnAssignAllListed" title="Chọn tất cả hàng đang hiển thị rồi Assign (one user)">
+                Assign ALL (listed)
+            </button>
+        </div>
+    </form>
+
+    <!-- 2) Assign tự động cho ĐÚNG NGƯỜI của từng Test -->
+    <form id="bulkAssignAutoForm" method="post" action="/Tests/BulkAssignAuto" class="d-flex flex-wrap align-items-end gap-2">
+        @Html.AntiForgeryToken()
+        <div>
+            <label class="form-label mb-1 small">Start (UTC)</label>
+            <input type="datetime-local" name="startAt" id="autoStart" class="form-control form-control-sm" />
+        </div>
+        <div>
+            <label class="form-label mb-1 small">End (UTC)</label>
+            <input type="datetime-local" name="endAt" id="autoEnd" class="form-control form-control-sm" />
+        </div>
+        <div id="selectedBucketAuto"></div>
+        <div class="d-flex align-items-center gap-2">
+            <button type="button" class="btn btn-outline-dark btn-sm" id="btnAutoAssignSelected" title="Mỗi test sẽ gán về đúng chủ sở hữu (suy ra từ Title)">
+                Assign selected (auto by owner)
+            </button>
+            <button type="button" class="btn btn-outline-dark btn-sm" id="btnAutoAssignAllListed" title="Assign tất cả hàng đang hiển thị (auto by owner)">
+                Assign ALL (listed, auto)
+            </button>
+        </div>
+    </form>
+    <!-- ================================================================== -->
+</div>
+
+<table class="table table-hover align-middle" id="testsTable">
     <thead>
         <tr>
+            <th style="width:36px;"></th>
             <th>Title</th>
             <th>Duration</th>
             <th>Pass</th>
             <th>Skill</th>
             <th>Status</th>
             <th>Published At</th>
-            <th style="width:420px">Action</th>
+            <th style="width:320px;">Action</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var t in Model)
+        @foreach (var t in tests)
         {
-            <tr>
+            <tr data-test-id="@t.Id">
+                <td>
+                    <input type="checkbox" class="form-check-input row-selector" value="@t.Id" />
+                </td>
                 <td>@t.Title</td>
                 <td>@t.DurationMinutes min</td>
                 <td>@t.PassScore</td>
@@ -39,38 +103,109 @@
                         <span class="badge bg-warning text-dark">Draft</span>
                     }
                 </td>
-                <td>@(t.PublishedAt?.ToLocalTime().ToString("yyyy-MM-dd HH:mm") ?? "-")</td>
-                <td>
-                    <a class="btn btn-sm btn-outline-primary me-2" href="/Tests/Assign/@t.Id">Assign Users</a>
-                    <a class="btn btn-sm btn-outline-secondary me-2" href="/Tests/Edit/@t.Id">Edit</a>
+                <td>@(t.PublishedAt?.ToLocalTime().ToString("g") ?? "-")</td>
+                <td class="text-nowrap">
+                    <a class="btn btn-outline-primary btn-sm" href="/Tests/Assign/@t.Id">Assign Users</a>
+                    <a class="btn btn-outline-secondary btn-sm" href="/Tests/Edit/@t.Id">Edit</a>
 
-                    <form method="post" action="/Tests/ToggleStatus" class="d-inline">
+                    <form class="d-inline" method="post" action="/Tests/ToggleStatus">
                         @Html.AntiForgeryToken()
                         <input type="hidden" name="id" value="@t.Id" />
-                        @if (t.IsPublished)
+                        @if (!t.IsPublished)
                         {
-                            <button class="btn btn-sm btn-warning me-2" onclick="return confirm('Chuyển về Draft?');">Unpublish</button>
+                            <button class="btn btn-success btn-sm">Publish</button>
                         }
                         else
                         {
-                            <button class="btn btn-sm btn-success me-2">Publish</button>
+                            <button class="btn btn-outline-warning btn-sm">Unpublish</button>
                         }
                     </form>
 
-                    <form method="post" action="/Tests/Delete" class="d-inline" onsubmit="return confirm('Xoá bài test này?');">
+                    <form class="d-inline" method="post" action="/Tests/Delete" onsubmit="return confirm('Delete this test?');">
                         @Html.AntiForgeryToken()
                         <input type="hidden" name="id" value="@t.Id" />
-                        <button class="btn btn-sm btn-danger">Delete</button>
+                        <button class="btn btn-danger btn-sm">Delete</button>
                     </form>
 
-                    <form method="post" action="/Tests/AssignToUser" class="d-inline ms-2">
+                    <!-- Quick Assign 1 test (giữ nguyên) -->
+                    <form class="d-inline" method="post" action="/Tests/AssignToUser">
                         @Html.AntiForgeryToken()
                         <input type="hidden" name="testId" value="@t.Id" />
-                        <input class="form-control form-control-sm d-inline" style="width:160px" name="userId" placeholder="userId (vd: u-emp)" />
-                        <button class="btn btn-sm btn-primary">Quick Assign</button>
+                        <input class="form-control form-control-sm d-inline-block" style="width:160px;" name="userId" placeholder="userId (vd: u-emp)" />
+                        <button class="btn btn-primary btn-sm ms-1">Quick Assign</button>
                     </form>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+@section Scripts {
+    <script>
+        (function(){
+          const $ = (q, root=document) => root.querySelector(q);
+          const $$ = (q, root=document) => Array.from(root.querySelectorAll(q));
+
+          const selectors = $$("#testsTable .row-selector");
+          const bucketManual = $("#selectedBucket");
+          const bucketAuto = $("#selectedBucketAuto");
+
+          // Select/Clear
+          $("#btnSelectAll")?.addEventListener("click", () => {
+            selectors.forEach(cb => cb.checked = true);
+          });
+          $("#btnClearAll")?.addEventListener("click", () => {
+            selectors.forEach(cb => cb.checked = false);
+          });
+
+          function fillBucket(container){
+            container.innerHTML = "";
+            const ids = selectors.filter(cb => cb.checked).map(cb => cb.value);
+            ids.forEach(id => {
+              const i = document.createElement('input');
+              i.type = 'hidden';
+              i.name = 'testIds';
+              i.value = id;
+              container.appendChild(i);
+            });
+            return ids.length;
+          }
+
+          // MANUAL (one user)
+          $("#btnAssignSelected")?.addEventListener("click", () => {
+            const count = fillBucket(bucketManual);
+            if(count === 0){ alert("Hãy chọn ít nhất 1 Test."); return; }
+            $("#bulkAssignForm").submit();
+          });
+          $("#btnAssignAllListed")?.addEventListener("click", () => {
+            selectors.forEach(cb => cb.checked = true);
+            const count = fillBucket(bucketManual);
+            if(count === 0){ alert("Không có Test nào."); return; }
+            $("#bulkAssignForm").submit();
+          });
+
+          // AUTO (by owner)
+          function copyDateToAuto(){
+            const s = document.getElementById("bulkStart");
+            const e = document.getElementById("bulkEnd");
+            const sa = document.getElementById("autoStart");
+            const ea = document.getElementById("autoEnd");
+            if(s && sa) sa.value = s.value;
+            if(e && ea) ea.value = e.value;
+          }
+          $("#btnAutoAssignSelected")?.addEventListener("click", () => {
+            const count = fillBucket(bucketAuto);
+            if(count === 0){ alert("Hãy chọn ít nhất 1 Test."); return; }
+            copyDateToAuto();
+            $("#bulkAssignAutoForm").submit();
+          });
+          $("#btnAutoAssignAllListed")?.addEventListener("click", () => {
+            selectors.forEach(cb => cb.checked = true);
+            const count = fillBucket(bucketAuto);
+            if(count === 0){ alert("Không có Test nào."); return; }
+            copyDateToAuto();
+            $("#bulkAssignAutoForm").submit();
+          });
+        })();
+    </script>
+}

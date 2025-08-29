@@ -4,6 +4,8 @@
 }
 <h2 class="mb-3">HR Dashboard</h2>
 
+<partial name="~/Views/Shared/_Flash.cshtml" />
+
 @if (TempData["Msg"] is string message)
 {
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -44,6 +46,15 @@
         <!-- Tests -->
         <a class="btn btn-success btn-sm" href="/Tests" title="Danh sách bài test">Tests</a>
 
+        <!-- NEW: Quick filter Draft -->
+        <a class="btn btn-outline-info btn-sm"
+           asp-controller="Tests"
+           asp-action="Index"
+           asp-route-status="Draft"
+           title="Xem các Test ở trạng thái Draft">
+            Draft Tests
+        </a>
+
         <div class="vr mx-1 d-none d-md-block"></div>
 
         <!-- Assign quick form -->
@@ -73,6 +84,17 @@
                 </button>
             </div>
         </form>
+
+        <div class="vr mx-1 d-none d-md-block"></div>
+
+        <!-- ===== NEW: Auto Generate + Essay Grading ===== -->
+        <a class="btn btn-outline-success btn-sm" href="/autotests/generate" title="Tạo đề tự động theo Department hoặc Users">
+            <i class="bi bi-magic"></i> Auto Generate Test
+        </a>
+        <a class="btn btn-outline-secondary btn-sm" href="/Grading/Pending" title="Chấm điểm các câu Essay chờ xử lý">
+            <i class="bi bi-pencil-square"></i> Essay Grading
+        </a>
+        <!-- ============================================== -->
 
         <div class="ms-auto">
             <a class="btn btn-outline-secondary btn-sm" href="/HR/ExportRecent">Export CSV</a>

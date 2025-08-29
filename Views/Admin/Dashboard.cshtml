@@ -1,9 +1,35 @@
 ﻿@{
     ViewData["Title"] = "Admin Dashboard";
 }
+
 <h2>Welcome Admin</h2>
 <p>Đi tới quản trị câu hỏi, bài test, phân công…</p>
-<li class="nav-item">
-    <a class="nav-link" asp-controller="Profile" asp-action="Edit">Hồ sơ của tôi</a>
-</li>
-<li class="nav-item"><a class="nav-link" asp-controller="Users" asp-action="Index">Users</a></li>
+
+@if (TempData["Msg"] is string msg)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @msg
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<hr />
+
+<div class="card mt-3 shadow-sm">
+    <div class="card-body">
+        <h5 class="card-title">Maintenance</h5>
+        <p class="card-text">
+            Thao tác này sẽ <strong>ghi rỗng toàn bộ file dữ liệu (*.json)</strong> trong thư mục <code>App_Data</code>
+            (Assignment, AuditLog, Feedback, Notification, PasswordReset, Question, Session, Team, Test, User, …)
+            và <strong>seed lại dữ liệu mặc định</strong> (Admin/HR/Manager/Alice, Team A, câu hỏi & test mẫu).
+        </p>
+
+        <form asp-action="ResetData" asp-controller="Admin" method="post" class="d-inline"
+              onsubmit="return confirm('Bạn có chắc chắn muốn RESET TOÀN BỘ dữ liệu về mặc định?');">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-danger">
+                Reset toàn bộ dữ liệu
+            </button>
+        </form>
+    </div>
+</div>

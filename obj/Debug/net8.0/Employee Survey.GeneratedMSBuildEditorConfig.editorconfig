@@ -40,12 +40,28 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxWZXJpZnkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/LEGION/source/repos/Employee Survey/Employee Survey/Views/AutoTests/BatchResult.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0b1Rlc3RzXEJhdGNoUmVzdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LEGION/source/repos/Employee Survey/Employee Survey/Views/AutoTests/Generate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0b1Rlc3RzXEdlbmVyYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/LEGION/source/repos/Employee Survey/Employee Survey/Views/Feedback/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmVlZGJhY2tcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/LEGION/source/repos/Employee Survey/Employee Survey/Views/Feedback/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmVlZGJhY2tcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LEGION/source/repos/Employee Survey/Employee Survey/Views/Grading/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JhZGluZ1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LEGION/source/repos/Employee Survey/Employee Survey/Views/Grading/Pending.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JhZGluZ1xQZW5kaW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/LEGION/source/repos/Employee Survey/Employee Survey/Views/Home/Index.cshtml]
@@ -114,6 +130,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/LEGION/source/repos/Employee Survey/Employee Survey/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LEGION/source/repos/Employee Survey/Employee Survey/Views/Shared/_Flash.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9GbGFzaC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/LEGION/source/repos/Employee Survey/Employee Survey/Views/Shared/_MediaViewer.cshtml]

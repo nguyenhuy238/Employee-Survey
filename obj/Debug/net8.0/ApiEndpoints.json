@@ -65,6 +65,38 @@
   },
   {
     "ContainingType": "Employee_Survey.Controllers.TestsApiController",
+    "Method": "Pause",
+    "RelativePath": "api/tests/sessions/{sid}/pause",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sid",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Employee_Survey.Controllers.TestsApiController",
+    "Method": "Resume",
+    "RelativePath": "api/tests/sessions/{sid}/resume",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sid",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Employee_Survey.Controllers.TestsApiController",
     "Method": "Submit",
     "RelativePath": "api/tests/sessions/{sid}/submit",
     "HttpMethod": "POST",
@@ -252,6 +284,164 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Employee_Survey.Controllers.AutoTestsController",
+    "Method": "AssignAll",
+    "RelativePath": "autotests/assign-all",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "testIds",
+        "Type": "System.String[]",
+        "IsRequired": false
+      },
+      {
+        "Name": "userIds",
+        "Type": "System.String[]",
+        "IsRequired": false
+      },
+      {
+        "Name": "startAt",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "endAt",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Employee_Survey.Controllers.AutoTestsController",
+    "Method": "AssignOne",
+    "RelativePath": "autotests/assign-one",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "testId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "startAt",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "endAt",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Employee_Survey.Controllers.AutoTestsController",
+    "Method": "Generate",
+    "RelativePath": "autotests/generate",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Employee_Survey.Controllers.AutoTestsController",
+    "Method": "Generate",
+    "RelativePath": "autotests/generate",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Mode",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Department",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "UserIds",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Skills",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "DifficultyPolicy",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "McqCount",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "TfCount",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "MatchingCount",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "DragDropCount",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "EssayCount",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "TotalScore",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "EssayReserved",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "FailWhenInsufficient",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "StartAtUtc",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "EndAtUtc",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Employee_Survey.Controllers.FeedbackController",
     "Method": "Edit",
     "RelativePath": "Feedback/Edit/{id}",
@@ -301,6 +491,53 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Employee_Survey.Controllers.GradingController",
+    "Method": "Edit",
+    "RelativePath": "grading/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Employee_Survey.Controllers.GradingController",
+    "Method": "Edit",
+    "RelativePath": "grading/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "scores",
+        "Type": "System.Collections.Generic.Dictionary\u00602[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Double, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Employee_Survey.Controllers.GradingController",
+    "Method": "Pending",
+    "RelativePath": "grading/pending",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -657,6 +894,11 @@
     "Order": 0,
     "Parameters": [
       {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
         "Name": "testId",
         "Type": "System.String",
         "IsRequired": false
@@ -702,6 +944,42 @@
   },
   {
     "ContainingType": "Employee_Survey.Controllers.TestsController",
+    "Method": "Assign",
+    "RelativePath": "Tests/Assign/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "testId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "userIds",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "startAt",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "endAt",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Employee_Survey.Controllers.TestsController",
     "Method": "AssignByDepartment",
     "RelativePath": "Tests/AssignByDepartment",
     "HttpMethod": "POST",
@@ -716,6 +994,63 @@
       {
         "Name": "department",
         "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "startAt",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "endAt",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Employee_Survey.Controllers.TestsController",
+    "Method": "BulkAssign",
+    "RelativePath": "Tests/BulkAssign",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "testIds",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "startAt",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "endAt",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Employee_Survey.Controllers.TestsController",
+    "Method": "BulkAssignAuto",
+    "RelativePath": "Tests/BulkAssignAuto",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "testIds",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {

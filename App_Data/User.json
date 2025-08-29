@@ -4,20 +4,22 @@
     "Name": "Admin",
     "Email": "admin@local",
     "Role": 0,
-    "Level": "Lead",
-    "TeamId": "t-a",
-    "Department": "",
-    "PasswordHash": "$2a$11$OwRqgdncA0dgbv901c00xubHg9HwOtIRHOTVd6N3FUpQ6FjASe1CC"
+    "Level": "Junior",
+    "TeamId": "",
+    "Department": "Operations",
+    "Skill": "C#",
+    "PasswordHash": "$2a$11$ZV2TjN68BWYbJU7Ll/CHeu7ptVVfe0pXJzMODbECrV3uEkmG8FPxq"
   },
   {
     "Id": "u-hr",
-    "Name": "HR1",
+    "Name": "HR",
     "Email": "hr@local",
     "Role": 1,
     "Level": "Junior",
-    "TeamId": "t-a",
+    "TeamId": "",
     "Department": "HR",
-    "PasswordHash": "$2a$11$Da0AUGLOZjggT2D2GGM7vOn2qrrpExg/4Z6oXhrsSl/Obu834ezq."
+    "Skill": "C#",
+    "PasswordHash": "$2a$11$ceDNJmxLXONILr729piPp.WLsv30KAT584BkYI5qL0o0ci7uTtKuC"
   },
   {
     "Id": "u-emp",
@@ -26,18 +28,9 @@
     "Role": 2,
     "Level": "Junior",
     "TeamId": "t-a",
-    "Department": "Finance",
-    "PasswordHash": "$2a$11$7wgM.1w6Jxz1W3pmYfzVX.jxPxkL5ABlfc/6vUgtw3pws66lopwVG"
-  },
-  {
-    "Id": "b835484b8d2a4a8e94573b7d503d8727",
-    "Name": "Nguy\u1EC5n Qu\u1ED1c Huy",
-    "Email": "he186319nguyenquochuy@gmail.com",
-    "Role": 2,
-    "Level": "Junior",
-    "TeamId": "t-a",
     "Department": "Engineering",
-    "PasswordHash": "$2a$11$W2e1lxIDAaawvrNBCG9lTOxLEBmfcp3zyJsMdtNLO.oK5HPtetpQW"
+    "Skill": "C#",
+    "PasswordHash": "$2a$11$RWakv3WRcXOivc6t4mkJ4.vMLQYh9dCKxg55qVJME9S8psAN4EvJ."
   },
   {
     "Id": "u-manager",
@@ -47,16 +40,29 @@
     "Level": "Senior",
     "TeamId": "t-a",
     "Department": "Engineering",
-    "PasswordHash": "$2a$11$UeY2ar5gc7lBhRFzD6f.j.kyKlwFeLE2UFIRFoMojgqo9JfcFclA."
+    "Skill": "C#",
+    "PasswordHash": "$2a$11$Js3GHSg4mJgipHUn.sPtqO41m1DVag4RGsltJPHbV8IUlr7P.QNSu"
   },
   {
-    "Id": "842d2b560fe24408b2ce49202ea18b7e",
+    "Id": "2c44dd4fc3d94eb7b78c639220df15d1",
+    "Name": "Nguy\u1EC5n Qu\u1ED1c Huy",
+    "Email": "he186319nguyenquochuy@gmail.com",
+    "Role": 2,
+    "Level": "Junior",
+    "TeamId": "t-a",
+    "Department": "Engineering",
+    "Skill": "C#",
+    "PasswordHash": "$2a$11$6DOEWveCzpwEf88FFEqnxO188ZpoDbEngAmFm8IOZuoVw3m2PFXxa"
+  },
+  {
+    "Id": "3f9a102813ab44ce81a3eb18c8a223c0",
     "Name": "Ph\u1EA1m Minh C\u01B0\u1EDDng",
     "Email": "nguyenhuy23082004@gmail.com",
     "Role": 2,
-    "Level": "Middle",
+    "Level": "Senior",
     "TeamId": "t-a",
     "Department": "Engineering",
-    "PasswordHash": "$2a$11$1vr.MzHwk/owVIdZvYNMkeVKSlce7p1ruBrs80N5l.jwE2FYgvLSK"
+    "Skill": "C#",
+    "PasswordHash": "$2a$11$tOPVsDSUpDTlrM759VghBOpH5JEc4G.DHm9VyYNVEGA3jp4wzp2uK"
   }
 ]

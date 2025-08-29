@@ -53,6 +53,9 @@ builder.Services.AddSingleton<AssignmentService>();
 builder.Services.AddSingleton<ReportService>();
 builder.Services.AddSingleton<PasswordResetService>();
 
+// ===== NEW: Engine tạo đề tự động & phân bổ điểm =====
+builder.Services.AddSingleton<ITestGenerationService, TestGenerationService>();
+
 // -------------------- Options --------------------------
 builder.Services.Configure<AppOptions>(builder.Configuration.GetSection("App"));     // NEW
 builder.Services.Configure<EmailOptions>(builder.Configuration.GetSection("Email"));

@@ -1,4 +1,5 @@
-﻿// File: Domain/Test.cs
+﻿using System;
+
 namespace Employee_Survey.Domain
 {
     public class Test
@@ -8,31 +9,34 @@ namespace Employee_Survey.Domain
 
         // Cấu hình chung
         public int DurationMinutes { get; set; } = 30;
+
+        /// <summary>
+        /// Ngưỡng đậu tính theo "điểm" (không phải số câu).
+        /// Mặc định 5/10 (tương đương 50%).
+        /// </summary>
         public int PassScore { get; set; } = 5;
+
         public bool ShuffleQuestions { get; set; } = true;
 
-        // Cấu hình lọc (giữ nguyên field cũ để tương thích)
+        // Cấu hình random cũ (giữ nguyên để tương thích)
         public string SkillFilter { get; set; } = "C#";
         public int RandomMCQ { get; set; } = 5;
         public int RandomTF { get; set; } = 5;
         public int RandomEssay { get; set; } = 0;
 
-        // --- NEW: Trạng thái publish & danh sách câu hỏi đã khóa ---
-        public bool IsPublished { get; set; } = false;
+        // === NEW: Tổng điểm đề (mặc định 10.0) ===
+        public decimal TotalMaxScore { get; set; } = 10m;
 
-        /// <summary>
-        /// Danh sách Id câu hỏi (khi chọn thủ công hoặc sau khi Publish “đóng băng”
-        /// kết quả random). Dùng để kiểm tra một Question có đang nằm trong đề Published hay không.
-        /// </summary>
+        // === NEW: Danh sách câu hỏi kèm "điểm" (ưu tiên dùng nếu có) ===
+        public List<TestItem> Items { get; set; } = new();
+
+        // Trạng thái publish & danh sách Id câu hỏi (cũ) - vẫn giữ để tương thích
+        public bool IsPublished { get; set; } = false;
         public List<string> QuestionIds { get; set; } = new();
 
-        /// <summary>
-        /// Ảnh chụp cấu hình random tại thời điểm Publish (để audit).
-        /// Không dùng để hiển thị đề, chỉ để trace.
-        /// </summary>
         public FrozenRandomConfig? FrozenRandom { get; set; }
 
-        // Audit nhẹ
+        // Audit
         public string? CreatedBy { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public string? UpdatedBy { get; set; }
@@ -40,9 +44,6 @@ namespace Employee_Survey.Domain
         public DateTime? PublishedAt { get; set; }
     }
 
-    /// <summary>
-    /// Lưu lại cấu hình random đã dùng khi publish (để sau này biết vì sao đề có 12 MCQ, 3 TF,...)
-    /// </summary>
     public class FrozenRandomConfig
     {
         public string SkillFilter { get; set; } = "C#";
@@ -50,22 +51,13 @@ namespace Employee_Survey.Domain
         public int RandomTF { get; set; }
         public int RandomEssay { get; set; }
     }
+
+    /// <summary>
+    /// Câu hỏi nằm trong Test cùng số điểm của nó.
+    /// </summary>
+    public class TestItem
+    {
+        public string QuestionId { get; set; } = "";
+        public decimal Points { get; set; } = 1m;
+    }
 }
-
-
-
-
-//namespace Employee_Survey.Domain
-//{
-//    public class Test
-//    {
-//        public string Id { get; set; } = Guid.NewGuid().ToString("N");
-//        public string Title { get; set; } = "";
-//        public int DurationMinutes { get; set; } = 30;
-//        public int PassScore { get; set; } = 5;
-//        public string SkillFilter { get; set; } = "C#";
-//        public int RandomMCQ { get; set; } = 5;
-//        public int RandomTF { get; set; } = 5;
-//        public int RandomEssay { get; set; } = 0;
-//    }
-//}

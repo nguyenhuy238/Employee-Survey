@@ -1,0 +1,57 @@
+﻿@model Employee_Survey.Models.GradeSessionViewModel
+@using System.Globalization
+@{
+    ViewData["Title"] = "Grade Essay";
+}
+<partial name="~/Views/Shared/_Flash.cshtml" />
+
+<h2>Grade Essays — Session @Model.Session.Id</h2>
+<div class="mb-2">
+    <b>Test:</b> @Model.Test.Title |
+    <b>User:</b> @Model.Session.UserId |
+    <b>AutoScore:</b> @Model.Session.AutoScore |
+    <b>Manual:</b> @Model.Session.ManualScore |
+    <b>Total:</b> @Model.Session.TotalScore / @Model.Session.MaxScore
+</div>
+
+@if (Model.Essays.Count == 0)
+{
+    <div class="alert alert-info">Phiên này không có câu Essay.</div>
+}
+else
+{
+    <form method="post" asp-action="Edit" asp-controller="Grading" asp-route-id="@Model.Session.Id" class="mb-4">
+        @Html.AntiForgeryToken()
+
+        <div class="list-group">
+            @foreach (var e in Model.Essays)
+            {
+                var maxText = e.MaxPoints.ToString("0.##", CultureInfo.InvariantCulture);
+                var valText = (e.GivenScore ?? 0).ToString("0.##", CultureInfo.InvariantCulture);
+
+                <div class="list-group-item">
+                    <div class="mb-1"><b>Question:</b> @e.Content</div>
+                    <div class="mb-1"><b>Answer:</b> <pre class="mb-0">@e.UserAnswer</pre></div>
+
+                    <div class="mt-2">
+                        <label class="form-label">Score (0..@maxText)</label>
+                        <input type="number"
+                               class="form-control"
+                               name="scores[@e.QuestionId]"
+                               step="0.01"
+                               min="0"
+                               max="@maxText"
+                               value="@valText" />
+                    </div>
+
+                    <div class="text-muted small mt-1">MaxPoints: @maxText</div>
+                </div>
+            }
+        </div>
+
+        <div class="mt-3">
+            <button class="btn btn-success">Save Scores</button>
+            <a class="btn btn-secondary" href="/grading/pending">Back</a>
+        </div>
+    </form>
+}

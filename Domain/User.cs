@@ -8,7 +8,11 @@
         public Role Role { get; set; } = Role.Employee;
         public string Level { get; set; } = "Junior";
         public string TeamId { get; set; } = "";
-        public string Department { get; set; } = ""; 
+        public string Department { get; set; } = "";
+
+        // NEW: kỹ năng chính của nhân viên (dùng để chọn câu hỏi phù hợp)
+        public string Skill { get; set; } = "C#";
+
         public string PasswordHash { get; set; } = "";
     }
 }
